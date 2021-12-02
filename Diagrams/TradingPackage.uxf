@@ -5,9 +5,9 @@
     <id>UMLClass</id>
     <coordinates>
       <x>200</x>
-      <y>460</y>
-      <w>180</w>
-      <h>170</h>
+      <y>440</y>
+      <w>190</w>
+      <h>210</h>
     </coordinates>
     <panel_attributes>/ResourceHolder/
 -
@@ -17,9 +17,12 @@
 - goats: int
 - wood: int
 -
++ResourceHolder()
 +printResources()
-+addResource()
-+takeResource()
++MoveResource()
++ResourcesAvailable()
++InstanceType()
+
 
 
 </panel_attributes>
@@ -29,14 +32,18 @@
     <id>UMLClass</id>
     <coordinates>
       <x>0</x>
-      <y>460</y>
+      <y>440</y>
       <w>160</w>
-      <h>70</h>
+      <h>140</h>
     </coordinates>
-    <panel_attributes>SimpleClass (Singleton)
+    <panel_attributes>Market (Singleton)
+-
+instance
 -
 +getInstance()
 +Market()
++checkRefreshMarket()
++refreshMarket()
 </panel_attributes>
     <additional_attributes/>
   </element>
@@ -44,21 +51,24 @@
     <id>UMLClass</id>
     <coordinates>
       <x>430</x>
-      <y>460</y>
+      <y>440</y>
       <w>150</w>
       <h>80</h>
     </coordinates>
     <panel_attributes>Stockpile (Singleton)
 -
+instance
+-
 +getInstance()
-+Stockpile()</panel_attributes>
++Stockpile()
+</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
       <x>170</x>
-      <y>160</y>
+      <y>140</y>
       <w>260</w>
       <h>190</h>
     </coordinates>
@@ -69,7 +79,11 @@
 - playerColour: enum
 -
 +getColour()
++BuildOptions()
 +Trade()
++StockpileTrade()
++MarketTrade()
++TradePossible()
 
 </panel_attributes>
     <additional_attributes/>
@@ -78,11 +92,12 @@
     <id>UMLClass</id>
     <coordinates>
       <x>10</x>
-      <y>180</y>
+      <y>160</y>
       <w>130</w>
-      <h>100</h>
+      <h>110</h>
     </coordinates>
-    <panel_attributes>&lt;&lt;playerColour&gt;&gt;
+    <panel_attributes>&lt;&lt;Enumeration&gt;&gt;
+playerColour
 -
 - White
 - Orange
@@ -95,7 +110,7 @@
     <id>Relation</id>
     <coordinates>
       <x>300</x>
-      <y>340</y>
+      <y>320</y>
       <w>30</w>
       <h>140</h>
     </coordinates>
@@ -106,7 +121,7 @@
     <id>Relation</id>
     <coordinates>
       <x>150</x>
-      <y>470</y>
+      <y>450</y>
       <w>70</w>
       <h>30</h>
     </coordinates>
@@ -116,12 +131,32 @@
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>370</x>
-      <y>470</y>
-      <w>80</w>
+      <x>380</x>
+      <y>450</y>
+      <w>70</w>
       <h>30</h>
     </coordinates>
     <panel_attributes>lt=&lt;-</panel_attributes>
-    <additional_attributes>60.0;10.0;10.0;10.0</additional_attributes>
+    <additional_attributes>50.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>430</x>
+      <y>550</y>
+      <w>120</w>
+      <h>140</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Enumeration&gt;&gt;
+ResourceType
+-
+-gold
+-molasses
+-cutlasses
+-goats
+-wood
+
+</panel_attributes>
+    <additional_attributes/>
   </element>
 </diagram>
