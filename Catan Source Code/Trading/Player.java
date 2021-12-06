@@ -1,30 +1,26 @@
 package Trading;
-
 import java.util.ArrayList;
-import java.util.LinkedList;
-
-import board.Board;
-import board.DevelopedLocation;
-import board.Location.lairOrShip;
+import Board.Board;
+import Board.DevelopedLocation;
 
 public class Player extends ResourceHolder{
 	protected int numUsedCoco;	// number of used coco cards
     public ArrayList<DevelopedLocation> DevelopedPlayerLocations = new ArrayList<DevelopedLocation>();
     private Board board = Board.getInstance();
+    private colour playerColour;
 
-	public enum Colour{
+	public enum colour{
 		Red,
 		Orange,
 		Blue,
 		White
 	};
-	private Colour playerColour;
 	
-	
-	public Player() {
+	public Player(colour playerColour) {
 		super(0);
-
+		this.playerColour = playerColour;
 	}
+	
 	public void printDevelopedLocations() {
 		System.out.println("\n"+this.playerColour+" player developed locations:");
 		for(int i=0;i<DevelopedPlayerLocations.size();i++) {
@@ -52,11 +48,7 @@ public class Player extends ResourceHolder{
 				System.out.println("x="+x4+". y="+y4);
 		}
 	}
-	// Choose the player colour
-	public void chooseColour(Colour playerColur) {
-		this.playerColour = playerColour;
-	}
-	public Colour getColour() {
+	public colour getColour() {
 		return this.playerColour;
 	}
 	public void printResources() {

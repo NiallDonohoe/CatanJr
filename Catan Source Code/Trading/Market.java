@@ -28,11 +28,11 @@ public class Market extends ResourceHolder{
 			this.refreshMarket();
 		}	
 		else if(this.numCutlasses==5) {
-			stockpile.moveResource(ResourceType.cutlasses,5,this);	
+			stockpile.moveResource(ResourceType.cutlass,5,this);	
 			this.refreshMarket();
 		}	
 		else if(this.numGoats==5) {
-			stockpile.moveResource(ResourceType.goats,5,this);	
+			stockpile.moveResource(ResourceType.goat,5,this);	
 			this.refreshMarket();
 		}
 		else if(this.numWood==5) {
@@ -44,8 +44,8 @@ public class Market extends ResourceHolder{
 	private void refreshMarket() {
 		this.moveResource(ResourceType.gold,1,stockpile);
 		this.moveResource(ResourceType.molasses,1,stockpile);
-		this.moveResource(ResourceType.cutlasses,1,stockpile);
-		this.moveResource(ResourceType.goats,1,stockpile);
+		this.moveResource(ResourceType.cutlass,1,stockpile);
+		this.moveResource(ResourceType.goat,1,stockpile);
 		this.moveResource(ResourceType.wood,1,stockpile);
 		System.out.println("\nMarket refreshed!");
 	}

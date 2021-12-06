@@ -12,10 +12,12 @@ public abstract class ResourceHolder {
 	public enum ResourceType {
 		gold,
 		molasses,
-		cutlasses,
-		goats,
-		wood
+		cutlass,
+		goat,
+		wood,
+		none
 	}
+	
 	public ResourceHolder(int numCards) {
 		this.numGold = numCards;
 		this.numMolasses = numCards;
@@ -28,9 +30,11 @@ public abstract class ResourceHolder {
 		this.printResources();
 		RH.printResources();
 	}
+	
 	public void printResources() {
 		System.out.println("Gold: 	   "+this.numGold+"\nMolasses:  "+this.numMolasses+"\nCutlasses: "+this.numCutlasses+"\nGoats:     "+this.numGoats+"\nWood:      "+this.numWood);
 	}
+	
 	// Add resources to class with the specified amount
 	public void moveResource(ResourceType resType, int i, ResourceHolder RH) {
 		switch (resType){
@@ -42,11 +46,11 @@ public abstract class ResourceHolder {
 			this.numMolasses+=i;
 			RH.numMolasses-=i;
 			break;
-		case cutlasses:
+		case cutlass:
 			this.numCutlasses+=i;
 			RH.numCutlasses-=i;
 			break;
-		case goats:
+		case goat:
 			this.numGoats+=i;
 			RH.numGoats-=i;
 			break;
@@ -56,9 +60,9 @@ public abstract class ResourceHolder {
 			break;
 		default:
 			break;
-		
 		}
 	}
+	
 	// Checks if a resource is available for a resource holder
 	public boolean resourcesAvailable(ResourceType resource, int i) {
 		switch(resource) {
@@ -68,10 +72,10 @@ public abstract class ResourceHolder {
 		case molasses:
 			if(this.numMolasses>=i)
 				return true;
-		case cutlasses:
+		case cutlass:
 			if(this.numCutlasses>=i)
 				return true;
-		case goats:
+		case goat:
 			if(this.numGoats>=i)
 				return true;
 		case wood:	
@@ -80,8 +84,8 @@ public abstract class ResourceHolder {
 		default:
 			return false;
 		}
-		
 	}
+	
 	public String instanceType(ResourceHolder RH) {
 		if(RH instanceof Player)
 			return "Player";

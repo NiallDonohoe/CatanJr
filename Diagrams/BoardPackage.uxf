@@ -5,7 +5,7 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>252</x>
+      <x>261</x>
       <y>90</y>
       <w>270</w>
       <h>135</h>
@@ -26,36 +26,17 @@ Board()
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>324</x>
+      <x>531</x>
       <y>288</y>
-      <w>144</w>
+      <w>270</w>
       <h>99</h>
     </coordinates>
-    <panel_attributes>lw=2
-Location
---
--x: int
--y: int 
---
-+setCoordinates(x,y)
-+getCoordinates()
-</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>UMLClass</id>
-    <coordinates>
-      <x>522</x>
-      <y>288</y>
-      <w>144</w>
-      <h>90</h>
-    </coordinates>
-    <panel_attributes>/Development/
+    <panel_attributes>/DevelopedLocation/
 --
 player: Player
 location: Location
 --
-+setPlayer(Player)
++DevelopedLocation(x,y, lairOrShip, Player)
 +getPlayer()
 
 
@@ -65,7 +46,7 @@ location: Location
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>27</x>
+      <x>36</x>
       <y>261</y>
       <w>216</w>
       <h>153</h>
@@ -87,7 +68,7 @@ Island
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>315</x>
+      <x>324</x>
       <y>468</y>
       <w>162</w>
       <h>45</h>
@@ -101,7 +82,7 @@ Lair
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>549</x>
+      <x>558</x>
       <y>459</y>
       <w>99</w>
       <h>27</h>
@@ -113,7 +94,7 @@ Ship</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>27</x>
+      <x>36</x>
       <y>99</y>
       <w>189</w>
       <h>117</h>
@@ -133,7 +114,7 @@ resourceType
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>234</x>
+      <x>243</x>
       <y>306</y>
       <w>108</w>
       <h>27</h>
@@ -144,7 +125,7 @@ resourceType
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>459</x>
+      <x>468</x>
       <y>315</y>
       <w>81</w>
       <h>27</h>
@@ -155,29 +136,29 @@ resourceType
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>594</x>
-      <y>369</y>
+      <x>603</x>
+      <y>378</y>
       <w>27</w>
-      <h>108</h>
+      <h>99</h>
     </coordinates>
     <panel_attributes>lt=&lt;-</panel_attributes>
-    <additional_attributes>10.0;100.0;10.0;10.0</additional_attributes>
+    <additional_attributes>10.0;90.0;10.0;10.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>468</x>
-      <y>369</y>
+      <x>477</x>
+      <y>378</y>
       <w>90</w>
-      <h>144</h>
+      <h>135</h>
     </coordinates>
     <panel_attributes>lt=&lt;-</panel_attributes>
-    <additional_attributes>10.0;140.0;80.0;140.0;80.0;10.0</additional_attributes>
+    <additional_attributes>10.0;130.0;80.0;130.0;80.0;10.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>198</x>
+      <x>207</x>
       <y>405</y>
       <w>135</w>
       <h>108</h>
@@ -188,7 +169,7 @@ resourceType
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>108</x>
+      <x>117</x>
       <y>405</y>
       <w>513</w>
       <h>162</h>
@@ -199,12 +180,33 @@ resourceType
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>225</x>
+      <x>234</x>
       <y>216</y>
       <w>153</w>
       <h>63</h>
     </coordinates>
     <panel_attributes>lt=&lt;-</panel_attributes>
     <additional_attributes>150.0;10.0;150.0;50.0;10.0;50.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>333</x>
+      <y>297</y>
+      <w>144</w>
+      <h>153</h>
+    </coordinates>
+    <panel_attributes>/Location/
+-
+-x: int
+-y: int 
+-lairOrShip: enum
+--
++Location(x,y)
++getLocation()
++getX()
++getY()
++lairOrShip()</panel_attributes>
+    <additional_attributes/>
   </element>
 </diagram>
