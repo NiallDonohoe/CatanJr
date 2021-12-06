@@ -133,6 +133,10 @@ public class Island {
 					}
 				}
 	}
+	
+	public Trading.ResourceHolder.ResourceType getResourceType() {
+		return this.resource;
+	}
 
 	public void printEach() {
 		System.out.println("\nThe Locations in island:");
