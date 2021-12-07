@@ -10,7 +10,7 @@ public class Board {
     }
     
     static Board instance = null;
-    private static ArrayList<Island> islands = new ArrayList<Island>();
+    public static ArrayList<Island> islands = new ArrayList<Island>();
     public static ArrayList<Location> availableLocations = new ArrayList<Location>();	
     public static ArrayList<DevelopedLocation> developedLocations = new ArrayList<DevelopedLocation>();
     
@@ -102,5 +102,17 @@ public class Board {
     	for(int i = 0; i< islands.size();i++)
     		islands.get(i).playersWithDevelopedLairs();
     }
-
+    
+    public ArrayList<Island> getIslands(){
+    	return islands;
+    }
+    
+    
+    //===========================================================
+    // Singleton destroyer for unit testing ONLY
+    //===========================================================
+    
+    public void destroyMe() {
+        instance = null;
+    }
 }

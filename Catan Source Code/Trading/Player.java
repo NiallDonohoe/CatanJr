@@ -4,7 +4,7 @@ import Board.Board;
 import Board.DevelopedLocation;
 
 public class Player extends ResourceHolder{
-	protected int numUsedCoco;	// number of used coco cards
+	public int numUsedCoco;	// number of used coco cards
     public ArrayList<DevelopedLocation> DevelopedPlayerLocations = new ArrayList<DevelopedLocation>();
     private Board board = Board.getInstance();
     private colour playerColour;
