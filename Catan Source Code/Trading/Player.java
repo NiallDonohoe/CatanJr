@@ -3,12 +3,23 @@ import java.util.ArrayList;
 import Board.Board;
 import Board.DevelopedLocation;
 
+/**
+ * Class for Players in a game of CatanJr
+ * 
+ * @author  Niall Donohoe & Shea O'Sullivan
+ * @version 1.0
+ */
+
+
 public class Player extends ResourceHolder{
-	public int numUsedCoco;	// number of used coco cards
+	
+	//===========================================================
+	// Class Variables 
+	//===========================================================
+	public int numUsedCoco;
     public ArrayList<DevelopedLocation> DevelopedPlayerLocations = new ArrayList<DevelopedLocation>();
     private Board board = Board.getInstance();
     private colour playerColour;
-
 	public enum colour{
 		Red,
 		Orange,
@@ -16,10 +27,32 @@ public class Player extends ResourceHolder{
 		White
 	};
 	
+	//===========================================================
+	// Constructor
+	//===========================================================
+	/**
+	 * Constructor for a Player object
+	 * @param playerColour  The Player's chosen colour
+	 * @param numUsedCoco   The number of Coco cards used by the player, initially 0
+	 */
 	public Player(colour playerColour) {
 		super(0);
 		this.playerColour = playerColour;
+		this.numUsedCoco = 0;
 	}
+	
+	//===========================================================
+	// Getters and Setters
+	//===========================================================
+	
+	public colour getColour() {
+		return this.playerColour;
+	}
+	
+	//===========================================================
+	// Other Methods
+	//===========================================================
+	
 	
 	public void printDevelopedLocations() {
 		System.out.println("\n"+this.playerColour+" player developed locations:");
@@ -48,9 +81,7 @@ public class Player extends ResourceHolder{
 				System.out.println("x="+x4+". y="+y4);
 		}
 	}
-	public colour getColour() {
-		return this.playerColour;
-	}
+
 	public void printResources() {
 		System.out.println("\n"+playerColour+" player");
 		super.printResources();;
