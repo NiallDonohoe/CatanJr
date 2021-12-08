@@ -2,6 +2,7 @@ package Trading;
 import java.util.ArrayList;
 import Board.Board;
 import Board.DevelopedLocation;
+import CocoCards.CocoDeck;
 
 /**
  * Class for Players in a game of CatanJr
@@ -53,6 +54,14 @@ public class Player extends ResourceHolder{
 	// Other Methods
 	//===========================================================
 	
+	public void buyCocoCard() {
+		CocoDeck.getInstance().getCocoCard().use(this);
+	}
+	
+	public void moveGhostCaptain() {
+		System.out.println("Choose where we place Ghost Captain");
+	}
+	
 	
 	public void printDevelopedLocations() {
 		System.out.println("\n"+this.playerColour+" player developed locations:");
@@ -61,6 +70,7 @@ public class Player extends ResourceHolder{
 			System.out.println(DevelopedPlayerLocations.get(i).toString());
 		}
 	}
+	
 	public void BuildOptions() {
 		System.out.print(this.playerColour+" can build on spaces:");
 		for(int i=0;i<DevelopedPlayerLocations.size();i++) {
@@ -98,6 +108,7 @@ public class Player extends ResourceHolder{
 		}
 		this.printTrade(RH);
 	}
+	
 	public void marketTrade(Market RH, ResourceType offeredRes, ResourceType requestedRes) {
 //		this.printTrade(CH);
 		if(this.tradePossible(RH, offeredRes, 1, requestedRes, 1)) {
@@ -109,6 +120,7 @@ public class Player extends ResourceHolder{
 //		this.printTrade(CH);
 		RH.checkRefreshMarket();
 	}
+	
 	// See if the trading player and the player, market or stockpile specified have the resources specified
 	public boolean tradePossible(ResourceHolder RH, ResourceType offeredRes, int numOfferedRes, ResourceType requestedRes, int numRequestedRes) {
 		if(this.resourcesAvailable(offeredRes,numOfferedRes)&&RH.resourcesAvailable(requestedRes,numRequestedRes))

@@ -2,17 +2,36 @@ package Board;
 import java.util.*;
 import Trading.Player;
 import Board.Location.lairOrShip;
+import CocoCards.CocoCard;
+import CocoCards.CocoDeck;
+
+/**
+ * Abstract Class for Board in a game of CatanJr
+ * 
+ * @author  Niall Donohoe & Shea O'Sullivan
+ * @version 1.0
+ */
 
 public class Board {
 	
+	//===========================================================
+	// Class Variables 
+	//===========================================================
     public enum corner {
         NE, SE, SW, NW, Regular	
     }
-    
     static Board instance = null;
     public static ArrayList<Island> islands = new ArrayList<Island>();
     public static ArrayList<Location> availableLocations = new ArrayList<Location>();	
     public static ArrayList<DevelopedLocation> developedLocations = new ArrayList<DevelopedLocation>();
+    public static CocoDeck cocoDeck = new CocoDeck();
+    
+	//===========================================================
+	// Constructor - Singleton
+	//===========================================================
+	/**
+	 * Constructor for a Board object
+	 */
     
     private Board() {} 
     
@@ -23,6 +42,26 @@ public class Board {
 		}
 		return instance;
 	}
+    
+    //===========================================================
+  	// Getters and Setters
+  	//===========================================================
+    public ArrayList<Island> getIslands(){
+    	return islands;
+    }
+    
+    public CocoDeck getCocoDeck(){
+    	return cocoDeck;
+    }
+    
+  	//===========================================================
+  	// Other Methods
+  	//===========================================================
+    
+    public void addIsland(int[] center, Board.corner loc, Trading.ResourceHolder.ResourceType resource, int die) {
+    	Island island = new Island(center,loc,resource,die);
+    	islands.add(island);
+    }
     
     public void declareIslands() {
 		addIsland(new int[]{ 5,2}, Board.corner.SW,Trading.ResourceHolder.ResourceType.cutlass,4);
@@ -42,11 +81,6 @@ public class Board {
 		addIsland(new int[]{ 17,6}, Board.corner.NE,Trading.ResourceHolder.ResourceType.molasses,2);
     }
     
-    public void addIsland(int[] center, Board.corner loc, Trading.ResourceHolder.ResourceType resource, int die) {
-    	Island island = new Island(center,loc,resource,die);
-    	islands.add(island);
-    }
-    
     public boolean addToBoard(Location location) {
     	for(int i=0; i < availableLocations.size();i++) {
     		if(availableLocations.get(i).isEqual(location.getX(),location.getY()))
@@ -62,7 +96,7 @@ public class Board {
     		System.out.println(availableLocations.get(i).toString()+", i="+(i+1));    		
     	}
     }
-    
+       
     public int PositionAvailable(int xi, int yi) {
     	for(int i=0; i < availableLocations.size();i++) {
 	       	if(availableLocations.get(i).isEqual(xi, yi)) {
@@ -102,11 +136,6 @@ public class Board {
     	for(int i = 0; i< islands.size();i++)
     		islands.get(i).playersWithDevelopedLairs();
     }
-    
-    public ArrayList<Island> getIslands(){
-    	return islands;
-    }
-    
     
     //===========================================================
     // Singleton destroyer for unit testing ONLY

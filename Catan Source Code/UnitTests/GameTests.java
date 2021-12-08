@@ -30,6 +30,6 @@ private static Dice testDice;
 	
 	@Test
 	public void rollReturnsAValue() {
-		assertNotNull("The number used coco at the start should be:", testDice.rollDice());
+		assertNotNull("Dice Rolls should return a number:", testDice.rollDice());
 	}
 }

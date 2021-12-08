@@ -43,4 +43,10 @@ public class BoardTests {
 		assertEquals("We should have 0 Developed Locations at the start:", 0, Board.developedLocations.size());
 	}
 	
+	@Test
+	public void weHaveACocoDeck() {
+		assertNotNull("We should have 0 Developed Locations at the start:", Board.cocoDeck);
+	}
+	
+	
 }
