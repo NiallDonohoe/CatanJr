@@ -1,5 +1,7 @@
 package Game;
 import Board.Board;
+import Trading.Player;
+
 import java.io.*;
 
 public class Demo {
@@ -10,6 +12,11 @@ public class Demo {
 		
 		Board board = Board.getInstance();
 		board.declareIslands();
-		board.printEach();
+		
+		Player demoPlayer = new Player(Trading.Player.colour.Blue);
+		
+		demoPlayer.printResources();
+		demoPlayer.buyCocoCard();
+		demoPlayer.printResources();
 	}
 }
