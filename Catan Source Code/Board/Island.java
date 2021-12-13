@@ -117,7 +117,7 @@ public class Island {
 	}
 	
 	public void generateResources() {
-
+		
 			if(!hasGhostCaptain) { // if ghostCaptain absent, increment each lair owner's resource
 				for(int i=0; i < islandDevelopedLairLocations.size();i++) {
 					islandDevelopedLairLocations.get(i).getPlayer().moveResource(this.resource, 1, stockpile);

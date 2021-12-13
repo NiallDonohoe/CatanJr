@@ -30,6 +30,6 @@ private static Dice testDice;
 	
 	@Test
 	public void rollReturnsAValue() {
-		assertNotNull("Dice Rolls should return a number:", testDice.rollDice());
+		assertNotNull("Dice Rolls should return a number:", testDice.roll());
 	}
 }

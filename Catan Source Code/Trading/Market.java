@@ -47,7 +47,6 @@ public class Market extends ResourceHolder{
 		this.moveResource(ResourceType.cutlass,1,stockpile);
 		this.moveResource(ResourceType.goat,1,stockpile);
 		this.moveResource(ResourceType.wood,1,stockpile);
-		System.out.println("\nMarket refreshed!");
 	}
 
 }

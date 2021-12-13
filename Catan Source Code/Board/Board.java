@@ -137,6 +137,16 @@ public class Board {
     		islands.get(i).playersWithDevelopedLairs();
     }
     
+    public void actOnDieRoll(int result, Player player) {
+    	if (result <6) {
+    		for (Island island: islands) {
+    			if(result == island.die) {
+    				island.generateResources();
+    			}
+    		}}
+    	else player.moveGhostCaptain();
+    }
+    
     //===========================================================
     // Singleton destroyer for unit testing ONLY
     //===========================================================

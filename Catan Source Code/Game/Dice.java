@@ -37,7 +37,7 @@ public class Dice {
 	// Other Methods
 	//===========================================================
 	
-	public int rollDice(){
+	public int roll(){
 	    return (dice.nextInt(6)+1);
 	}
 	
