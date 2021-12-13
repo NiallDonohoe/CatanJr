@@ -40,6 +40,7 @@ public class Player extends ResourceHolder{
 		super(0);
 		this.playerColour = playerColour;
 		this.numUsedCoco = 0;
+		this.intialiseResources();
 	}
 	
 	//===========================================================
@@ -66,7 +67,6 @@ public class Player extends ResourceHolder{
 	public void printDevelopedLocations() {
 		System.out.println("\n"+this.playerColour+" player developed locations:");
 		for(int i=0;i<DevelopedPlayerLocations.size();i++) {
-//			int[] temp = DevelopedPlayerLocations.get(i).getLocation();
 			System.out.println(DevelopedPlayerLocations.get(i).toString());
 		}
 	}
@@ -76,7 +76,6 @@ public class Player extends ResourceHolder{
 		for(int i=0;i<DevelopedPlayerLocations.size();i++) {
 			int[] temp = DevelopedPlayerLocations.get(i).getLocation();
 			System.out.println("\nx="+temp[0]+", y="+temp[1]);
-//			lairOrShip los = DevelopedPlayerLocations.get(i).LairOrShip();
 			int x1=temp[0]-1, y1=temp[1];
 			int x2=temp[0]+1, y2=temp[1];
 			int x3=temp[0], y3=temp[1]-1;
@@ -96,46 +95,51 @@ public class Player extends ResourceHolder{
 		System.out.println("\n"+playerColour+" player");
 		super.printResources();;
 	}
-
-	public void stockpileTrade(Stockpile RH, ResourceType offeredRes, ResourceType requestedRes) {
-		this.printTrade(RH);
-		// Trade if the trade is possible.
-		if(this.tradePossible(RH, offeredRes, 2, requestedRes, 1)) {
-			// Give the offered resources to the stockpile.
-			RH.moveResource(offeredRes,2,this);
-			// Take the requested resources from the stockpile.
-			this.moveResource(requestedRes,1,RH);
-		}
-		this.printTrade(RH);
-	}
 	
-	public void marketTrade(Market RH, ResourceType offeredRes, ResourceType requestedRes) {
-//		this.printTrade(CH);
-		if(this.tradePossible(RH, offeredRes, 1, requestedRes, 1)) {
-			// Gives offered resource to market 
-			RH.moveResource(offeredRes,1,this);
-			// Takes the requested resource from the market.
-			this.moveResource(requestedRes,1,RH);
-		}
-//		this.printTrade(CH);
-		RH.checkRefreshMarket();
-	}
 	
-	// See if the trading player and the player, market or stockpile specified have the resources specified
 	public boolean tradePossible(ResourceHolder RH, ResourceType offeredRes, int numOfferedRes, ResourceType requestedRes, int numRequestedRes) {
 		if(this.resourcesAvailable(offeredRes,numOfferedRes)&&RH.resourcesAvailable(requestedRes,numRequestedRes))
 			return true;
+		
 		else if(!this.resourcesAvailable(offeredRes,numOfferedRes)) {
 			System.out.println("\n"+this.playerColour+" player does not have the offered resources for trade.");
 			return false;
 		}
-//		else if(!BCH.ResourcesAvailable(requestedRes,numRequestedRes)) {
+
 		else {
 			System.out.println(this.instanceType(RH)+" does not have have the requested resources for trade.");
 			return false;
 		}
 	}
+	
+	public void handleTrade(ResourceHolder RH,ResourceType offeredResource, int amountOffered, ResourceType requestedResource, int amountRequired) {
+		RH.moveResource(offeredResource,amountRequired,this);
+		this.moveResource(requestedResource,amountRequired,RH);
+	}
+	
+	public void trade(ResourceHolder RH, ResourceType offeredRes, ResourceType requestedRes) {
+		int amountRequired=0;
+		if(RH instanceof Market) {
+			amountRequired = 1;
+		}
+		else if(RH instanceof Stockpile) {
+			amountRequired = 2;
+		}
 
+		if(this.tradePossible(RH, offeredRes, amountRequired, requestedRes, amountRequired)) {
+			this.handleTrade(RH, offeredRes, amountRequired, requestedRes, amountRequired);
+		}
+		
+		if (RH instanceof Market) {
+			((Market) RH).checkRefreshMarket();
+		}
+	}
+	
+	private void intialiseResources() {
+		this.handleTrade(Stockpile.getInstance(), ResourceHolder.ResourceType.none, 0, ResourceHolder.ResourceType.wood, 1);
+		this.handleTrade(Stockpile.getInstance(), ResourceHolder.ResourceType.none, 0, ResourceHolder.ResourceType.molasses, 1);
+	}
+	
 	
 	
 
