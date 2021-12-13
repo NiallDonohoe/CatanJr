@@ -48,5 +48,12 @@ public class Market extends ResourceHolder{
 		this.moveResource(ResourceType.goat,1,stockpile);
 		this.moveResource(ResourceType.wood,1,stockpile);
 	}
+    //===========================================================
+    // Singleton destroyer for unit testing ONLY
+    //===========================================================
+    
+    public void destroyMe() {
+        instance = null;
+    }
 
 }

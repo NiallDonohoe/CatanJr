@@ -126,8 +126,8 @@ public class Player extends ResourceHolder{
 			amountRequired = 2;
 		}
 
-		if(this.tradePossible(RH, offeredRes, amountRequired, requestedRes, amountRequired)) {
-			this.handleTrade(RH, offeredRes, amountRequired, requestedRes, amountRequired);
+		if(this.tradePossible(RH, offeredRes, amountRequired, requestedRes, 1)) {
+			this.handleTrade(RH, offeredRes, amountRequired, requestedRes, 1);
 		}
 		
 		if (RH instanceof Market) {
