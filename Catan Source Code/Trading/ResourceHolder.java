@@ -95,4 +95,19 @@ public abstract class ResourceHolder {
 			return "Market";
 		return null;
 	}
+	public int getNumGold() {
+		return this.numGold;
+	}
+	public int getNumMolasses() {
+		return this.numMolasses;
+	}
+	public int getNumCutlasses() {
+		return this.numCutlasses;
+	}
+	public int  getNumGoats() {
+		return this.numGoats;
+	}
+	public int getNumWood() {
+		return this.numWood;
+	}
 }

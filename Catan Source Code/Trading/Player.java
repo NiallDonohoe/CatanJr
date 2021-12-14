@@ -126,8 +126,8 @@ public class Player extends ResourceHolder{
 			amountRequired = 2;
 		}
 
-		if(this.tradePossible(RH, offeredRes, amountRequired, requestedRes, amountRequired)) {
-			this.handleTrade(RH, offeredRes, amountRequired, requestedRes, amountRequired);
+		if(this.tradePossible(RH, offeredRes, amountRequired, requestedRes, 1)) {
+			this.handleTrade(RH, offeredRes, amountRequired, requestedRes, 1);
 		}
 		
 		if (RH instanceof Market) {
@@ -136,8 +136,10 @@ public class Player extends ResourceHolder{
 	}
 	
 	private void intialiseResources() {
-		this.handleTrade(Stockpile.getInstance(), ResourceHolder.ResourceType.none, 0, ResourceHolder.ResourceType.wood, 1);
-		this.handleTrade(Stockpile.getInstance(), ResourceHolder.ResourceType.none, 0, ResourceHolder.ResourceType.molasses, 1);
+//		this.handleTrade(Stockpile.getInstance(), ResourceHolder.ResourceType.none, 0, ResourceHolder.ResourceType.wood, 1);
+//		this.handleTrade(Stockpile.getInstance(), ResourceHolder.ResourceType.none, 0, ResourceHolder.ResourceType.molasses, 1);
+		 this.moveResource(ResourceType.wood,1,Stockpile.getInstance());
+		 this.moveResource(ResourceType.molasses,1,Stockpile.getInstance());
 	}
 	
 	
