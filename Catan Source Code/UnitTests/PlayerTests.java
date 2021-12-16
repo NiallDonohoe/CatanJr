@@ -9,6 +9,7 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import Trading.BluePlayer;
 import Trading.Player;
 
 class PlayerTests {
@@ -23,7 +24,7 @@ class PlayerTests {
 
 	@BeforeEach
 	public void setUp() throws Exception{
-		testPlayer = new Player(Player.colour.Blue);
+		testPlayer = BluePlayer.getInstance();
 	}
 	
 	@After

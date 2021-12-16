@@ -120,11 +120,15 @@ public class Board {
     	if(i!=-1) {
     		int x = availableLocations.get(i).getX();
     		int y = availableLocations.get(i).getY();
-    		lairOrShip los = availableLocations.get(i).LairOrShip();
-    		DevelopedLocation DL = new DevelopedLocation(x,y,los,p);
+    		lairOrShip lairOrShip = availableLocations.get(i).getLairOrShip();
+    		DevelopedLocation DL = new DevelopedLocation(x,y,lairOrShip,p);
     		developedLocations.add(DL);
     		p.DevelopedPlayerLocations.add(DL);
     		availableLocations.remove(i);
+    		if(lairOrShip == lairOrShip.lair)
+    			p.decrementUnusedLairs();
+    		else
+    			p.decrementUnusedShips();
     		
     		for(int j = 0; j < islands.size(); j++) {
     			islands.get(j).developPosition(xi, yi, p);

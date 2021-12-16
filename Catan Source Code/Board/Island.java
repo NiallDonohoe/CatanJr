@@ -153,11 +153,16 @@ public class Island {
 	// Develop an available position. If it is a lair.
 	public void developPosition(int xi, int yi ,Player p) {
 		int i = this.PositionInList(xi,yi);
-		lairOrShip los = this.islandAvailableLairLocations.get(i).LairOrShip();
-		if(i!=-1 && los == lairOrShip.lair) {
+		lairOrShip LairOrShip;
+		if(i!=-1)
+			LairOrShip = this.islandAvailableLairLocations.get(i).getLairOrShip();
+		else
+			LairOrShip = lairOrShip.ship;
+		
+		if(LairOrShip == lairOrShip.lair) {
 			int x = islandAvailableLairLocations.get(i).getX();
 			int y = islandAvailableLairLocations.get(i).getY();
-			DevelopedLocation Dlair = new DevelopedLocation(x,y,los,p);
+			DevelopedLocation Dlair = new DevelopedLocation(x,y,LairOrShip,p);
 			this.islandDevelopedLairLocations.add(Dlair);
 			this.islandAvailableLairLocations.remove(i);
 		}

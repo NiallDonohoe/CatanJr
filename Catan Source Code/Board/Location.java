@@ -7,7 +7,7 @@ public class Location {
 	private int[] location = new int[] {x,y};
 	private lairOrShip lairOrShip;
 
-	protected enum lairOrShip{
+	public enum lairOrShip{
 		lair,
 		ship
 	}	
@@ -30,7 +30,7 @@ public class Location {
 		return y;
 	}
 	
-	public lairOrShip LairOrShip() {
+	public lairOrShip getLairOrShip() {
 		return this.lairOrShip;
 	}
 	

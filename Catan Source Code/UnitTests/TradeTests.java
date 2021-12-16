@@ -11,14 +11,16 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import Board.Board;
+import Trading.BluePlayer;
 import Trading.Market;
 import Trading.Player;
+import Trading.RedPlayer;
 import Trading.ResourceHolder.ResourceType;
 import Trading.Stockpile;
 
 class TradeTests {
 	
-	private static Player testPlayer;
+	private static BluePlayer testPlayer;
 	
 	@BeforeAll
 	static void BeforeAll() {
@@ -85,7 +87,12 @@ class TradeTests {
 	// Player should start with 1 wood and molasses taken from stockpile
 	@Test
 	public void playerHasCorrectStartingResources() {
-		testPlayer = new Player(Player.colour.Blue);
+//		testPlayer = new Player(Player.colour.Blue);
+		System.out.println(BluePlayer.PlayerExists());
+		testPlayer = BluePlayer.getInstance();
+		System.out.println(BluePlayer.PlayerExists());
+
+		
 		assertEquals("The player should start with 0 gold.",0,
 				testPlayer.getNumGold());
 		assertEquals("The player should start with 1 mollasses.",1,
@@ -108,18 +115,20 @@ class TradeTests {
 				Stockpile.getInstance().getNumGoats());
 		assertEquals("After player declaration stockpile should have 17 wood.",17,
 				Stockpile.getInstance().getNumWood());
+		testPlayer.destroyMe();
 	}
 	@Test
 	public void unsuccessfulStockpileTrade() {
-		testPlayer = new Player(Player.colour.Red);
+		testPlayer = BluePlayer.getInstance(); 
 		testPlayer.trade(Stockpile.getInstance(), ResourceType.wood, ResourceType.cutlass);
 		assertEquals("After failed trade request player should still have 1 wood:",1,
 				testPlayer.getNumWood());
 		assertEquals("After failed trade request stockpile should still have 18 cutlasses:",18,
 				Stockpile.getInstance().getNumCutlasses());
+		testPlayer.destroyMe();
 	}
 	public void successfulStockpileTrade() {
-		testPlayer = new Player(Player.colour.Red);
+		testPlayer = BluePlayer.getInstance(); 
 		testPlayer.moveResource(ResourceType.wood, 1, Stockpile.getInstance());
 		assertEquals("Before stockpile trade where wood is offered for cutlass, player should have 2 wood:",2,
 				testPlayer.getNumWood());
@@ -132,10 +141,12 @@ class TradeTests {
 				Stockpile.getInstance().getNumWood());
 		assertEquals("After stockpile trade where wood is offered for cutlass, stockpile should have 17 cutlasses:",17,
 				Stockpile.getInstance().getNumCutlasses());
+		testPlayer.destroyMe();
+		
 	}
 	@Test
 	public void succesfulMarketTrade() {
-		testPlayer = new Player(Player.colour.Red);
+		testPlayer = BluePlayer.getInstance(); 
 		testPlayer.trade(Market.getInstance(), ResourceType.wood, ResourceType.gold);
 		assertEquals("After market trade where wood was offered for gold, player should have 0 wood:",0,
 				testPlayer.getNumWood());
@@ -146,9 +157,11 @@ class TradeTests {
 		assertEquals("After market trade where wood was offered for gold, market should have 0 gold:",0,
 				Market.getInstance().getNumGold());
 		Market.getInstance().destroyMe();
+		testPlayer.destroyMe();
 	}
 	@Test
 	public void marketRefreshAllSameResource() {
+		testPlayer = BluePlayer.getInstance(); 
 		Market.getInstance();
 		testPlayer.moveResource(ResourceType.wood,4,Stockpile.getInstance());
 		testPlayer.trade(Market.getInstance(), ResourceType.wood, ResourceType.gold);
@@ -168,13 +181,19 @@ class TradeTests {
 		assertEquals("Market should refresh after getting 5 of one resource and have 1 wood.",1,
 				Market.getInstance().getNumWood());
 		Market.getInstance().destroyMe();
+		testPlayer.destroyMe();
 	}
-//	@Test
-//	public void stockpileRefresh() {
-//		testPlayer = new Player(Player.colour.Red);
-//		testPlayer.moveResource(ResourceType.wood,17,Stockpile.getInstance());
-//		Stockpile.getInstance().printResources();
-//		assertEquals("Stockpile should have 18 resources after reset:",18,
-//				Stockpile.getInstance().getNumWood());
-//	}
+	@Test
+	public void stockpileRefresh() {
+		testPlayer = BluePlayer.getInstance();
+		Stockpile.getInstance().printResources();
+		testPlayer.moveResource(ResourceType.wood,17,Stockpile.getInstance());
+		Stockpile.getInstance().printResources();
+
+		Stockpile.getInstance().printResources();
+//		Stockpile.getInstance().checkRefreshStockpile();
+		assertEquals("Stockpile should have 18 resources after reset:",18,
+				Stockpile.getInstance().getNumWood());
+		testPlayer.destroyMe();
+	}
 }

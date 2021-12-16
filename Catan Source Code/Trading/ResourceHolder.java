@@ -61,6 +61,7 @@ public abstract class ResourceHolder {
 		default:
 			break;
 		}
+		Stockpile.getInstance().checkRefreshStockpile(); // makes sure no resources are depleted in stockpile.
 	}
 	
 	// Checks if a resource is available for a resource holder
