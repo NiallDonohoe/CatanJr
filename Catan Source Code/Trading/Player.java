@@ -12,12 +12,14 @@ import CocoCards.CocoDeck;
  */
 
 
-public class Player extends ResourceHolder{
+public abstract class Player extends ResourceHolder{
 	
 	//===========================================================
 	// Class Variables 
 	//===========================================================
 	public int numUsedCoco;
+	private int numUnusedShips = 7;
+	private int numUnusedLairs = 8;
     public ArrayList<DevelopedLocation> DevelopedPlayerLocations = new ArrayList<DevelopedLocation>();
     private Board board = Board.getInstance();
     private colour playerColour;
@@ -36,12 +38,13 @@ public class Player extends ResourceHolder{
 	 * @param playerColour  The Player's chosen colour
 	 * @param numUsedCoco   The number of Coco cards used by the player, initially 0
 	 */
-	public Player(colour playerColour) {
+	protected Player(colour playerColour) {
 		super(0);
 		this.playerColour = playerColour;
 		this.numUsedCoco = 0;
 		this.intialiseResources();
 	}
+	
 	
 	//===========================================================
 	// Getters and Setters
@@ -49,6 +52,12 @@ public class Player extends ResourceHolder{
 	
 	public colour getColour() {
 		return this.playerColour;
+	}
+	public void decrementUnusedLairs() {
+		this.numUnusedLairs-=1;
+	}
+	public void decrementUnusedShips() {
+		this.numUnusedLairs-=1;
 	}
 	
 	//===========================================================
@@ -136,13 +145,7 @@ public class Player extends ResourceHolder{
 	}
 	
 	private void intialiseResources() {
-//		this.handleTrade(Stockpile.getInstance(), ResourceHolder.ResourceType.none, 0, ResourceHolder.ResourceType.wood, 1);
-//		this.handleTrade(Stockpile.getInstance(), ResourceHolder.ResourceType.none, 0, ResourceHolder.ResourceType.molasses, 1);
 		 this.moveResource(ResourceType.wood,1,Stockpile.getInstance());
 		 this.moveResource(ResourceType.molasses,1,Stockpile.getInstance());
 	}
-	
-	
-	
-
 }

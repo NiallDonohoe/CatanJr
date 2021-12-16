@@ -94,7 +94,7 @@ public class Controller implements Initializable {
     	int x = l.getX();
     	int y = l.getY();
     	
-    	if(l.LairOrShip()==Location.lairOrShip.lair) {
+    	if(l.getLairOrShip()==Location.lairOrShip.lair) {
         	button.setStyle("-fx-background-radius: 10em; " +
         	         "-fx-min-width: 10px; " +
         	         "-fx-min-height: 10px; " +

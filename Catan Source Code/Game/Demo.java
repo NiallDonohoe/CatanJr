@@ -1,9 +1,12 @@
 package Game;
 import Board.Board;
 import Board.Island;
+import Trading.BluePlayer;
 import Trading.Player;
+import Trading.RedPlayer;
 import Trading.ResourceHolder;
 import Trading.ResourceHolder.ResourceType;
+import Trading.WhitePlayer;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -31,12 +34,14 @@ public class Demo {
 		
 		// Make Stockpile
 		Trading.Stockpile stockpile = Trading.Stockpile.getInstance();
-		
+				
 		// Make players
-		Player BluePlayer = new Player(Trading.Player.colour.Blue);
-		Player RedPlayer = new Player(Trading.Player.colour.Red);
-		Player WhitePlayer = new Player(Trading.Player.colour.White);
-		
+		BluePlayer BluePlayer = Trading.BluePlayer.getInstance();
+		RedPlayer RedPlayer = Trading.RedPlayer.getInstance();
+		WhitePlayer WhitePlayer = Trading.WhitePlayer.getInstance();
+		BluePlayer.developStartingPositions();
+		RedPlayer.developStartingPositions();
+		WhitePlayer.developStartingPositions();
 		players.add(BluePlayer); players.add(RedPlayer); players.add(WhitePlayer);
 		
 		// players get 2 lairs and 1 ship - still to implement
