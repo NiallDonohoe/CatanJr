@@ -2,6 +2,7 @@ package Trading;
 import java.util.ArrayList;
 import Board.Board;
 import Board.DevelopedLocation;
+import Board.Island;
 import CocoCards.CocoDeck;
 
 /**
@@ -53,6 +54,11 @@ public abstract class Player extends ResourceHolder{
 	public colour getColour() {
 		return this.playerColour;
 	}
+	
+	//===========================================================
+	// Other Methods
+	//===========================================================
+	
 	public void decrementUnusedLairs() {
 		this.numUnusedLairs-=1;
 	}
@@ -60,16 +66,31 @@ public abstract class Player extends ResourceHolder{
 		this.numUnusedLairs-=1;
 	}
 	
-	//===========================================================
-	// Other Methods
-	//===========================================================
-	
 	public void buyCocoCard() {
 		CocoDeck.getInstance().getCocoCard().use(this);
 	}
 	
+	private void handleMovingGhostCaptain(int x,int y) {
+		
+		for(Island island: board.getIslands()) {
+			if(island.h)
+			island.setGhostCaptain(false, this.playerColour);
+		}
+		
+		for(Island island: board.getIslands()) {
+			if(island.getX() == x && island.getY() == y) {
+				island.setGhostCaptain(true, this.playerColour);
+			}
+		}
+		
+		
+	}
+	
 	public void moveGhostCaptain() {
 		System.out.println("Choose where we place Ghost Captain");
+		int x, y;
+		handleMoveGhostCaptain(x,y);
+
 	}
 	
 	
@@ -148,4 +169,10 @@ public abstract class Player extends ResourceHolder{
 		 this.moveResource(ResourceType.wood,1,Stockpile.getInstance());
 		 this.moveResource(ResourceType.molasses,1,Stockpile.getInstance());
 	}
+
+
+    //===========================================================
+    // Abstract Singleton destroyer for unit testing ONLY
+    //===========================================================
+	protected abstract void destroyMe();
 }

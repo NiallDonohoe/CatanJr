@@ -6,6 +6,9 @@ import Board.Location.lairOrShip;
 
 public class Island {
 	
+	//===========================================================
+	// Class Variables 
+	//===========================================================
 	protected Board board = Board.getInstance();
 	private Stockpile stockpile = Stockpile.getInstance();
 	protected int x;
@@ -21,6 +24,9 @@ public class Island {
 	ArrayList<Location> islandAvailableShipLocations = new ArrayList<Location>();
 	ArrayList<DevelopedLocation> islandDevelopedShipLocations = new ArrayList<DevelopedLocation>();
 	
+	//===========================================================
+	// Constructor
+	//===========================================================
 	protected Island(int[] center, Board.corner loc, Trading.ResourceHolder.ResourceType resource, int die){
 		this.x = center[0]; this.y = center[1];
 	    this.resource = resource;
@@ -43,6 +49,12 @@ public class Island {
     		this.setCornerShipLocations(loc);
 	    }
 	}
+	
+    //===========================================================
+  	// Getters and Setters
+  	//===========================================================
+	public int getX() { return x; }
+	public int getY() { return y; }
 	
 	public void setLairLocations() {
 		for(int xi = x-2; xi <= (x + 2); xi+=2)
@@ -99,6 +111,13 @@ public class Island {
 		this.addShipToAvailableForIsland(x+1, yi);
 	}
 	
+	public boolean checkIfHasGhostCaptain() {
+		return hasGhostCaptain;
+	}
+	
+  	//===========================================================
+  	// Other Methods
+  	//===========================================================
 	public void addLairToAvailableForIsland(int xi,int yi) {
 		Location Ltemp = new Location(xi,yi,lairOrShip.lair);
 		this.islandAvailableLairLocations.add(Ltemp); 

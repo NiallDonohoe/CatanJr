@@ -1,8 +1,6 @@
 package UnitTests;
 
 import static org.junit.Assert.*;
-
-import org.junit.Before;
 import org.junit.After;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
@@ -15,7 +13,6 @@ public class BoardTests {
 	@BeforeAll
 	static void BeforeAll() {
 		System.out.println("Running Board Test Cases...");
-		
 	}
 
 	@BeforeEach

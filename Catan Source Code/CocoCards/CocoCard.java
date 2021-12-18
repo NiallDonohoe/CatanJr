@@ -20,4 +20,12 @@ public abstract class CocoCard {
 	// Class Methods
 	//===========================================================
 	public abstract void use(Player player);
+	
+	//===========================================================
+	// Getters & Setters
+	//===========================================================
+	
+	public CocoDeck.cocoCardType getCardType() {
+		return cardType;
+	}
 }

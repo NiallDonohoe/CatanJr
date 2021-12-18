@@ -40,6 +40,7 @@ public class Market extends ResourceHolder{
 			this.refreshMarket();
 		}
 	}
+	
 	// Refreshes market if checkRefreshMarket finds the market needs to be refreshed and at the start of the game
 	private void refreshMarket() {
 		this.moveResource(ResourceType.gold,1,stockpile);
@@ -48,6 +49,7 @@ public class Market extends ResourceHolder{
 		this.moveResource(ResourceType.goat,1,stockpile);
 		this.moveResource(ResourceType.wood,1,stockpile);
 	}
+	
     //===========================================================
     // Singleton destroyer for unit testing ONLY
     //===========================================================
