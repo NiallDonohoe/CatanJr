@@ -40,7 +40,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.shape.Polygon?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Controller">
    <children>
       <Pane prefHeight="296.0" prefWidth="505.0">
          <children>
@@ -264,12 +264,12 @@
             <Button id="153" layoutX="335.0" layoutY="189.0" mnemonicParsing="false" style="-fx-background-radius: 15; -fx-min-width: 15; -fx-min-height: 15; -fx-max-width: 15; -fx-max-height: 15;" />
             <Button id="173" layoutX="381.0" layoutY="166.0" mnemonicParsing="false" style="-fx-background-radius: 15; -fx-min-width: 15; -fx-min-height: 15; -fx-max-width: 15; -fx-max-height: 15;" />
             <Button id="193" layoutX="428.0" layoutY="188.0" mnemonicParsing="false" style="-fx-background-radius: 15; -fx-min-width: 15; -fx-min-height: 15; -fx-max-width: 15; -fx-max-height: 15;" />
-            <Button id="71" layoutX="149.0" layoutY="248.0" mnemonicParsing="false" style="-fx-background-radius: 15; -fx-min-width: 15; -fx-min-height: 15; -fx-max-width: 15; -fx-max-height: 15;" />
-            <Button id="91" layoutX="197.0" layoutY="273.0" mnemonicParsing="false" style="-fx-background-radius: 15; -fx-min-width: 15; -fx-min-height: 15; -fx-max-width: 15; -fx-max-height: 15;" />
-            <Button id="111" layoutX="242.0" layoutY="248.0" mnemonicParsing="false" style="-fx-background-radius: 15; -fx-min-width: 15; -fx-min-height: 15; -fx-max-width: 15; -fx-max-height: 15;" />
-            <Button id="131" layoutX="289.0" layoutY="273.0" mnemonicParsing="false" style="-fx-background-radius: 15; -fx-min-width: 15; -fx-min-height: 15; -fx-max-width: 15; -fx-max-height: 15;" />
-            <Button id="151" layoutX="335.0" layoutY="248.0" mnemonicParsing="false" style="-fx-background-radius: 15; -fx-min-width: 15; -fx-min-height: 15; -fx-max-width: 15; -fx-max-height: 15;" />
-            <Button id="13" layoutX="8.0" layoutY="161.0" mnemonicParsing="false" style="-fx-background-radius: 15; -fx-min-width: 15; -fx-min-height: 15; -fx-max-width: 15; -fx-max-height: 15;" />
+            <Button id="7,1" layoutX="149.0" layoutY="248.0" mnemonicParsing="false" onAction="#chooseLocation" style="-fx-background-radius: 15; -fx-min-width: 15; -fx-min-height: 15; -fx-max-width: 15; -fx-max-height: 15;" />
+            <Button id="9,1" layoutX="197.0" layoutY="273.0" mnemonicParsing="false" style="-fx-background-radius: 15; -fx-min-width: 15; -fx-min-height: 15; -fx-max-width: 15; -fx-max-height: 15;" />
+            <Button id="11,1" layoutX="242.0" layoutY="248.0" mnemonicParsing="false" style="-fx-background-radius: 15; -fx-min-width: 15; -fx-min-height: 15; -fx-max-width: 15; -fx-max-height: 15;" />
+            <Button id="13,1" layoutX="289.0" layoutY="273.0" mnemonicParsing="false" style="-fx-background-radius: 15; -fx-min-width: 15; -fx-min-height: 15; -fx-max-width: 15; -fx-max-height: 15;" />
+            <Button id="15,1" layoutX="335.0" layoutY="248.0" mnemonicParsing="false" style="-fx-background-radius: 15; -fx-min-width: 15; -fx-min-height: 15; -fx-max-width: 15; -fx-max-height: 15;" />
+            <Button id="1,3" layoutX="8.0" layoutY="161.0" mnemonicParsing="false" style="-fx-background-radius: 15; -fx-min-width: 15; -fx-min-height: 15; -fx-max-width: 15; -fx-max-height: 15;" />
             <Button layoutX="8.0" layoutY="106.0" mnemonicParsing="false" style="-fx-background-radius: 15; -fx-min-width: 15; -fx-min-height: 15; -fx-max-width: 15; -fx-max-height: 15;" />
             <Button layoutX="103.0" layoutY="106.0" mnemonicParsing="false" style="-fx-background-radius: 15; -fx-min-width: 15; -fx-min-height: 15; -fx-max-width: 15; -fx-max-height: 15;" />
             <Button layoutX="149.0" layoutY="83.0" mnemonicParsing="false" style="-fx-background-radius: 15; -fx-min-width: 15; -fx-min-height: 15; -fx-max-width: 15; -fx-max-height: 15;" />
@@ -287,21 +287,21 @@
             <Button layoutX="338.0" layoutY="45.0" mnemonicParsing="false" style="-fx-background-radius: 30; -fx-min-width: 7.5; -fx-min-height: 30; -fx-max-width: 4; -fx-max-height: 15;" />
             <Button layoutX="247.0" layoutY="45.0" mnemonicParsing="false" style="-fx-background-radius: 30; -fx-min-width: 7.5; -fx-min-height: 30; -fx-max-width: 4; -fx-max-height: 15;" />
             <Button layoutX="153.0" layoutY="44.0" mnemonicParsing="false" style="-fx-background-radius: 30; -fx-min-width: 7.5; -fx-min-height: 30; -fx-max-width: 4; -fx-max-height: 15;" />
-            <Button layoutX="12.0" layoutY="128.0" mnemonicParsing="false" style="-fx-background-radius: 30; -fx-min-width: 7.5; -fx-min-height: 30; -fx-max-width: 4; -fx-max-height: 15;" />
-            <Button layoutX="106.0" layoutY="128.0" mnemonicParsing="false" style="-fx-background-radius: 30; -fx-min-width: 7.5; -fx-min-height: 30; -fx-max-width: 4; -fx-max-height: 15;" />
+            <Button id="1,4" layoutX="12.0" layoutY="128.0" mnemonicParsing="false" style="-fx-background-radius: 30; -fx-min-width: 7.5; -fx-min-height: 30; -fx-max-width: 4; -fx-max-height: 15;" />
+            <Button id="5,4" layoutX="106.0" layoutY="128.0" mnemonicParsing="false" style="-fx-background-radius: 30; -fx-min-width: 7.5; -fx-min-height: 30; -fx-max-width: 4; -fx-max-height: 15;" />
             <Button layoutX="200.0" layoutY="128.0" mnemonicParsing="false" style="-fx-background-radius: 30; -fx-min-width: 7.5; -fx-min-height: 30; -fx-max-width: 4; -fx-max-height: 15;" />
             <Button layoutX="292.0" layoutY="128.0" mnemonicParsing="false" style="-fx-background-radius: 30; -fx-min-width: 7.5; -fx-min-height: 30; -fx-max-width: 4; -fx-max-height: 15;" />
             <Button layoutX="385.0" layoutY="128.0" mnemonicParsing="false" style="-fx-background-radius: 30; -fx-min-width: 7.5; -fx-min-height: 30; -fx-max-width: 4; -fx-max-height: 15;" />
             <Button layoutX="474.0" layoutY="106.0" mnemonicParsing="false" style="-fx-background-radius: 15; -fx-min-width: 15; -fx-min-height: 15; -fx-max-width: 15; -fx-max-height: 15;" />
             <Button id="213" layoutX="473.0" layoutY="164.0" mnemonicParsing="false" style="-fx-background-radius: 15; -fx-min-width: 15; -fx-min-height: 15; -fx-max-width: 15; -fx-max-height: 15;" />
             <Button layoutX="477.0" layoutY="128.0" mnemonicParsing="false" style="-fx-background-radius: 30; -fx-min-width: 7.5; -fx-min-height: 30; -fx-max-width: 4; -fx-max-height: 15;" />
-            <Button id="152" layoutX="339.0" layoutY="208.0" mnemonicParsing="false" style="-fx-background-radius: 30; -fx-min-width: 7.5; -fx-min-height: 30; -fx-max-width: 4; -fx-max-height: 15;" />
-            <Button id="112" layoutX="247.0" layoutY="208.0" mnemonicParsing="false" style="-fx-background-radius: 30; -fx-min-width: 7.5; -fx-min-height: 30; -fx-max-width: 4; -fx-max-height: 15;" />
-            <Button id="72" layoutX="154.0" layoutY="208.0" mnemonicParsing="false" style="-fx-background-radius: 30; -fx-min-width: 7.5; -fx-min-height: 30; -fx-max-width: 4; -fx-max-height: 15;" />
+            <Button id="15,2" layoutX="339.0" layoutY="208.0" mnemonicParsing="false" style="-fx-background-radius: 30; -fx-min-width: 7.5; -fx-min-height: 30; -fx-max-width: 4; -fx-max-height: 15;" />
+            <Button id="11,2" layoutX="247.0" layoutY="208.0" mnemonicParsing="false" style="-fx-background-radius: 30; -fx-min-width: 7.5; -fx-min-height: 30; -fx-max-width: 4; -fx-max-height: 15;" />
+            <Button id="7,2" layoutX="154.0" layoutY="208.0" mnemonicParsing="false" style="-fx-background-radius: 30; -fx-min-width: 7.5; -fx-min-height: 30; -fx-max-width: 4; -fx-max-height: 15;" />
             <Button id="203" layoutX="456.0" layoutY="171.0" mnemonicParsing="false" style="-fx-background-radius: 30; -fx-min-width: 7.5; -fx-min-height: 30; -fx-max-width: 4; -fx-max-height: 15; -fx-rotate: 60;" />
             <Button id="163" layoutX="361.0" layoutY="171.0" mnemonicParsing="false" style="-fx-background-radius: 30; -fx-min-width: 7.5; -fx-min-height: 30; -fx-max-width: 4; -fx-max-height: 15; -fx-rotate: 60;" />
             <Button layoutX="407.0" layoutY="84.0" mnemonicParsing="false" style="-fx-background-radius: 30; -fx-min-width: 7.5; -fx-min-height: 30; -fx-max-width: 4; -fx-max-height: 15; -fx-rotate: 60;" />
-            <Button id="101" layoutX="223.0" layoutY="256.0" mnemonicParsing="false" style="-fx-background-radius: 30; -fx-min-width: 7.5; -fx-min-height: 30; -fx-max-width: 4; -fx-max-height: 15; -fx-rotate: 60;" />
+            <Button id="10,1" layoutX="223.0" layoutY="256.0" mnemonicParsing="false" style="-fx-background-radius: 30; -fx-min-width: 7.5; -fx-min-height: 30; -fx-max-width: 4; -fx-max-height: 15; -fx-rotate: 60;" />
             <Button layoutX="315.0" layoutY="89.0" mnemonicParsing="false" style="-fx-background-radius: 30; -fx-min-width: 7.5; -fx-min-height: 30; -fx-max-width: 4; -fx-max-height: 15; -fx-rotate: 60;" />
             <Button id="43" layoutX="84.0" layoutY="171.0" mnemonicParsing="false" style="-fx-background-radius: 30; -fx-min-width: 7.5; -fx-min-height: 30; -fx-max-width: 4; -fx-max-height: 15; -fx-rotate: 60;" />
             <Button id="83" layoutX="177.0" layoutY="171.0" mnemonicParsing="false" style="-fx-background-radius: 30; -fx-min-width: 7.5; -fx-min-height: 30; -fx-max-width: 4; -fx-max-height: 15; -fx-rotate: 60;" />
@@ -309,11 +309,11 @@
             <Button layoutX="223.0" layoutY="84.0" mnemonicParsing="false" style="-fx-background-radius: 30; -fx-min-width: 7.5; -fx-min-height: 30; -fx-max-width: 4; -fx-max-height: 15; -fx-rotate: 60;" />
             <Button layoutX="129.0" layoutY="84.0" mnemonicParsing="false" style="-fx-background-radius: 30; -fx-min-width: 7.5; -fx-min-height: 30; -fx-max-width: 4; -fx-max-height: 15; -fx-rotate: 60;" />
             <Button layoutX="34.0" layoutY="84.0" mnemonicParsing="false" style="-fx-background-radius: 30; -fx-min-width: 7.5; -fx-min-height: 30; -fx-max-width: 4; -fx-max-height: 15; -fx-rotate: 60;" />
-            <Button id="141" layoutX="315.0" layoutY="256.0" mnemonicParsing="false" style="-fx-background-radius: 30; -fx-min-width: 7.5; -fx-min-height: 30; -fx-max-width: 4; -fx-max-height: 15; -fx-rotate: 60;" />
+            <Button id="14,1" layoutX="315.0" layoutY="256.0" mnemonicParsing="false" style="-fx-background-radius: 30; -fx-min-width: 7.5; -fx-min-height: 30; -fx-max-width: 4; -fx-max-height: 15; -fx-rotate: 60;" />
             <Button layoutX="177.0" layoutY="5.0" mnemonicParsing="false" style="-fx-background-radius: 30; -fx-min-width: 7.5; -fx-min-height: 30; -fx-max-width: 4; -fx-max-height: 15; -fx-rotate: 60;" />
             <Button layoutX="269.0" layoutY="5.0" mnemonicParsing="false" style="-fx-background-radius: 30; -fx-min-width: 7.5; -fx-min-height: 30; -fx-max-width: 4; -fx-max-height: 15; -fx-rotate: 60;" />
-            <Button id="121" layoutX="269.0" layoutY="256.0" mnemonicParsing="false" style="-fx-background-radius: 30; -fx-min-width: 7.5; -fx-min-height: 30; -fx-max-width: 4; -fx-max-height: 15; -fx-rotate: 300;" />
-            <Button id="81" layoutX="177.0" layoutY="256.0" mnemonicParsing="false" style="-fx-background-radius: 30; -fx-min-width: 7.5; -fx-min-height: 30; -fx-max-width: 4; -fx-max-height: 15; -fx-rotate: 300;" />
+            <Button id="12,1" layoutX="269.0" layoutY="256.0" mnemonicParsing="false" style="-fx-background-radius: 30; -fx-min-width: 7.5; -fx-min-height: 30; -fx-max-width: 4; -fx-max-height: 15; -fx-rotate: 300;" />
+            <Button id="8,1" layoutX="177.0" layoutY="256.0" mnemonicParsing="false" style="-fx-background-radius: 30; -fx-min-width: 7.5; -fx-min-height: 30; -fx-max-width: 4; -fx-max-height: 15; -fx-rotate: 300;" />
             <Button id="183" layoutX="407.0" layoutY="166.0" mnemonicParsing="false" style="-fx-background-radius: 30; -fx-min-width: 7.5; -fx-min-height: 30; -fx-max-width: 4; -fx-max-height: 15; -fx-rotate: 300;" />
             <Button id="143" layoutX="315.0" layoutY="171.0" maxHeight="30.0" maxWidth="15.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="15.0" style="-fx-background-radius: 30; -fx-min-width: 7.5; -fx-min-height: 30; -fx-max-width: 4; -fx-max-height: 15; -fx-rotate: 300;" />
             <Button id="103" layoutX="223.0" layoutY="171.0" mnemonicParsing="false" style="-fx-background-radius: 30; -fx-min-width: 7.5; -fx-min-height: 30; -fx-max-width: 4; -fx-max-height: 15; -fx-rotate: 300;" />
@@ -340,14 +340,9 @@
       </Pane>
       <Pane layoutX="-6.0" layoutY="310.0" prefHeight="90.0" prefWidth="480.0">
          <children>
-            <HBox layoutX="133.0" prefHeight="115.0" prefWidth="119.0">
-               <children>
-                  <Label prefHeight="24.0" prefWidth="119.0" text="Player1" />
-               </children>
-            </HBox>
             <HBox layoutX="14.0" prefHeight="115.0" prefWidth="119.0">
                <children>
-                  <Label prefHeight="24.0" prefWidth="119.0" text="Player2" />
+                  <Label prefHeight="24.0" prefWidth="119.0" text="Player1" />
                </children>
             </HBox>
             <HBox layoutX="252.0" prefHeight="115.0" prefWidth="119.0">
@@ -358,6 +353,11 @@
             <HBox layoutX="371.0" prefHeight="115.0" prefWidth="119.0">
                <children>
                   <Label prefHeight="24.0" prefWidth="119.0" text="Player4" />
+               </children>
+            </HBox>
+            <HBox layoutX="100.0" prefHeight="115.0" prefWidth="119.0">
+               <children>
+                  <Label prefHeight="24.0" prefWidth="119.0" text="Player2" />
                </children>
             </HBox>
          </children>

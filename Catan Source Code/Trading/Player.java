@@ -13,7 +13,7 @@ import CocoCards.CocoDeck;
  */
 
 
-public abstract class Player extends ResourceHolder{
+public abstract class Player extends TradingResourceHolder{
 	
 	//===========================================================
 	// Class Variables 
@@ -119,46 +119,7 @@ public abstract class Player extends ResourceHolder{
 
 	public void printResources() {
 		System.out.println("\n"+playerColour+" player");
-		super.printResources();;
-	}
-	
-	
-	public boolean tradePossible(ResourceHolder RH, ResourceType offeredRes, int numOfferedRes, ResourceType requestedRes, int numRequestedRes) {
-		if(this.resourcesAvailable(offeredRes,numOfferedRes)&&RH.resourcesAvailable(requestedRes,numRequestedRes))
-			return true;
-		
-		else if(!this.resourcesAvailable(offeredRes,numOfferedRes)) {
-			System.out.println("\n"+this.playerColour+" player does not have the offered resources for trade.");
-			return false;
-		}
-
-		else {
-			System.out.println(this.instanceType(RH)+" does not have have the requested resources for trade.");
-			return false;
-		}
-	}
-	
-	public void handleTrade(ResourceHolder RH,ResourceType offeredResource, int amountOffered, ResourceType requestedResource, int amountRequired) {
-		RH.moveResource(offeredResource,amountRequired,this);
-		this.moveResource(requestedResource,amountRequired,RH);
-	}
-	
-	public void trade(ResourceHolder RH, ResourceType offeredRes, ResourceType requestedRes) {
-		int amountRequired=0;
-		if(RH instanceof Market) {
-			amountRequired = 1;
-		}
-		else if(RH instanceof Stockpile) {
-			amountRequired = 2;
-		}
-
-		if(this.tradePossible(RH, offeredRes, amountRequired, requestedRes, 1)) {
-			this.handleTrade(RH, offeredRes, amountRequired, requestedRes, 1);
-		}
-		
-		if (RH instanceof Market) {
-			((Market) RH).checkRefreshMarket();
-		}
+		super.printResources();
 	}
 	
 	private void intialiseResources() {

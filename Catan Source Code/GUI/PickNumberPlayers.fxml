@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.Controller">
+<AnchorPane xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Controller">
    <children>
       <BorderPane>
          <top>
@@ -25,7 +25,7 @@
                   </Label>
                   <ButtonBar buttonMinWidth="200.0" layoutX="170.0" layoutY="187.0" prefHeight="102.0" prefWidth="227.0">
                     <buttons>
-                      <Button mnemonicParsing="false" onAction="#playerSelection3" prefHeight="96.0" prefWidth="275.0" text="3 Players">
+                      <Button mnemonicParsing="false" onAction="#playerSelection" prefHeight="96.0" prefWidth="275.0" text="3 Players">
                            <font>
                               <Font size="21.0" />
                            </font>
@@ -34,7 +34,7 @@
                   </ButtonBar>
                   <ButtonBar buttonMinWidth="200.0" layoutX="158.0" layoutY="268.0" prefHeight="169.0" prefWidth="239.0">
                     <buttons>
-                      <Button mnemonicParsing="false" onAction="#playerSelection4" prefHeight="95.0" prefWidth="217.0" text="4 Players">
+                      <Button mnemonicParsing="false" onAction="#playerSelection" prefHeight="95.0" prefWidth="217.0" text="4 Players">
                            <font>
                               <Font size="21.0" />
                            </font>

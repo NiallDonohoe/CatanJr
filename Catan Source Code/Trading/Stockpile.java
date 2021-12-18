@@ -3,12 +3,21 @@ package Trading;
 import Trading.ResourceHolder.ResourceType;
 
 public class Stockpile extends ResourceHolder{
-	
+	//===========================================================
+	// Class Variables 
+	//===========================================================
 	static Stockpile instance = null;
+	
+	//===========================================================
+	// Constructor - Singleton
+	//===========================================================
 	private Stockpile() {
 		super(18);
 	}
 	
+  	//===========================================================
+  	// Other Methods
+  	//===========================================================
 	static public Stockpile getInstance() {
 		if(instance == null)
 			instance = new Stockpile();
