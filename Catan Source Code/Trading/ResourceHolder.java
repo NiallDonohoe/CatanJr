@@ -2,8 +2,10 @@ package Trading;
 
 import Trading.ResourceHolder.ResourceType;
 
-// This a class that defines a holder of cards (market, player, stockpile)
 public abstract class ResourceHolder {
+	//===========================================================
+	// Class Variables 
+	//===========================================================
 	protected int numGold;
 	protected int numMolasses;
 	protected int numCutlasses;
@@ -18,7 +20,9 @@ public abstract class ResourceHolder {
 		wood,
 		none
 	}
-	
+	//===========================================================
+	// Constructor 
+	//===========================================================
 	public ResourceHolder(int numCards) {
 		this.numGold = numCards;
 		this.numMolasses = numCards;
@@ -26,7 +30,9 @@ public abstract class ResourceHolder {
 		this.numGoats = numCards;
 		this.numWood = numCards;
 	}
-	
+  	//===========================================================
+  	// Other Methods
+  	//===========================================================
 	public void printTrade(ResourceHolder RH) {
 		this.printResources();
 		RH.printResources();

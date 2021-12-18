@@ -1,4 +1,4 @@
-package application;
+package GUI;
 	
 import java.io.IOException;
 import Board.Board;
@@ -30,7 +30,6 @@ public class Main extends Application {
 	public static void main(String[] args) {
 		Board board = Board.getInstance();
 		board.declareIslands();
-//		board.printEach();
 		launch(args);
 	}
 	@Override
@@ -38,19 +37,11 @@ public class Main extends Application {
 		this.primaryStage = primaryStage;
 		this.primaryStage.setTitle("CatanJr");
 		initRootLayout();	
-//		loadMap();
 		
 		FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(Main.class.getResource("Start.fxml"));
+        loader.setLocation(Main.class.getResource("PickNumberPlayers.fxml"));
         AnchorPane start = (AnchorPane) loader.load();
         rootLayout.getChildren().setAll(start);
-	}
-	public void changeScreenButtonPushed(ActionEvent event) throws IOException {
-    	Parent ChooseColour = FXMLLoader.load(getClass().getResource("Cat.fxml"));
-    	Scene StartScene =  new Scene(ChooseColour);
-    	Stage window = (Stage) ((Node)event.getSource()).getScene().getWindow();
-    	primaryStage.setScene(StartScene);
-
 	}
 	public void initRootLayout() {
 		try {
@@ -58,7 +49,6 @@ public class Main extends Application {
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(Main.class.getResource("RootLayout.fxml"));
             rootLayout = (AnchorPane) loader.load();
-            
             // Show the scene containing the root layout.
             Scene scene = new Scene(rootLayout);
             primaryStage.setScene(scene);
@@ -71,7 +61,7 @@ public class Main extends Application {
 		try {
             // Load person overview.
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(Main.class.getResource("Cat.fxml"));
+            loader.setLocation(Main.class.getResource("CatanMainScene.fxml"));
             Pane map = (Pane) loader.load();
 //            for(int i=0;i<Board.availableLocations.size();i++) {
 //            	btn[i] = loadLocations(Board.availableLocations.get(i));
@@ -81,46 +71,5 @@ public class Main extends Application {
         } catch (IOException e) {
             e.printStackTrace();
         }
-	}
-	public Button loadLocations(Location l) {
-	    button = new Button();
-//        	Location l = Board.availableLocations.get(i);
-    	int x = l.getX();
-    	int y = l.getY();
-    	
-    	if(l.getLairOrShip()==Location.lairOrShip.lair) {
-        	button.setStyle("-fx-background-radius: 10em; " +
-        	         "-fx-min-width: 10px; " +
-        	         "-fx-min-height: 10px; " +
-        	         "-fx-max-width: 10px; " +
-        	         "-fx-max-height: 10px;"
-        	      );
-        	button.setLayoutX(x*20);
-        	button.setLayoutY(y*20);
-    	}
-    	else {
-    		if(y%2==0) {
-    			button.setStyle("-fx-background-radius: 10em; " +
-            	         "-fx-min-width: 2px; " +
-            	         "-fx-min-height: 10px; " +
-            	         "-fx-max-width: 2px; " +
-            	         "-fx-max-height: 10px;"
-            	      );
-    			button.setLayoutX(x*20+4);
-            	button.setLayoutY(y*20);
-    		}
-    		else {
-        		button.setStyle("-fx-background-radius: 10em; " +
-            	         "-fx-min-width: 10px; " +
-            	         "-fx-min-height: 2px; " +
-            	         "-fx-max-width: 10px; " +
-            	         "-fx-max-height: 2px;"
-            	      );
-        		button.setLayoutX(x*20);
-            	button.setLayoutY(y*20+4);
-    		}
-    		
-    	}
-		return button;
 	}
 }
