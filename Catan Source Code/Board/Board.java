@@ -148,7 +148,7 @@ public class Board {
     				island.generateResources();
     			}
     		}}
-    	else player.moveGhostCaptain();
+    	else player.moveGhostCaptain(1,2); 
     }
     
     //===========================================================

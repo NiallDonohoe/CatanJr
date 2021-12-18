@@ -73,7 +73,7 @@ public abstract class Player extends ResourceHolder{
 	private void handleMovingGhostCaptain(int x,int y) {
 		
 		for(Island island: board.getIslands()) {
-			if(island.h)
+			if(island.checkIfHasGhostCaptain())
 			island.setGhostCaptain(false, this.playerColour);
 		}
 		
@@ -82,15 +82,11 @@ public abstract class Player extends ResourceHolder{
 				island.setGhostCaptain(true, this.playerColour);
 			}
 		}
-		
-		
 	}
 	
-	public void moveGhostCaptain() {
+	public void moveGhostCaptain(int x, int y) {
 		System.out.println("Choose where we place Ghost Captain");
-		int x, y;
-		handleMoveGhostCaptain(x,y);
-
+		handleMovingGhostCaptain(x,y);
 	}
 	
 	
