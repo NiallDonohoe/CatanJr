@@ -88,6 +88,7 @@ public class Controller implements Initializable {
             e.printStackTrace();
         }
 	}
+
 	public Button loadLocations(Location l) {
 	    button = new Button();
 //        	Location l = Board.availableLocations.get(i);

@@ -1,5 +1,6 @@
 package Trading;
 
+import Trading.ResourceHolder.ResourceType;
 
 // This a class that defines a holder of cards (market, player, stockpile)
 public abstract class ResourceHolder {

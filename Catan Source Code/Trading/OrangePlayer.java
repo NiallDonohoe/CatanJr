@@ -4,11 +4,21 @@ import Board.Board;
 import Trading.Player.colour;
 
 public class OrangePlayer extends Player {
+	//===========================================================
+	// Class Variables 
+	//===========================================================
     static OrangePlayer instance = null;
     
+	//===========================================================
+	// Constructor - Singleton
+	//===========================================================
 	private OrangePlayer() {
 		super(colour.Orange);
 	}
+	
+  	//===========================================================
+  	// Other Methods
+  	//===========================================================
 	static public OrangePlayer getInstance() {
 		if(instance == null)
 			instance = new OrangePlayer();
@@ -20,13 +30,18 @@ public class OrangePlayer extends Player {
 		else 
 			return true;
 	}
-    public void destroyMe() {
-        instance = null;
-    }
+
     public void developStartingPositions() {
     	Board.getInstance().developPosition(3,3,this);	// first lair
     	Board.getInstance().developPosition(4,3,this);	// first ship
 		Board.getInstance().developPosition(15,7,this);	// second lair
 		Board.getInstance().developPosition(15,6,this);	// second ship
+    }
+    
+    //===========================================================
+    // Singleton destroyer for unit testing ONLY
+    //===========================================================
+    public void destroyMe() {
+        instance = null;
     }
 }
