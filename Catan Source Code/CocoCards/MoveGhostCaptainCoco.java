@@ -21,7 +21,7 @@ public class MoveGhostCaptainCoco extends CocoCard{
 	}
 	
 	public void use(Player player) {
-		player.moveGhostCaptain();
+		player.moveGhostCaptain(1,2);
 	}
 
 }
