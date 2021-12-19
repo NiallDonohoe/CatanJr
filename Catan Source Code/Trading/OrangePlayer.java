@@ -32,10 +32,10 @@ public class OrangePlayer extends Player {
 	}
 
     public void developStartingPositions() {
-    	Board.getInstance().developPosition(3,3,this);	// first lair
-    	Board.getInstance().developPosition(4,3,this);	// first ship
-		Board.getInstance().developPosition(15,7,this);	// second lair
-		Board.getInstance().developPosition(15,6,this);	// second ship
+    	Board.getInstance().developLocation(3,3,this);	// first lair
+    	Board.getInstance().developLocation(4,3,this);	// first ship
+		Board.getInstance().developLocation(15,7,this);	// second lair
+		Board.getInstance().developLocation(15,6,this);	// second ship
     }
     
     //===========================================================

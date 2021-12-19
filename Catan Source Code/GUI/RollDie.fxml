@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="500.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Controller">
+   <children>
+      <Pane prefHeight="296.0" prefWidth="505.0">
+         <children>
+            <Button layoutX="160.0" layoutY="84.0" mnemonicParsing="false" onAction="#rollDie" prefHeight="186.0" prefWidth="186.0" />
+            <Label layoutX="174.0" prefHeight="59.0" prefWidth="171.0" text="Roll Die">
+               <font>
+                  <Font name="Papyrus" size="38.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>

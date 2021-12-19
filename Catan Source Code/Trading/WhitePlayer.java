@@ -32,10 +32,10 @@ public class WhitePlayer extends Player {
 	}
 
     public void developStartingPositions() {
-    	Board.getInstance().developPosition(15,1,this);	// first lair
-    	Board.getInstance().developPosition(15,2,this);	// first ship
-		Board.getInstance().developPosition(3,5,this);	// second lair
-		Board.getInstance().developPosition(4,5,this);	// second ship
+    	Board.getInstance().developLocation(15,1,this);	// first lair
+    	Board.getInstance().developLocation(15,2,this);	// first ship
+		Board.getInstance().developLocation(3,5,this);	// second lair
+		Board.getInstance().developLocation(4,5,this);	// second ship
     }
     
     //===========================================================

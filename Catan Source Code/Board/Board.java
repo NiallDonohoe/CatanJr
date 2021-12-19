@@ -6,7 +6,7 @@ import CocoCards.CocoCard;
 import CocoCards.CocoDeck;
 
 /**
- * Abstract Class for Board in a game of CatanJr
+ * Class for Board in a game of CatanJr
  * 
  * @author  Niall Donohoe & Shea O'Sullivan
  * @version 1.0
@@ -115,30 +115,102 @@ public class Board {
 		return -1;
 	}
     
-    public void developPosition(int xi, int yi,Player p) {
+//    public boolean developPosition(int xi, int yi,Player p) {
+//    	int i = this.PositionAvailable(xi,yi);
+//    	boolean  positionAvailableToPlayer = p.positionAvailableForPlayer(xi, yi);
+//    	if(i!=-1 && positionAvailableToPlayer) {
+//    		int x = availableLocations.get(i).getX();
+//    		int y = availableLocations.get(i).getY();
+//    		lairOrShip lairOrShip = availableLocations.get(i).getLairOrShip();
+//    		DevelopedLocation DL = new DevelopedLocation(x,y,lairOrShip,p);
+//    		developedLocations.add(DL);
+//    		p.DevelopedPlayerLocations.add(DL);
+//    		availableLocations.remove(i);
+//    		if(lairOrShip == lairOrShip.lair) {
+//    			boolean builtLair = p.buildLair();
+//    		}
+//    		else {
+//    			boolean builtShip p.buildShip();
+//    		}
+//    			
+//    		for(int j = 0; j < islands.size(); j++) {
+//    			islands.get(j).developPosition(xi, yi, p);
+//    		}
+//    		return true;
+//    	}
+//    	else if(i==-1) {
+//    		System.out.println("This Position is already occupied.");
+//    		return false;
+//    	}
+//    	else if(!positionAvailableToPlayer) {
+//    		System.out.println("This position is not adjacent to any of this player's developed locations.");
+//    		return false;
+//    	}
+//    	else {
+//    		System.out.println("This position is occupied and is not adjacent to any of"
+//    				+ " this player's positions.");
+//    		return false;
+//    	}
+//    		
+//    }
+    // Buys a ship or lair for player p if they have the required resources
+    public boolean buyLairOrShip(int xi,int yi, Player p) {
     	int i = this.PositionAvailable(xi,yi);
-    	if(i!=-1) {
+    	lairOrShip lairOrShip = availableLocations.get(i).getLairOrShip();
+    	if(canBuildOnLocation(xi,yi,p)) {
+	    	if(lairOrShip == lairOrShip.lair && p.buildLair()) {
+	    		this.developLocation(xi,yi,p);
+	    		return true;
+	    	}
+	    	else if(lairOrShip == lairOrShip.ship && p.buildShip()) {
+	    		this.developLocation(xi,yi,p);
+	    		return true;
+	    	}
+	    	else
+	    		return false; 
+    	}
+    	else
+    		return false;
+    }
+    // Used to check if the player is adjacent to this position and if it is undeveloped
+    private boolean canBuildOnLocation (int xi, int yi, Player p){
+    	int i = this.PositionAvailable(xi,yi);
+    	boolean  positionAvailableToPlayer = p.positionAvailableForPlayer(xi, yi);
+    	if(i!=-1 && positionAvailableToPlayer) {
     		int x = availableLocations.get(i).getX();
     		int y = availableLocations.get(i).getY();
-    		lairOrShip lairOrShip = availableLocations.get(i).getLairOrShip();
-    		DevelopedLocation DL = new DevelopedLocation(x,y,lairOrShip,p);
-    		developedLocations.add(DL);
-    		p.DevelopedPlayerLocations.add(DL);
-    		availableLocations.remove(i);
-    		if(lairOrShip == lairOrShip.lair)
-    			p.decrementUnusedLairs();
-    		else
-    			p.decrementUnusedShips();
-    		
-    		for(int j = 0; j < islands.size(); j++) {
-    			islands.get(j).developPosition(xi, yi, p);
-    		}
+    		return true;
+    	}
+    	else if(i==-1) {
+    		System.out.println("This Position is already occupied.");
+    		return false;
+    	}
+    	else if(!positionAvailableToPlayer) {
+    		System.out.println("This position is not adjacent to any of this player's developed locations.");
+    		return false;
+    	}
+    	else {
+    		System.out.println("This position is occupied and is not adjacent to any of"
+    				+ " this player's positions.");
+    		return false;
     	}
     }
-    
-    public void developedLairsEachIsland() {
-    	for(int i = 0; i< islands.size();i++)
-    		islands.get(i).playersWithDevelopedLairs();
+    // Used to develop a position on the board
+    public void developLocation(int xi,int yi, Player p) {
+    	if(canBuildOnLocation(xi,yi,p)) {
+	    	int i = this.PositionAvailable(xi,yi);
+			int x = availableLocations.get(i).getX();
+			int y = availableLocations.get(i).getY();
+			lairOrShip lairOrShip = availableLocations.get(i).getLairOrShip();
+			DevelopedLocation DL = new DevelopedLocation(x,y,lairOrShip,p);
+			developedLocations.add(DL);
+			p.DevelopedPlayerLocations.add(DL);
+			availableLocations.remove(i);
+	
+			for(int j = 0; j < islands.size(); j++) {
+				islands.get(j).developPosition(xi, yi, p);
+			}
+    	}
     }
     
     public void actOnDieRoll(int result, Player player) {
@@ -149,6 +221,11 @@ public class Board {
     			}
     		}}
     	else player.moveGhostCaptain(1,2); 
+    }
+    public void printDevelopedLocations() {
+    	for(DevelopedLocation D : Board.developedLocations) {
+    		System.out.println(D.getX()+","+D.getY());
+    	}
     }
     
     //===========================================================
