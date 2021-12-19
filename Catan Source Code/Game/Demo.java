@@ -43,32 +43,35 @@ public class Demo {
 		RedPlayer.developStartingPositions();
 		WhitePlayer.developStartingPositions();
 		players.add(BluePlayer); players.add(RedPlayer); players.add(WhitePlayer);
-		
+
+		Board.getInstance().printDevelopedLocations();
+//		System.out.println(RedPlayer.positionAvailableForPlayer(17, 3));
+//		Board.getInstance().developedLairsEachIsland();
 		// players get 2 lairs and 1 ship - still to implement
 		
 		// test a trade
-		BluePlayer.printResources();
-		RedPlayer.printResources();
-		WhitePlayer.printResources();
-		stockpile.printResources();
-		market.printResources();
-		
-		WhitePlayer.trade(market, Trading.ResourceHolder.ResourceType.molasses, Trading.ResourceHolder.ResourceType.wood);
-		
-		BluePlayer.printResources();
-		RedPlayer.printResources();
-		WhitePlayer.printResources();
-		stockpile.printResources();
-		market.printResources();
-		
-		
-		// roll a die
-		board.actOnDieRoll(dice.roll(),BluePlayer);
-		
-		BluePlayer.printResources();
-		RedPlayer.printResources();
-		WhitePlayer.printResources();
-		stockpile.printResources();
-		market.printResources();
+//		BluePlayer.printResources();
+//		RedPlayer.printResources();
+//		WhitePlayer.printResources();
+//		stockpile.printResources();
+//		market.printResources();
+//		
+//		WhitePlayer.trade(market, Trading.ResourceHolder.ResourceType.molasses, Trading.ResourceHolder.ResourceType.wood);
+//		
+//		BluePlayer.printResources();
+//		RedPlayer.printResources();
+//		WhitePlayer.printResources();
+//		stockpile.printResources();
+//		market.printResources();
+//		
+//		
+//		// roll a die
+//		board.actOnDieRoll(dice.roll(),BluePlayer);
+//		
+//		BluePlayer.printResources();
+//		RedPlayer.printResources();
+//		WhitePlayer.printResources();
+//		stockpile.printResources();
+//		market.printResources();
 	}
 }

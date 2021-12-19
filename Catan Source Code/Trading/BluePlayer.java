@@ -31,10 +31,10 @@ public class BluePlayer extends Player {
 	}
 
     public void developStartingPositions() {
-    	Board.getInstance().developPosition(7,1,this);	// first lair
-    	Board.getInstance().developPosition(7,2,this);	// first ship
-    	Board.getInstance().developPosition(19,5,this);	// second lair
-		Board.getInstance().developPosition(18,5,this);	// second ship
+    	Board.getInstance().developLocation(7,1,this);	// first lair
+    	Board.getInstance().developLocation(7,2,this);	// first ship
+    	Board.getInstance().developLocation(19,5,this);	// second lair
+		Board.getInstance().developLocation(18,5,this);	// second ship
     }
     
     //===========================================================

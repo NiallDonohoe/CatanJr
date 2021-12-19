@@ -1,0 +1,16 @@
+.red{
+    -fx-color: #DC143C;
+}
+.white{
+	-fx-color: #FFFAF0;
+}
+.orange{
+	-fx-color: #FF8C00;
+}
+.blue{
+	-fx-color: #0000CD;
+}
+#mapBack{
+	-fx-color: #708090;
+	-fx-background-color: #87CEFA
+}

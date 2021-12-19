@@ -22,7 +22,7 @@ public class GetShipOrLairCoco extends CocoCard{
 	}
 
 	public void use(Player player) {
-		player.BuildOptions();
+//		player.BuildOptions();
 	}
 
 }

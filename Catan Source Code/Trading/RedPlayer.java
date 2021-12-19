@@ -32,10 +32,10 @@ public class RedPlayer extends Player{
 	}
 	
     public void developStartingPositions() {
-    	Board.getInstance().developPosition(19,3,this);	// first lair
-    	Board.getInstance().developPosition(18,3,this);	// first ship
-		Board.getInstance().developPosition(7,7,this);	// second lair
-		Board.getInstance().developPosition(7,6,this);	// second ship
+    	Board.getInstance().developLocation(19,3,this);	// first lair
+    	Board.getInstance().developLocation(18,3,this);	// first ship
+		Board.getInstance().developLocation(7,7,this);	// second lair
+		Board.getInstance().developLocation(7,6,this);	// second ship
     }
     
     //===========================================================

@@ -3,6 +3,7 @@ package GUI;
 import java.io.IOException;
 import Board.Board;
 import Board.Location;
+import Game.GameRunner;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -28,8 +29,7 @@ public class Main extends Application {
 
     
 	public static void main(String[] args) {
-		Board board = Board.getInstance();
-		board.declareIslands();
+		GameRunner.startGame();
 		launch(args);
 	}
 	@Override
@@ -53,21 +53,6 @@ public class Main extends Application {
             Scene scene = new Scene(rootLayout);
             primaryStage.setScene(scene);
             primaryStage.show();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-	}
-	public void loadMap() {
-		try {
-            // Load person overview.
-            FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(Main.class.getResource("CatanMainScene.fxml"));
-            Pane map = (Pane) loader.load();
-//            for(int i=0;i<Board.availableLocations.size();i++) {
-//            	btn[i] = loadLocations(Board.availableLocations.get(i));
-//            	map.getChildren().add(btn[i]);
-//            }
-            rootLayout.getChildren().addAll(map);
         } catch (IOException e) {
             e.printStackTrace();
         }
