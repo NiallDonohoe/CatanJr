@@ -91,20 +91,20 @@ public class Controller {
     	if (colour.contentEquals("Blue")) { 
     		BluePlayer.getInstance();
     		BluePlayer.getInstance().developStartingPositions();
-    		Game.GameRunner.players.add(BluePlayer.getInstance());
+    		Game.GameRunner.addPlayer(BluePlayer.getInstance());
     	}
     	if (colour.contentEquals("White")) { 
     		WhitePlayer.getInstance(); 
     		WhitePlayer.getInstance().developStartingPositions();
-    		Game.GameRunner.players.add(WhitePlayer.getInstance());}
+    		Game.GameRunner.addPlayer(WhitePlayer.getInstance());}
     	if (colour.contentEquals("Red")) { 
     		RedPlayer.getInstance(); 
     		RedPlayer.getInstance().developStartingPositions();
-    		Game.GameRunner.players.add(RedPlayer.getInstance());}
+    		Game.GameRunner.addPlayer(RedPlayer.getInstance());}
     	if (colour.contentEquals("Orange")) { 
     		OrangePlayer.getInstance(); 
     		OrangePlayer.getInstance().developStartingPositions();
-    		Game.GameRunner.players.add(OrangePlayer.getInstance());}
+    		Game.GameRunner.addPlayer(OrangePlayer.getInstance());}
     	
     	this.handleChooseColour(event);	
 	}
