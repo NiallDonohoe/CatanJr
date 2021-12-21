@@ -8,6 +8,8 @@ import java.util.ResourceBundle;
 import Board.Board;
 import Board.DevelopedLocation;
 import Board.Location;
+import CocoCards.CocoCard;
+import CocoCards.CocoDeck;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -45,6 +47,7 @@ public class Controller {
     private Label label;
     private static ResourceType offeredResource;
     private static ResourceType requestedResource;
+    private static boolean isCocoDevelopment;
     
     public void initialize() {
         String javaVersion = System.getProperty("java.version");
@@ -154,6 +157,17 @@ public class Controller {
     		loadMap(event);
     	}
     	else if(Action.contentEquals("Buy Coco Tile")) {
+    		CocoCard card = GameRunner.getCurrentPlayer().buyCocoCard();
+    		if(card instanceof CocoCards.GetShipOrLairCoco) {
+    			System.out.print("Choose Free Ship or Lair");
+    			isCocoDevelopment = true;
+    			loadMap(event);
+    		}
+    		else if(card instanceof CocoCards.MoveGhostCaptainCoco) {
+    			System.out.print("Choose Island to place Ghost Captain");
+    			loadMap(event);
+    		}
+    		
     		
     	}
     	else if(Action.contentEquals("Trade")) {
@@ -278,7 +292,7 @@ public class Controller {
     }
     
     //===========================================================
-  	// Select Location On Map.
+  	// Select Location On Map 
   	//===========================================================
     public void chooseLocation(ActionEvent event) throws IOException{
         if(((Button) event.getSource()).getId().contains("endturn"))
@@ -287,7 +301,14 @@ public class Controller {
 	       	String[] LocationSelected = ((Button) event.getSource()).getId().split(",",2);
 	    	int x = Integer.parseInt(LocationSelected[0]);
 	    	int y = Integer.parseInt(LocationSelected[1]);
-	    	Board.getInstance().buyLairOrShip(x, y, GameRunner.getCurrentPlayer());
+	    	if(isCocoDevelopment) {
+	    		Board.getInstance().developLocation(x, y, GameRunner.getCurrentPlayer());
+	    		isCocoDevelopment = false;
+	    	}
+	    	else {
+	    		Board.getInstance().buyLairOrShip(x, y, GameRunner.getCurrentPlayer());
+	    	}
+	    	
 	    	loadMap(event);
         }    	
     }
@@ -301,6 +322,7 @@ public class Controller {
 		if(GameRunner.getCurrentPlayer() instanceof Trading.OrangePlayer)
 			bt.getStyleClass().add("orange");
     }
+    
     //===========================================================
   	// Load resource variables.
   	//===========================================================

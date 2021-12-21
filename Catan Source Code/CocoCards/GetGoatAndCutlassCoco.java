@@ -21,6 +21,7 @@ public class GetGoatAndCutlassCoco extends CocoCard{
 		this.cardType = CocoDeck.cocoCardType.getGoatAndCutlass;
 	}
 	
+	@Override
 	public void use(Player player) {
 		player.moveResource(ResourceHolder.ResourceType.goat, 2, Trading.Stockpile.getInstance());
 		player.moveResource(ResourceHolder.ResourceType.cutlass, 2, Trading.Stockpile.getInstance());

@@ -20,6 +20,7 @@ public class MoveGhostCaptainCoco extends CocoCard{
 		this.cardType = CocoDeck.cocoCardType.moveGhostCaptain;
 	}
 	
+	@Override
 	public void use(Player player) {
 		player.moveGhostCaptain(1,2);
 	}

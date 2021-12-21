@@ -21,6 +21,7 @@ public class GetMolassesAndWoodCoco extends CocoCard{
 		this.cardType = CocoDeck.cocoCardType.getMolassesAndWood;
 	}
 	
+	@Override
 	public void use(Player player) {
 		player.moveResource(ResourceHolder.ResourceType.molasses, 2, Trading.Stockpile.getInstance());
 		player.moveResource(ResourceHolder.ResourceType.wood, 2, Trading.Stockpile.getInstance());
