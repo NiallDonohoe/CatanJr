@@ -10,8 +10,8 @@ import Trading.Player;
 public class GameRunner {
 	
 	private static int numPlayers;
+	public static HashSet<Player> playersSet = new HashSet<Player>();
 	public static ArrayList<Player> players = new ArrayList<Player>();
-//	public static LinkedList<Player> players = new LinkedList<Player>();
 	public static int Turn = 1;
 	
 	public static void setNumPlayers(int numSelected) {
@@ -51,5 +51,11 @@ public class GameRunner {
 	}
 	public static Player getPlayer(int i) {
 		return players.get(i);
+	}
+	
+	public static void addPlayer(Player p) {
+		if(playersSet.add(p)) {
+			players.add(p);
+		}
 	}
 }
