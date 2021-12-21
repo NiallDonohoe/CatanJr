@@ -24,6 +24,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import Game.Dice;
 import Game.GameRunner;
@@ -68,6 +69,8 @@ public class Controller {
     	if(Game.GameRunner.players.size()< Game.GameRunner.getNumPlayers()) {
     		Parent ChooseColour = FXMLLoader.load(getClass().getResource("ChooseColour.fxml"));
     		Scene ChooseColourScene = new Scene(ChooseColour);
+    		Label L = (Label) ChooseColourScene.lookup("#playerChooseColour");
+    		L.setText("Player"+(GameRunner.players.size()+1)+" choose your colour:");
     		Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
     		stage.setScene(ChooseColourScene);
     		stage.show();
@@ -208,41 +211,31 @@ public class Controller {
     }
     public void chooseOfferedResource(ActionEvent event) throws IOException {
     	String resource = ((Button) event.getSource()).getText();
-    	if(resource.contentEquals("Gold")) {
+    	if(resource.contentEquals("Gold"))
     		offeredResource = ResourceType.gold;
-    	}
-    	else if(resource.contentEquals("Molasses")) {
+    	else if(resource.contentEquals("Molasses"))
     		offeredResource = ResourceType.molasses;
-    	}
-    	else if(resource.contentEquals("Cutlasses")) {
+    	else if(resource.contentEquals("Cutlasses"))
     		offeredResource = ResourceType.cutlass;
-    	}
-    	else if(resource.contentEquals("Goats")) {
+    	else if(resource.contentEquals("Goats"))
     		offeredResource = ResourceType.goat;
-    	}
-    	else if(resource.contentEquals("Wood")) {
+    	else if(resource.contentEquals("Wood"))
     		offeredResource = ResourceType.wood;
-    	}
     	System.out.println("Player offers: "+offeredResource);
     	loadRequestedResource(event);
     }
     public void chooseRequestedResource(ActionEvent event) throws IOException {
     	String resource = ((Button) event.getSource()).getText();
-    	if(resource.contentEquals("Gold")) {
+    	if(resource.contentEquals("Gold"))
     		requestedResource = ResourceType.gold;
-    	}
-    	else if(resource.contentEquals("Molasses")) {
+    	else if(resource.contentEquals("Molasses"))
     		requestedResource = ResourceType.molasses;
-    	}
-    	else if(resource.contentEquals("Cutlasses")) {
+    	else if(resource.contentEquals("Cutlasses"))
     		requestedResource = ResourceType.cutlass;
-    	}
-    	else if(resource.contentEquals("Goats")) {
+    	else if(resource.contentEquals("Goats"))
     		requestedResource = ResourceType.goat;
-    	}
-    	else if(resource.contentEquals("Wood")) {
+    	else if(resource.contentEquals("Wood"))
     		requestedResource = ResourceType.wood;
-    	}
     	System.out.println("Player requests: "+requestedResource);
 
     	loadTradeMenu(event);
@@ -259,6 +252,9 @@ public class Controller {
             Pane map = (Pane) loader.load();
             Scene mapScene = new Scene(map);
             loadMapColours(mapScene);
+            setPlayerVariableLabel(mapScene);
+            setMarketVariableLabels(mapScene);
+            setStockpileVariableLabels(mapScene);
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             stage.setScene(mapScene);
         } catch (IOException e) {
@@ -293,9 +289,7 @@ public class Controller {
 	    	int y = Integer.parseInt(LocationSelected[1]);
 	    	Board.getInstance().buyLairOrShip(x, y, GameRunner.getCurrentPlayer());
 	    	loadMap(event);
-        }
-    	
-//    	loadMap(event);
+        }    	
     }
     public void changeButtonColour(Button bt) {
     	if(GameRunner.getCurrentPlayer() instanceof Trading.BluePlayer)
@@ -307,5 +301,90 @@ public class Controller {
 		if(GameRunner.getCurrentPlayer() instanceof Trading.OrangePlayer)
 			bt.getStyleClass().add("orange");
     }
-
+    //===========================================================
+  	// Load resource variables.
+  	//===========================================================
+    public void setPlayerVariableLabel(Scene mapScene) {
+    	String[] playerNum = {"P1","P2","P3","P4"};
+    	String[] variableLabel = {"Player","gold","molasses","cutlasses","goats",
+    			"wood","UsedCoco","UnusedLairs","UnusedShips"};
+    	for(int p = 0; p < GameRunner.getNumPlayers(); p++) {
+	    	for(int i = 0; i < variableLabel.length;i++) {
+	    		Label L = (Label) mapScene.lookup("#"+variableLabel[i]+playerNum[p]);
+	    		Pane P = (Pane) mapScene.lookup("#pane"+playerNum[p]);
+	    		if(variableLabel[i]=="Player") {
+	    			L.setText(L.getText() + "("+GameRunner.getPlayer(p).getColour()+"):");
+	    			System.out.println((p+1)+","+GameRunner.getPlayerTurnNumber());
+	    			if((p+1)==GameRunner.getPlayerTurnNumber()) {
+	    				P.setStyle(""
+	    						+ "-fx-border-color:red red red red; "
+	    					    + "-fx-background-color:lightgreen; "
+	    					    + "-fx-border-width: 1 1 1 1; "
+	    						+ "-fx-border-style: solid solid solid solid");
+	    			}
+	    			else
+	    				P.setStyle(""
+	    						+ "-fx-border-color:grey grey grey grey; "
+	    					    + "-fx-background-color:white; "
+	    					    + "-fx-border-width: 1 1 1 1; "
+	    					    + "-fx-border-style: dashed dashed dashed dashed");
+	    		}
+	    		if(variableLabel[i]=="gold")
+	    			L.setText(L.getText() + GameRunner.getPlayer(p).getNumGold());
+	    		if(variableLabel[i]=="molasses")
+	    			L.setText(L.getText() + GameRunner.getPlayer(p).getNumMolasses());
+	    		if(variableLabel[i]=="cutlasses")
+	    			L.setText(L.getText() + GameRunner.getPlayer(p).getNumCutlasses());
+	    		if(variableLabel[i]=="goats")
+	    			L.setText(L.getText() + GameRunner.getPlayer(p).getNumGoats());
+	    		if(variableLabel[i]=="wood")
+	    			L.setText(L.getText() + GameRunner.getPlayer(p).getNumWood());
+	    		if(variableLabel[i]=="UsedCoco")
+	    			L.setText(L.getText() + "###");
+	    		if(variableLabel[i]=="UnusedLairs")
+	    			L.setText(L.getText() + GameRunner.getPlayer(p).getUnbuiltLairs());
+	    		if(variableLabel[i]=="UnusedShips")
+	    			L.setText(L.getText() + GameRunner.getPlayer(p).getUnbuiltShips());
+	    	}
+    	}
+    	if(GameRunner.getNumPlayers()==3) {
+    		Label L = (Label) mapScene.lookup("#PlayerP4");
+	    	for(int i = 0; i < variableLabel.length;i++) {
+	    		Label L1 = (Label) mapScene.lookup("#"+variableLabel[i]+"P4");
+	    		L1.setText("");
+	    	}
+    	}
+    }
+    public void setMarketVariableLabels(Scene mapScene) {
+    	String[] variableLabel = {"gold","molasses","cutlasses","goats","wood"};
+    	for(int i = 0; i < variableLabel.length;i++) {
+    		Label L = (Label) mapScene.lookup("#"+variableLabel[i]+"M");
+    		if(variableLabel[i]=="gold")
+    			L.setText(L.getText() + Trading.Market.getInstance().getNumGold());
+    		if(variableLabel[i]=="molasses")
+    			L.setText(L.getText() + Trading.Market.getInstance().getNumMolasses());
+    		if(variableLabel[i]=="cutlasses")
+    			L.setText(L.getText() + Trading.Market.getInstance().getNumCutlasses());
+    		if(variableLabel[i]=="goats")
+    			L.setText(L.getText() + Trading.Market.getInstance().getNumGoats());
+    		if(variableLabel[i]=="wood")
+    			L.setText(L.getText() + Trading.Market.getInstance().getNumWood());
+    	}
+    }
+    public void setStockpileVariableLabels(Scene mapScene) {
+    	String[] variableLabel = {"gold","molasses","cutlasses","goats","wood"};
+    	for(int i = 0; i < variableLabel.length;i++) {
+    		Label L = (Label) mapScene.lookup("#"+variableLabel[i]+"S");
+    		if(variableLabel[i]=="gold")
+    			L.setText(L.getText() + Trading.Stockpile.getInstance().getNumGold());
+    		if(variableLabel[i]=="molasses")
+    			L.setText(L.getText() + Trading.Stockpile.getInstance().getNumMolasses());
+    		if(variableLabel[i]=="cutlasses")
+    			L.setText(L.getText() + Trading.Stockpile.getInstance().getNumCutlasses());
+    		if(variableLabel[i]=="goats")
+    			L.setText(L.getText() + Trading.Stockpile.getInstance().getNumGoats());
+    		if(variableLabel[i]=="wood")
+    			L.setText(L.getText() + Trading.Stockpile.getInstance().getNumWood());
+    	}
+    }
 }

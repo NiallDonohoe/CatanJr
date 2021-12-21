@@ -41,7 +41,7 @@
 <?import javafx.scene.shape.Polygon?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Controller">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Controller">
    <children>
       <Pane id="mapBack" prefHeight="296.0" prefWidth="505.0" stylesheets="@Styles.css">
          <children>
@@ -334,38 +334,93 @@
             </Button>
          </children>
       </Pane>
-      <Pane layoutX="503.0" prefHeight="400.0" prefWidth="97.0">
+      <Pane layoutX="503.0" prefHeight="296.0" prefWidth="97.0">
          <children>
-            <Label layoutX="38.0" layoutY="29.0" text="Market" />
-            <HBox layoutX="-1.0" layoutY="286.0" prefHeight="100.0" prefWidth="200.0">
-               <children>
-                  <Label text="Stockpile" />
-               </children>
-            </HBox>
+            <Label layoutX="19.0" layoutY="14.0" text="Market" />
+            <HBox layoutY="300.0" prefHeight="100.0" prefWidth="200.0" />
+            <Label id="goldM" layoutX="20.0" layoutY="31.0" text="Gold:" />
+            <Label id="molassesM" layoutX="20.0" layoutY="49.0" text="Molasses: " />
+            <Label id="cutlassesM" layoutX="20.0" layoutY="66.0" text="Cutlasses:" />
+            <Label id="goatsM" layoutX="20.0" layoutY="84.0" text="Goats:" />
+            <Label id="woodM" layoutX="20.0" layoutY="101.0" text="Wood:" />
+            <Label layoutX="20.0" layoutY="131.0" text="Stockpile" />
+            <Label id="goldS" layoutX="20.0" layoutY="148.0" text="Gold:" />
+            <Label id="molassesS" layoutX="20.0" layoutY="166.0" text="Molasses: " />
+            <Label id="cutlassesS" layoutX="20.0" layoutY="183.0" text="Cutlasses:" />
+            <Label id="goatsS" layoutX="20.0" layoutY="201.0" text="Goats:" />
+            <Label id="woodS" layoutX="20.0" layoutY="218.0" text="Wood:" />
          </children>
       </Pane>
-      <Pane layoutX="-6.0" layoutY="310.0" prefHeight="90.0" prefWidth="480.0">
+      <Pane layoutY="296.0" prefHeight="209.0" prefWidth="600.0">
          <children>
-            <HBox layoutX="14.0" prefHeight="115.0" prefWidth="119.0">
+            <Pane id="paneP1" prefHeight="201.0" prefWidth="150.0">
                <children>
-                  <Label prefHeight="24.0" prefWidth="119.0" text="Player1" />
+                  <Label id="PlayerP1" text="Player1">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Label>
+                  <Label id="goldP1" layoutX="5.0" layoutY="20.0" text="Gold:" />
+                  <Label id="molassesP1" layoutX="5.0" layoutY="37.5" text="Molasses: " />
+                  <Label id="cutlassesP1" layoutX="5.0" layoutY="55.0" text="Cutlasses:" />
+                  <Label id="goatsP1" layoutX="5.0" layoutY="72.5" text="Goats:" />
+                  <Label id="woodP1" layoutX="5.0" layoutY="90.0" text="Wood:" />
+                  <Label id="UsedCocoP1" layoutX="5.0" layoutY="105.0" prefHeight="44.0" prefWidth="69.0" text="Used Coco:" wrapText="true" />
+                  <Label id="UnusedLairsP1" layoutX="5.0" layoutY="145.0" text="Unbuilt Lairs:" />
+                  <Label id="UnusedShipsP1" layoutX="5.0" layoutY="162.5" text="Unbuilt Ships:" />
                </children>
-            </HBox>
-            <HBox layoutX="252.0" prefHeight="115.0" prefWidth="119.0">
+            </Pane>
+            <Pane id="paneP2" layoutX="150.0" prefHeight="201.0" prefWidth="150.0">
                <children>
-                  <Label prefHeight="24.0" prefWidth="119.0" text="Player3" />
+                  <Label id="PlayerP2" text="Player2">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Label>
+                  <Label id="goldP2" layoutX="5.0" layoutY="21.0" text="Gold: " />
+                  <Label id="molassesP2" layoutX="5.0" layoutY="37.5" text="Molasses: " />
+                  <Label id="cutlassesP2" layoutX="5.0" layoutY="55.0" text="Cutlasses:" />
+                  <Label id="goatsP2" layoutX="5.0" layoutY="72.5" text="Goats:" />
+                  <Label id="woodP2" layoutX="5.0" layoutY="90.0" text="Wood: " />
+                  <Label id="UsedCocoP2" layoutX="5.0" layoutY="105.0" prefHeight="44.0" prefWidth="69.0" text="Used Coco:" wrapText="true" />
+                  <Label id="UnusedLairsP2" layoutX="5.0" layoutY="145.0" text="Unbuilt Lairs:" />
+                  <Label id="UnusedShipsP2" layoutX="5.0" layoutY="162.5" text="Unbuilt Ships:" />
                </children>
-            </HBox>
-            <HBox layoutX="371.0" prefHeight="115.0" prefWidth="119.0">
+            </Pane>
+            <Pane id="paneP3" layoutX="300.0" prefHeight="201.0" prefWidth="150.0">
                <children>
-                  <Label prefHeight="24.0" prefWidth="119.0" text="Player4" />
+                  <Label id="PlayerP3" text="Player3">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Label>
+                  <Label id="goldP3" layoutX="5.0" layoutY="21.0" text="Gold: " />
+                  <Label id="molassesP3" layoutX="5.0" layoutY="37.5" text="Molasses: " />
+                  <Label id="cutlassesP3" layoutX="5.0" layoutY="55.0" text="Cutlasses:" />
+                  <Label id="goatsP3" layoutX="5.0" layoutY="72.5" prefHeight="15.0" prefWidth="62.0" text="Goats:" />
+                  <Label id="woodP3" layoutX="5.0" layoutY="90.0" text="Wood: " />
+                  <Label id="UsedCocoP3" layoutX="5.0" layoutY="105.0" prefHeight="44.0" prefWidth="69.0" text="Used Coco:" wrapText="true" />
+                  <Label id="UnusedLairsP3" layoutX="5.0" layoutY="145.0" text="Unbuilt Lairs:" />
+                  <Label id="UnusedShipsP3" layoutX="6.0" layoutY="162.5" text="Unbuilt Ships:" />
                </children>
-            </HBox>
-            <HBox layoutX="100.0" prefHeight="115.0" prefWidth="119.0">
+            </Pane>
+            <Pane id="paneP4" layoutX="450.0" prefHeight="201.0" prefWidth="150.0">
                <children>
-                  <Label prefHeight="24.0" prefWidth="119.0" text="Player2" />
+                  <Label id="PlayerP4" text="Player4">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Label>
+                  <Label id="goldP4" layoutX="5.0" layoutY="21.0" text="Gold: " />
+                  <Label id="molassesP4" layoutX="5.0" layoutY="37.5" text="Molasses: " />
+                  <Label id="cutlassesP4" layoutX="5.0" layoutY="55.0" text="Cutlasses:" />
+                  <Label id="goatsP4" layoutX="5.0" layoutY="72.5" text="Goats:" />
+                  <Label id="woodP4" layoutX="5.0" layoutY="90.0" text="Wood: " />
+                  <Label id="UsedCocoP4" layoutX="5.0" layoutY="105.0" prefHeight="44.0" prefWidth="69.0" text="Used Coco:" wrapText="true" />
+                  <Label id="UnusedLairsP4" layoutX="5.0" layoutY="145.0" text="Unbuilt Lairs:" />
+                  <Label id="UnusedShipsP4" layoutX="5.0" layoutY="162.5" text="Unbuilt Ships:" />
                </children>
-            </HBox>
+            </Pane>
          </children>
       </Pane>
    </children>

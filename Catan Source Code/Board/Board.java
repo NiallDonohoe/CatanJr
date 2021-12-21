@@ -114,45 +114,7 @@ public class Board {
 	   	}
 		return -1;
 	}
-    
-//    public boolean developPosition(int xi, int yi,Player p) {
-//    	int i = this.PositionAvailable(xi,yi);
-//    	boolean  positionAvailableToPlayer = p.positionAvailableForPlayer(xi, yi);
-//    	if(i!=-1 && positionAvailableToPlayer) {
-//    		int x = availableLocations.get(i).getX();
-//    		int y = availableLocations.get(i).getY();
-//    		lairOrShip lairOrShip = availableLocations.get(i).getLairOrShip();
-//    		DevelopedLocation DL = new DevelopedLocation(x,y,lairOrShip,p);
-//    		developedLocations.add(DL);
-//    		p.DevelopedPlayerLocations.add(DL);
-//    		availableLocations.remove(i);
-//    		if(lairOrShip == lairOrShip.lair) {
-//    			boolean builtLair = p.buildLair();
-//    		}
-//    		else {
-//    			boolean builtShip p.buildShip();
-//    		}
-//    			
-//    		for(int j = 0; j < islands.size(); j++) {
-//    			islands.get(j).developPosition(xi, yi, p);
-//    		}
-//    		return true;
-//    	}
-//    	else if(i==-1) {
-//    		System.out.println("This Position is already occupied.");
-//    		return false;
-//    	}
-//    	else if(!positionAvailableToPlayer) {
-//    		System.out.println("This position is not adjacent to any of this player's developed locations.");
-//    		return false;
-//    	}
-//    	else {
-//    		System.out.println("This position is occupied and is not adjacent to any of"
-//    				+ " this player's positions.");
-//    		return false;
-//    	}
-//    		
-//    }
+
     // Buys a ship or lair for player p if they have the required resources
     public boolean buyLairOrShip(int xi,int yi, Player p) {
     	int i = this.PositionAvailable(xi,yi);
