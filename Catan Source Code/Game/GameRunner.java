@@ -46,4 +46,10 @@ public class GameRunner {
 	public static Player getCurrentPlayer() {
 		return players.get(Turn-1);
 	}
+	public static int getPlayerTurnNumber() {
+		return Turn;
+	}
+	public static Player getPlayer(int i) {
+		return players.get(i);
+	}
 }

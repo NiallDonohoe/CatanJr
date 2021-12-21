@@ -14,3 +14,7 @@
 	-fx-color: #708090;
 	-fx-background-color: #87CEFA
 }
+.currentPlayer{
+	-fx-color: #000000;
+	-fx-background-color: #000000
+}

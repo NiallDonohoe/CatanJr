@@ -19,8 +19,8 @@ public abstract class Player extends TradingResourceHolder{
 	// Class Variables 
 	//===========================================================
 	public int numUsedCoco;
-	private int numUnusedShips = 7;
-	private int numUnusedLairs = 8;
+	private int numUnbuiltShips = 7;
+	private int numUnbuiltLairs = 8;
     public ArrayList<DevelopedLocation> DevelopedPlayerLocations = new ArrayList<DevelopedLocation>();
     private Board board = Board.getInstance();
     private colour playerColour;
@@ -40,7 +40,7 @@ public abstract class Player extends TradingResourceHolder{
 	 * @param numUsedCoco   The number of Coco cards used by the player, initially 0
 	 */
 	protected Player(colour playerColour) {
-		super(1000);
+		super(0);
 		this.playerColour = playerColour;
 		this.numUsedCoco = 0;
 		this.intialiseResources();
@@ -54,16 +54,22 @@ public abstract class Player extends TradingResourceHolder{
 	public colour getColour() {
 		return this.playerColour;
 	}
+	public int getUnbuiltLairs() {
+		return this.numUnbuiltLairs;
+	}
+	public int getUnbuiltShips() {
+		return this.numUnbuiltShips;
+	}
 	
 	//===========================================================
 	// Other Methods
 	//===========================================================
 	
 	public void decrementUnusedLairs() {
-		this.numUnusedLairs-=1;
+		this.numUnbuiltLairs-=1;
 	}
 	public void decrementUnusedShips() {
-		this.numUnusedLairs-=1;
+		this.numUnbuiltShips-=1;
 	}
 	
 	public void buyCocoCard() {
@@ -103,7 +109,7 @@ public abstract class Player extends TradingResourceHolder{
 			Stockpile.getInstance().moveResource(ResourceType.molasses, 1, this);
 			Stockpile.getInstance().moveResource(ResourceType.goat, 1, this);
 			Stockpile.getInstance().moveResource(ResourceType.wood, 1, this);
-			this.numUnusedLairs-=1;
+			this.numUnbuiltLairs-=1;
 			System.out.println("Player has required resources to build lair.");
 			return true;
 		}
@@ -116,7 +122,7 @@ public abstract class Player extends TradingResourceHolder{
 		if(this.numGoats > 0 && this.numWood > 0) {
 			Stockpile.getInstance().moveResource(ResourceType.goat, 1, this);
 			Stockpile.getInstance().moveResource(ResourceType.wood, 1, this);
-			this.numUnusedShips-=1;
+			this.numUnbuiltShips-=1;
 			System.out.println("Player has required resources to build ship.");
 			return true;
 		}
