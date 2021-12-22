@@ -151,11 +151,16 @@ public class Controller {
     	}
     }
     public void rollDie(ActionEvent event) throws IOException {
-    	int die = Dice.getInstance().roll();
-    	System.out.println("Player rolled a "+die);
     	
-    	
-    	loadChooseActionMenu(event);
+    	int dieResult = Dice.getInstance().roll();
+    	System.out.println("Player rolled a "+dieResult);
+    	if(dieResult<6) {
+    		Board.getInstance().handleGeneratingIslandResources(dieResult,  GameRunner.getCurrentPlayer());
+    		loadChooseActionMenu(event);
+    	}
+    	if(dieResult == 6) {
+    		loadGhostCaptainScene(event);
+    	}
     }
 	//===========================================================
 	// Choose Action Scene and Event Handler
@@ -182,7 +187,6 @@ public class Controller {
     			loadMap(event);
     		}
     		else if(card instanceof CocoCards.MoveGhostCaptainCoco) {
-    			System.out.print("Choose Island to place Ghost Captain");
     			loadGhostCaptainScene(event);
     		}
     	}
@@ -206,8 +210,8 @@ public class Controller {
     }
     public void chooseGhostCaptainIslands(ActionEvent event) throws IOException{
     	String[] LocationSelected = ((Button) event.getSource()).getId().split(",",2);
-    	System.out.println("Ghost captain placed on: "+LocationSelected[0]+","+LocationSelected[1]);
-    	
+    	System.out.println("\nGhost captain placed on: "+LocationSelected[0]+","+LocationSelected[1]);
+    	GameRunner.getCurrentPlayer().moveGhostCaptain(Integer.parseInt(LocationSelected[0]), Integer.parseInt(LocationSelected[1]));
     	loadChooseActionMenu(event);
     }
     
@@ -331,10 +335,12 @@ public class Controller {
 	    	if(isCocoDevelopment) {
 	    		Board.getInstance().developLocation(x, y, GameRunner.getCurrentPlayer());
 	    		isCocoDevelopment = false;
+	    		Game.GameRunner.checkForAWinner();
 	    		loadChooseActionMenu(event);
 	    	}
 	    	else {
 	    		Board.getInstance().buyLairOrShip(x, y, GameRunner.getCurrentPlayer());
+	    		Game.GameRunner.checkForAWinner();
 	    		loadMap(event);
 	    	}
         }    	

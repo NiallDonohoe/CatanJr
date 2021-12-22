@@ -57,5 +57,21 @@ public class GameRunner {
 		if(playersSet.add(p)) {
 			players.add(p);
 		}
+		else {
+			System.out.println("That colour is already taken");
+		}
 	}
+	
+	public static boolean checkForAWinner() {
+		for(Player p: players) {
+			if(p.getUnbuiltLairs()==0) {
+				System.out.println("We have a Winner!!! "+ p.getColour() +" has won.");
+				// destroy instances
+				return true;
+			}
+		}
+		return false;
+		
+	}
+	
 }

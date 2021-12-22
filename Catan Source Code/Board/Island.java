@@ -139,6 +139,7 @@ public class Island {
 		
 			if(!hasGhostCaptain) { // if ghostCaptain absent, increment each lair owner's resource
 				for(int i=0; i < islandDevelopedLairLocations.size();i++) {
+					System.out.println(islandDevelopedLairLocations.get(i).getPlayer().getColour()+" player gets a " + this.resource);
 					islandDevelopedLairLocations.get(i).getPlayer().moveResource(this.resource, 1, stockpile);
 					}
 				}
@@ -147,11 +148,13 @@ public class Island {
 			// we check if the lair owner placed the ghostCaptain there and increment resources.
 			else {
 				for(int i=0; i < islandDevelopedLairLocations.size();i++) {
-					if (ghostCaptainLastMovedBy == (islandDevelopedLairLocations.get(i).getPlayer().getColour()))
-					islandDevelopedLairLocations.get(i).getPlayer().moveResource(this.resource, 2, stockpile);
+					if (ghostCaptainLastMovedBy == (islandDevelopedLairLocations.get(i).getPlayer().getColour())) {
+						System.out.println(islandDevelopedLairLocations.get(i).getPlayer().getColour()+" player gets 2 " + this.resource+"s");
+						islandDevelopedLairLocations.get(i).getPlayer().moveResource(this.resource, 2, stockpile);
+						}
 					}
 				}
-	}
+			}
 	
 	public Trading.ResourceHolder.ResourceType getResourceType() {
 		return this.resource;

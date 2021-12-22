@@ -175,15 +175,14 @@ public class Board {
     	}
     }
     
-    public void actOnDieRoll(int result, Player player) {
-    	if (result <6) {
+    public void handleGeneratingIslandResources(int result, Player player) {
     		for (Island island: islands) {
     			if(result == island.die) {
     				island.generateResources();
     			}
-    		}}
-    	else player.moveGhostCaptain(1,2); 
+    		}
     }
+ 
     public void printDevelopedLocations() {
     	for(DevelopedLocation D : Board.developedLocations) {
     		System.out.println(D.getX()+","+D.getY());
