@@ -9,22 +9,22 @@
 
 <AnchorPane xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Controller">
    <children>
-      <Pane prefHeight="500.0" prefWidth="600.0">
+      <Pane prefHeight="500.0" prefWidth="900.0">
          <children>
             <ButtonBar layoutX="200.0" layoutY="114.0" prefHeight="100.0" prefWidth="300.0" />
-          <Button layoutX="150.0" layoutY="114.0" mnemonicParsing="false" onAction="#chooseTradePartner" prefHeight="120.0" prefWidth="300.0" text="Stockpile">
+          <Button layoutX="570.0" layoutY="114.0" minHeight="-Infinity" mnemonicParsing="false" onAction="#chooseTradePartner" prefHeight="60.0" prefWidth="300.0" text="Stockpile">
                <font>
-                  <Font name="Papyrus" size="32.0" />
+                  <Font name="Papyrus" size="19.0" />
                </font>
             </Button>
-            <Button layoutX="150.0" layoutY="294.0" mnemonicParsing="false" onAction="#chooseTradePartner" prefHeight="120.0" prefWidth="300.0" text="Market">
+            <Button layoutX="570.0" layoutY="200.0" minHeight="-Infinity" mnemonicParsing="false" onAction="#chooseTradePartner" prefHeight="60.0" prefWidth="300.0" text="Market">
                <font>
-                  <Font name="Papyrus" size="32.0" />
+                  <Font name="Papyrus" size="19.0" />
                </font>
             </Button>
-            <Label layoutX="61.0" layoutY="33.0" text="Choose Who You Would Like To Trade With:">
+            <Label layoutX="550.0" prefHeight="100.0" prefWidth="289.0" text="Choose Who You Would Like To Trade With:" wrapText="true">
                <font>
-                  <Font name="Papyrus" size="23.0" />
+                  <Font name="Papyrus" size="25.0" />
                </font>
             </Label>
          </children>
