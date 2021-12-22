@@ -32,4 +32,12 @@
 }
 .ghostCaptainButton{
 	-fx-color: #4db34d;
+	-fx-background-color: transparent;
+	-fx-text-fill: #4db34d;
+}
+.ghostCaptainButton:hover{
+	-fx-color: #000000;
+	-fx-background-color: #000000;
+	-fx-text-fill: #4db34d;
+	-fx-content: choose;
 }

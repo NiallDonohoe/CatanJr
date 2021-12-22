@@ -41,7 +41,7 @@ public abstract class Player extends TradingResourceHolder{
 	 * @param numUsedCoco   The number of Coco cards used by the player, initially 0
 	 */
 	protected Player(colour playerColour) {
-		super(0);
+		super(100);
 		this.playerColour = playerColour;
 		this.numUsedCoco = 0;
 		this.intialiseResources();

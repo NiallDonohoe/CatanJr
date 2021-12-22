@@ -183,7 +183,7 @@ public class Controller {
     		}
     		else if(card instanceof CocoCards.MoveGhostCaptainCoco) {
     			System.out.print("Choose Island to place Ghost Captain");
-    			loadMap(event);
+    			loadGhostCaptainScene(event);
     		}
     	}
     	else if(Action.contentEquals("Trade")) {
@@ -195,6 +195,24 @@ public class Controller {
     		loadRollDie(event);
     	}
     }
+	//===========================================================
+	// Ghost Captain Scene and Event Handler
+	//===========================================================
+    public void loadGhostCaptainScene(ActionEvent event) throws IOException {
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        Scene updatedScene = addToMainScene("GhostCaptainIslands.fxml");
+        stage.setScene(updatedScene);
+        stage.show();    	
+    }
+    public void chooseGhostCaptainIslands(ActionEvent event) throws IOException{
+    	String[] LocationSelected = ((Button) event.getSource()).getId().split(",",2);
+    	System.out.println("Ghost captain placed on: "+LocationSelected[0]+","+LocationSelected[1]);
+    	
+    	loadChooseActionMenu(event);
+    }
+    
+    
+    
 	//===========================================================
 	// Trade Scenes and Event Handlers
 	//===========================================================
@@ -313,12 +331,12 @@ public class Controller {
 	    	if(isCocoDevelopment) {
 	    		Board.getInstance().developLocation(x, y, GameRunner.getCurrentPlayer());
 	    		isCocoDevelopment = false;
+	    		loadChooseActionMenu(event);
 	    	}
 	    	else {
 	    		Board.getInstance().buyLairOrShip(x, y, GameRunner.getCurrentPlayer());
+	    		loadMap(event);
 	    	}
-	    	
-	    	loadMap(event);
         }    	
     }
     public void changeButtonColour(Button bt) {
@@ -345,7 +363,6 @@ public class Controller {
 	    		Pane P = (Pane) mapScene.lookup("#pane"+playerNum[p]);
 	    		if(variableLabel[i]=="Player") {
 	    			L.setText(L.getText() + "("+GameRunner.getPlayer(p).getColour()+"):");
-	    			System.out.println((p+1)+","+GameRunner.getPlayerTurnNumber());
 	    			if((p+1)==GameRunner.getPlayerTurnNumber())
 	    				P.getStyleClass().add("currentPlayerPane");
 	    			else
