@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ButtonBar?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
@@ -9,42 +8,38 @@
 
 <AnchorPane xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Controller">
    <children>
-      <Pane prefHeight="500.0" prefWidth="600.0">
+      <Pane prefHeight="500.0" prefWidth="900.0">
          <children>
-            <ButtonBar buttonMinWidth="80.0" layoutX="165.0" layoutY="92.0" prefHeight="60.0" prefWidth="260.0">
-               <buttons>
-                  <Button mnemonicParsing="false" onAction="#chooseRequestedResource" prefHeight="65.0" prefWidth="268.0" text="Gold">
-                     <font>
-                        <Font name="Papyrus" size="24.0" />
-                     </font>
-                  </Button>
-               </buttons>
-            </ButtonBar>
-            <Button layoutX="175.0" layoutY="250.0" mnemonicParsing="false" onAction="#chooseRequestedResource" prefHeight="60.0" prefWidth="250.0" text="Cutlasses">
+            <Button layoutX="575.0" layoutY="145.0" minHeight="-Infinity" mnemonicParsing="false" onAction="#chooseRequestedResource" prefHeight="45.0" prefWidth="250.0" text="Cutlasses">
                <font>
-                  <Font name="Papyrus" size="24.0" />
+                  <Font name="Papyrus" size="19.0" />
                </font>
             </Button>
-            <Button layoutX="175.0" layoutY="327.0" mnemonicParsing="false" onAction="#chooseRequestedResource" prefHeight="60.0" prefWidth="250.0" text="Goats">
+            <Button layoutX="575.0" layoutY="195.0" minHeight="-Infinity" mnemonicParsing="false" onAction="#chooseRequestedResource" prefHeight="45.0" prefWidth="250.0" text="Goats">
                <font>
-                  <Font name="Papyrus" size="24.0" />
+                  <Font name="Papyrus" size="19.0" />
                </font>
             </Button>
-            <Button layoutX="175.0" layoutY="407.0" mnemonicParsing="false" onAction="#chooseRequestedResource" prefHeight="60.0" prefWidth="250.0" text="Wood">
+            <Button layoutX="575.0" layoutY="245.0" minHeight="-Infinity" mnemonicParsing="false" onAction="#chooseRequestedResource" prefHeight="45.0" prefWidth="250.0" text="Wood">
                <font>
-                  <Font name="Papyrus" size="24.0" />
+                  <Font name="Papyrus" size="19.0" />
                </font>
             </Button>
-            <Button layoutX="175.0" layoutY="170.0" mnemonicParsing="false" onAction="#chooseRequestedResource" prefHeight="60.0" prefWidth="250.0" text="Molasses">
+            <Button layoutX="575.0" layoutY="95.0" minHeight="-Infinity" mnemonicParsing="false" onAction="#chooseRequestedResource" prefHeight="45.0" prefWidth="250.0" text="Molasses">
                <font>
-                  <Font name="Papyrus" size="24.0" />
+                  <Font name="Papyrus" size="19.0" />
                </font>
             </Button>
-            <Label layoutX="102.0" layoutY="21.0" text="Select Requested Resource:">
+            <Label layoutX="550.0" text="Select Requested Resource:">
                <font>
-                  <Font size="32.0" />
+                  <Font name="Papyrus" size="25.0" />
                </font>
             </Label>
+            <Button layoutX="575.0" layoutY="45.0" minHeight="-Infinity" mnemonicParsing="false" onAction="#chooseRequestedResource" prefHeight="45.0" prefWidth="250.0" text="Gold">
+               <font>
+                  <Font name="Papyrus" size="19.0" />
+               </font>
+            </Button>
          </children>
       </Pane>
    </children>

@@ -18,3 +18,18 @@
 	-fx-color: #000000;
 	-fx-background-color: #000000
 }
+.resourceHolderPane{
+	-fx-border-color:grey grey grey grey;
+	-fx-background-color:white;
+	-fx-border-width: 1 1 1 1;
+	-fx-border-style: dashed dashed dashed dashed;
+}
+.currentPlayerPane{
+	-fx-border-color:red red red red;
+	-fx-background-color:lightgreen;
+	-fx-border-width: 1 1 1 1;
+	-fx-border-style: solid solid solid solid;
+}
+.ghostCaptainButton{
+	-fx-color: #4db34d;
+}

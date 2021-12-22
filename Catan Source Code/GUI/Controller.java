@@ -111,19 +111,39 @@ public class Controller {
     	
     	this.handleChooseColour(event);	
 	}
+    
+    
 	//===========================================================
-	// Roll Die Scene
+	// Add Scene to Main Scene
+	//===========================================================     
+    public Scene addToMainScene(String File2) throws IOException{
+    	FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(Main.class.getResource("CatanMainScene.fxml"));
+        Pane catanMain = (Pane) loader.load();
+        
+    	FXMLLoader loader1 = new FXMLLoader();
+        loader1.setLocation(Main.class.getResource(File2));
+        Pane scene2 = (Pane) loader1.load();
+        
+        catanMain.getChildren().add(scene2);
+        Scene catanMainScene = new Scene(catanMain);
+        addMainSceneDetails(catanMainScene);
+        return catanMainScene;
+    }
+    public void addMainSceneDetails(Scene mainScene) {
+        loadMapColours(mainScene);
+        setPlayerVariableLabel(mainScene);
+        setMarketVariableLabels(mainScene);
+        setStockpileVariableLabels(mainScene);
+    }
+	//===========================================================
+	// Roll Die Scene and Event Handler
 	//=========================================================== 
     public void loadRollDie(ActionEvent event) throws IOException{
     	try {
-//	    	loadMap(event);
-	    	FXMLLoader loader = new FXMLLoader();
-	        loader.setLocation(Main.class.getResource("RollDie.fxml"));
-	        Pane rollDie = (Pane) loader.load();
-//	        Scene rollDieScene = new Scene(rollDie);
 	        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-	        Scene rollDieScene = new Scene(rollDie);
-	        stage.setScene(rollDieScene);
+	        Scene updatedScene = addToMainScene("RollDie.fxml");
+	        stage.setScene(updatedScene);
 	        stage.show();
 	        
     	} catch (IOException e) {
@@ -137,18 +157,16 @@ public class Controller {
     	
     	loadChooseActionMenu(event);
     }
+	//===========================================================
+	// Choose Action Scene and Event Handler
+	//===========================================================    
     public void loadChooseActionMenu(ActionEvent event) throws IOException {
-    	Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-    	FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(Main.class.getResource("ChooseAction.fxml"));
-        Pane chooseAction = (Pane) loader.load();
-        Scene chooseActionScene = new Scene(chooseAction);
-        stage.setScene(chooseActionScene);
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        Scene updatedScene = addToMainScene("ChooseAction.fxml");
+        stage.setScene(updatedScene);
         stage.show();
     }
-	//===========================================================
-	// Choose Action
-	//===========================================================   
+  
     public void chooseAction(ActionEvent event) throws IOException{
     	String Action = ((Button) event.getSource()).getText();
     	System.out.println(Action);
@@ -167,8 +185,6 @@ public class Controller {
     			System.out.print("Choose Island to place Ghost Captain");
     			loadMap(event);
     		}
-    		
-    		
     	}
     	else if(Action.contentEquals("Trade")) {
     		loadOfferedResource(event);
@@ -180,16 +196,26 @@ public class Controller {
     	}
     }
 	//===========================================================
-	// Trade GUI Options
-	//=========================================================== 
-    public void loadTradeMenu(ActionEvent event) throws IOException {
-    	Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-    	FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(Main.class.getResource("ChooseTradePartner.fxml"));
-        Pane chooseAction = (Pane) loader.load();
-        Scene chooseActionScene = new Scene(chooseAction);
-        stage.setScene(chooseActionScene);
+	// Trade Scenes and Event Handlers
+	//===========================================================
+    public void loadOfferedResource(ActionEvent event) throws IOException {
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        Scene updatedScene = addToMainScene("SelectOfferedResource.fxml");
+        stage.setScene(updatedScene);
         stage.show();
+    }
+    public void loadRequestedResource(ActionEvent event) throws IOException {
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        Scene updatedScene = addToMainScene("SelectRequestedResource.fxml");
+        stage.setScene(updatedScene);
+        stage.show();
+    }
+    public void loadTradeMenu(ActionEvent event) throws IOException {
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        Scene updatedScene = addToMainScene("ChooseTradePartner.fxml");
+        stage.setScene(updatedScene);
+        stage.show();
+
     }
     public void chooseTradePartner(ActionEvent event) throws IOException {
     	String tradingPartner = ((Button) event.getSource()).getText();
@@ -205,24 +231,7 @@ public class Controller {
     	loadChooseActionMenu(event);
     	
     }
-    public void loadOfferedResource(ActionEvent event) throws IOException {
-    	Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-    	FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(Main.class.getResource("SelectOfferedResource.fxml"));
-        Pane chooseResource = (Pane) loader.load();
-        Scene chooseResourceScene = new Scene(chooseResource);
-        stage.setScene(chooseResourceScene);
-        stage.show();
-    }
-    public void loadRequestedResource(ActionEvent event) throws IOException {
-    	Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-    	FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(Main.class.getResource("SelectRequestedResource.fxml"));
-        Pane chooseResource = (Pane) loader.load();
-        Scene chooseResourceScene = new Scene(chooseResource);
-        stage.setScene(chooseResourceScene);
-        stage.show();
-    }
+
     public void chooseOfferedResource(ActionEvent event) throws IOException {
     	String resource = ((Button) event.getSource()).getText();
     	if(resource.contentEquals("Gold"))
@@ -337,19 +346,10 @@ public class Controller {
 	    		if(variableLabel[i]=="Player") {
 	    			L.setText(L.getText() + "("+GameRunner.getPlayer(p).getColour()+"):");
 	    			System.out.println((p+1)+","+GameRunner.getPlayerTurnNumber());
-	    			if((p+1)==GameRunner.getPlayerTurnNumber()) {
-	    				P.setStyle(""
-	    						+ "-fx-border-color:red red red red; "
-	    					    + "-fx-background-color:lightgreen; "
-	    					    + "-fx-border-width: 1 1 1 1; "
-	    						+ "-fx-border-style: solid solid solid solid");
-	    			}
+	    			if((p+1)==GameRunner.getPlayerTurnNumber())
+	    				P.getStyleClass().add("currentPlayerPane");
 	    			else
-	    				P.setStyle(""
-	    						+ "-fx-border-color:grey grey grey grey; "
-	    					    + "-fx-background-color:white; "
-	    					    + "-fx-border-width: 1 1 1 1; "
-	    					    + "-fx-border-style: dashed dashed dashed dashed");
+	    				P.getStyleClass().add("resourceHolderPane");
 	    		}
 	    		if(variableLabel[i]=="gold")
 	    			L.setText(L.getText() + GameRunner.getPlayer(p).getNumGold());
