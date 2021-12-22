@@ -11,7 +11,7 @@ public class CocoDeck {
 	//===========================================================	
 	private ArrayList<CocoCard> CocoCardDeck = new ArrayList<CocoCard>();
 	static CocoDeck instance = null;
-	int cardCounter;
+	private int usedCards=0;
 	public enum cocoCardType{
 		moveGhostCaptain,
 		getShipOrLair,
@@ -42,8 +42,15 @@ public class CocoDeck {
     }
     
     public CocoCard getCocoCard(){
-    	this.cardCounter++;
-    	return CocoCardDeck.get(cardCounter-1);
+    	this.usedCards++;
+    	return CocoCardDeck.get(usedCards-1);
+    }
+    
+    public boolean checkIfCardsRemaining() {
+    	if(usedCards<20) {
+    		return true;
+    	}
+    	else return false;
     }
     
   	

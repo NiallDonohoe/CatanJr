@@ -3,6 +3,7 @@ import java.util.ArrayList;
 import Board.Board;
 import Board.DevelopedLocation;
 import Board.Island;
+import CocoCards.CocoCard;
 import CocoCards.CocoDeck;
 
 /**
@@ -18,7 +19,7 @@ public abstract class Player extends TradingResourceHolder{
 	//===========================================================
 	// Class Variables 
 	//===========================================================
-	public int numUsedCoco;
+	public int numUsedCoco=0;
 	private int numUnbuiltShips = 7;
 	private int numUnbuiltLairs = 8;
     public ArrayList<DevelopedLocation> DevelopedPlayerLocations = new ArrayList<DevelopedLocation>();
@@ -71,9 +72,25 @@ public abstract class Player extends TradingResourceHolder{
 	public void decrementUnusedShips() {
 		this.numUnbuiltShips-=1;
 	}
+
 	
-	public void buyCocoCard() {
-		CocoDeck.getInstance().getCocoCard().use(this);
+	public CocoCard buyCocoCard() {
+		
+		if(CocoDeck.getInstance().checkIfCardsRemaining() && this.canAffordCocoCard()) {
+			
+			Stockpile.getInstance().moveResource(ResourceType.cutlass, 1, this);
+			Stockpile.getInstance().moveResource(ResourceType.molasses, 1, this);
+			Stockpile.getInstance().moveResource(ResourceType.gold, 1, this);
+			
+			CocoCard card = CocoDeck.getInstance().getCocoCard();
+			card.use(this);
+			this.numUsedCoco++;
+			return card;
+		}
+		else {
+			System.out.println("There are no more Coco Cards, or we dont have sufficient resources to purchase one");
+		}
+		return null;
 	}
 	
 	private void handleMovingGhostCaptain(int x,int y) {
@@ -103,8 +120,7 @@ public abstract class Player extends TradingResourceHolder{
 		}
 	}
 	public boolean buildLair() {
-		if(this.numWood > 0 && this.numCutlasses > 0 &&
-				this.numGoats > 0 && this.numWood > 0 ) {
+		if(this.canAffordLair()) {
 			Stockpile.getInstance().moveResource(ResourceType.cutlass, 1, this);
 			Stockpile.getInstance().moveResource(ResourceType.molasses, 1, this);
 			Stockpile.getInstance().moveResource(ResourceType.goat, 1, this);
@@ -119,7 +135,7 @@ public abstract class Player extends TradingResourceHolder{
 		}
 	}
 	public boolean buildShip() {
-		if(this.numGoats > 0 && this.numWood > 0) {
+		if(this.canAffordShip()) {
 			Stockpile.getInstance().moveResource(ResourceType.goat, 1, this);
 			Stockpile.getInstance().moveResource(ResourceType.wood, 1, this);
 			this.numUnbuiltShips-=1;
@@ -161,6 +177,19 @@ public abstract class Player extends TradingResourceHolder{
 	private void intialiseResources() {
 		 this.moveResource(ResourceType.wood,1,Stockpile.getInstance());
 		 this.moveResource(ResourceType.molasses,1,Stockpile.getInstance());
+	}
+	
+	private boolean canAffordShip() {
+		return this.numGoats > 0 && this.numWood > 0;
+	}
+	
+	private boolean canAffordLair() {
+		return this.numWood > 0 && this.numCutlasses > 0 && this.numGoats > 0 && this.numWood > 0; 
+		
+	}
+	
+	private boolean canAffordCocoCard() {
+		return this.numCutlasses > 0 && this.numMolasses > 0 && this.numGold > 0 ;
 	}
 
 
