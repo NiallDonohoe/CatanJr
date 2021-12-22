@@ -40,7 +40,7 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="900.0" stylesheets="@Styles.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Controller">
    <children>
-      <Pane id="mapBack" prefHeight="296.0" prefWidth="505.0" stylesheets="@Styles.css">
+      <Pane prefHeight="296.0" prefWidth="505.0">
          <children>
             <Polygon fill="#4db34d" layoutX="15.0" layoutY="93.0" rotate="90.0" stroke="BLACK" strokeType="INSIDE">
               <points>
@@ -251,7 +251,19 @@
                   <Double fx:value="50.0" />
                </points>
             </Polygon>
-            <Button layoutX="71.0" layoutY="40.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="78.0" styleClass="ghostCaptainButton" stylesheets="@Styles.css" text="Button" />
+            <Button id="9,2" layoutX="166.0" layoutY="203.0" mnemonicParsing="false" onAction="#chooseGhostCaptainIslands" prefHeight="46.0" prefWidth="78.0" styleClass="ghostCaptainButton" stylesheets="@Styles.css" text="Place Here" wrapText="true" />
+            <Button id="9,6" layoutX="166.0" layoutY="37.0" mnemonicParsing="false" onAction="#chooseGhostCaptainIslands" prefHeight="46.0" prefWidth="78.0" styleClass="ghostCaptainButton" stylesheets="@Styles.css" text="Place Here" wrapText="true" />
+            <Button id="13,6" layoutX="257.0" layoutY="37.0" mnemonicParsing="false" onAction="#chooseGhostCaptainIslands" prefHeight="46.0" prefWidth="78.0" styleClass="ghostCaptainButton" stylesheets="@Styles.css" text="Place Here" wrapText="true" />
+            <Button id="17,6" layoutX="349.0" layoutY="37.0" mnemonicParsing="false" onAction="#chooseGhostCaptainIslands" prefHeight="46.0" prefWidth="78.0" styleClass="ghostCaptainButton" stylesheets="@Styles.css" text="Place Here" wrapText="true" />
+            <Button id="3,4" layoutX="26.0" layoutY="120.0" mnemonicParsing="false" onAction="#chooseGhostCaptainIslands" prefHeight="46.0" prefWidth="78.0" styleClass="ghostCaptainButton" stylesheets="@Styles.css" text="Place Here" wrapText="true" />
+            <Button id="7,4" layoutX="117.0" layoutY="120.0" mnemonicParsing="false" onAction="#chooseGhostCaptainIslands" prefHeight="46.0" prefWidth="78.0" styleClass="ghostCaptainButton" stylesheets="@Styles.css" text="Place Here" wrapText="true" />
+            <Button id="11,4" layoutX="211.0" layoutY="120.0" mnemonicParsing="false" onAction="#chooseGhostCaptainIslands" prefHeight="46.0" prefWidth="78.0" styleClass="ghostCaptainButton" stylesheets="@Styles.css" text="Place Here" wrapText="true" />
+            <Button id="15,4" layoutX="303.0" layoutY="125.0" mnemonicParsing="false" onAction="#chooseGhostCaptainIslands" prefHeight="46.0" prefWidth="78.0" styleClass="ghostCaptainButton" stylesheets="@Styles.css" text="Place Here" underline="true" />
+            <Button id="19,4" layoutX="396.0" layoutY="120.0" mnemonicParsing="false" onAction="#chooseGhostCaptainIslands" prefHeight="46.0" prefWidth="78.0" styleClass="ghostCaptainButton" stylesheets="@Styles.css" text="Place Here" wrapText="true" />
+            <Button id="5,2" layoutX="71.0" layoutY="203.0" mnemonicParsing="false" onAction="#chooseGhostCaptainIslands" prefHeight="46.0" prefWidth="78.0" styleClass="ghostCaptainButton" stylesheets="@Styles.css" text="Place Here" wrapText="true" />
+            <Button id="5,6" layoutX="71.0" layoutY="37.0" mnemonicParsing="false" onAction="#chooseGhostCaptainIslands" prefHeight="46.0" prefWidth="78.0" styleClass="ghostCaptainButton" stylesheets="@Styles.css" text="Place Here" wrapText="true" />
+            <Button id="13,2" layoutX="257.0" layoutY="203.0" mnemonicParsing="false" onAction="#chooseGhostCaptainIslands" prefHeight="46.0" prefWidth="78.0" styleClass="ghostCaptainButton" stylesheets="@Styles.css" text="Place Here" wrapText="true" />
+            <Button id="17,2" layoutX="349.0" layoutY="203.0" mnemonicParsing="false" onAction="#chooseGhostCaptainIslands" prefHeight="46.0" prefWidth="78.0" styleClass="ghostCaptainButton" stylesheets="@Styles.css" text="Place Here" wrapText="true" />
          </children>
       </Pane>
    </children>
