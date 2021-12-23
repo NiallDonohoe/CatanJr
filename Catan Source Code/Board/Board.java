@@ -162,8 +162,9 @@ public class Board {
      */ 
     public boolean buyLairOrShip(int xi,int yi, Player p) {
     	int i = this.positionAvailable(xi,yi);
-    	lairOrShip lairOrShip = availableLocations.get(i).getLairOrShip();
+    	
     	if(canBuildOnLocation(xi,yi,p)) {
+    		lairOrShip lairOrShip = availableLocations.get(i).getLairOrShip();
 	    	if(lairOrShip == lairOrShip.lair && p.buildLair()) {
 	    		this.developLocation(xi,yi,p);
 	    		return true;

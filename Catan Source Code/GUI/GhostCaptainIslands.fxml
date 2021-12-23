@@ -32,225 +32,16 @@
   OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 -->
 
-<?import java.lang.Double?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
-<?import javafx.scene.shape.Polygon?>
+<?import javafx.scene.text.Font?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="900.0" stylesheets="@Styles.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Controller">
    <children>
       <Pane prefHeight="296.0" prefWidth="505.0">
          <children>
-            <Polygon fill="#4db34d" layoutX="15.0" layoutY="93.0" rotate="90.0" stroke="BLACK" strokeType="INSIDE">
-              <points>
-                <Double fx:value="73.0" />
-                <Double fx:value="11.0" />
-                <Double fx:value="27.0" />
-                <Double fx:value="11.0" />
-                <Double fx:value="5.0" />
-                <Double fx:value="50.0" />
-                <Double fx:value="28.0" />
-                <Double fx:value="89.0" />
-                <Double fx:value="72.0" />
-                <Double fx:value="89.0" />
-                <Double fx:value="95.0" />
-                <Double fx:value="50.0" />
-              </points>
-            </Polygon>
-            <Polygon fill="#4db34d" layoutX="-37.0" layoutY="162.0" points="100.00000000, 100.33329772949219, 100.0000,120.00000, 35.66667175292969" stroke="BLACK" strokeType="INSIDE" />
-            <Polygon fill="#4db34d" layoutX="106.0" layoutY="93.0" rotate="90.0" stroke="BLACK" strokeType="INSIDE">
-               <points>
-                  <Double fx:value="73.0" />
-                  <Double fx:value="11.0" />
-                  <Double fx:value="27.0" />
-                  <Double fx:value="11.0" />
-                  <Double fx:value="5.0" />
-                  <Double fx:value="50.0" />
-                  <Double fx:value="28.0" />
-                  <Double fx:value="89.0" />
-                  <Double fx:value="72.0" />
-                  <Double fx:value="89.0" />
-                  <Double fx:value="95.0" />
-                  <Double fx:value="50.0" />
-               </points>
-            </Polygon>
-            <Polygon fill="#4db34d" layoutX="200.0" layoutY="93.0" rotate="90.0" stroke="BLACK" strokeType="INSIDE">
-               <points>
-                  <Double fx:value="73.0" />
-                  <Double fx:value="11.0" />
-                  <Double fx:value="27.0" />
-                  <Double fx:value="11.0" />
-                  <Double fx:value="5.0" />
-                  <Double fx:value="50.0" />
-                  <Double fx:value="28.0" />
-                  <Double fx:value="89.0" />
-                  <Double fx:value="72.0" />
-                  <Double fx:value="89.0" />
-                  <Double fx:value="95.0" />
-                  <Double fx:value="50.0" />
-               </points>
-            </Polygon>
-            <Polygon fill="#4db34d" layoutX="292.0" layoutY="93.0" rotate="90.0" stroke="BLACK" strokeType="INSIDE">
-               <points>
-                  <Double fx:value="73.0" />
-                  <Double fx:value="11.0" />
-                  <Double fx:value="27.0" />
-                  <Double fx:value="11.0" />
-                  <Double fx:value="5.0" />
-                  <Double fx:value="50.0" />
-                  <Double fx:value="28.0" />
-                  <Double fx:value="89.0" />
-                  <Double fx:value="72.0" />
-                  <Double fx:value="89.0" />
-                  <Double fx:value="95.0" />
-                  <Double fx:value="50.0" />
-               </points>
-            </Polygon>
-            <Polygon fill="#4db34d" layoutX="385.0" layoutY="93.0" rotate="90.0" stroke="BLACK" strokeType="INSIDE">
-               <points>
-                  <Double fx:value="73.0" />
-                  <Double fx:value="11.0" />
-                  <Double fx:value="27.0" />
-                  <Double fx:value="11.0" />
-                  <Double fx:value="5.0" />
-                  <Double fx:value="50.0" />
-                  <Double fx:value="28.0" />
-                  <Double fx:value="89.0" />
-                  <Double fx:value="72.0" />
-                  <Double fx:value="89.0" />
-                  <Double fx:value="95.0" />
-                  <Double fx:value="50.0" />
-               </points>
-            </Polygon>
-            <Polygon fill="#4db34d" layoutX="60.0" layoutY="176.0" rotate="90.0" stroke="BLACK" strokeType="INSIDE">
-               <points>
-                  <Double fx:value="73.0" />
-                  <Double fx:value="11.0" />
-                  <Double fx:value="27.0" />
-                  <Double fx:value="11.0" />
-                  <Double fx:value="5.0" />
-                  <Double fx:value="50.0" />
-                  <Double fx:value="28.0" />
-                  <Double fx:value="89.0" />
-                  <Double fx:value="72.0" />
-                  <Double fx:value="89.0" />
-                  <Double fx:value="95.0" />
-                  <Double fx:value="50.0" />
-               </points>
-            </Polygon>
-            <Polygon fill="#4db34d" layoutX="338.0" layoutY="176.0" rotate="90.0" stroke="BLACK" strokeType="INSIDE">
-               <points>
-                  <Double fx:value="73.0" />
-                  <Double fx:value="11.0" />
-                  <Double fx:value="27.0" />
-                  <Double fx:value="11.0" />
-                  <Double fx:value="5.0" />
-                  <Double fx:value="50.0" />
-                  <Double fx:value="28.0" />
-                  <Double fx:value="89.0" />
-                  <Double fx:value="72.0" />
-                  <Double fx:value="89.0" />
-                  <Double fx:value="95.0" />
-                  <Double fx:value="50.0" />
-               </points>
-            </Polygon>
-            <Polygon fill="#4db34d" layoutX="246.0" layoutY="176.0" rotate="90.0" stroke="BLACK" strokeType="INSIDE">
-               <points>
-                  <Double fx:value="73.0" />
-                  <Double fx:value="11.0" />
-                  <Double fx:value="27.0" />
-                  <Double fx:value="11.0" />
-                  <Double fx:value="5.0" />
-                  <Double fx:value="50.0" />
-                  <Double fx:value="28.0" />
-                  <Double fx:value="89.0" />
-                  <Double fx:value="72.0" />
-                  <Double fx:value="89.0" />
-                  <Double fx:value="95.0" />
-                  <Double fx:value="50.0" />
-               </points>
-            </Polygon>
-            <Polygon fill="#4db34d" layoutX="155.0" layoutY="176.0" rotate="90.0" stroke="BLACK" strokeType="INSIDE">
-               <points>
-                  <Double fx:value="73.0" />
-                  <Double fx:value="11.0" />
-                  <Double fx:value="27.0" />
-                  <Double fx:value="11.0" />
-                  <Double fx:value="5.0" />
-                  <Double fx:value="50.0" />
-                  <Double fx:value="28.0" />
-                  <Double fx:value="89.0" />
-                  <Double fx:value="72.0" />
-                  <Double fx:value="89.0" />
-                  <Double fx:value="95.0" />
-                  <Double fx:value="50.0" />
-               </points>
-            </Polygon>
-            <Polygon fill="#4db34d" layoutX="60.0" layoutY="9.0" rotate="90.0" stroke="BLACK" strokeType="INSIDE">
-               <points>
-                  <Double fx:value="73.0" />
-                  <Double fx:value="11.0" />
-                  <Double fx:value="27.0" />
-                  <Double fx:value="11.0" />
-                  <Double fx:value="5.0" />
-                  <Double fx:value="50.0" />
-                  <Double fx:value="28.0" />
-                  <Double fx:value="89.0" />
-                  <Double fx:value="72.0" />
-                  <Double fx:value="89.0" />
-                  <Double fx:value="95.0" />
-                  <Double fx:value="50.0" />
-               </points>
-            </Polygon>
-            <Polygon fill="#4db34d" layoutX="338.0" layoutY="9.0" rotate="90.0" stroke="BLACK" strokeType="INSIDE">
-               <points>
-                  <Double fx:value="73.0" />
-                  <Double fx:value="11.0" />
-                  <Double fx:value="27.0" />
-                  <Double fx:value="11.0" />
-                  <Double fx:value="5.0" />
-                  <Double fx:value="50.0" />
-                  <Double fx:value="28.0" />
-                  <Double fx:value="89.0" />
-                  <Double fx:value="72.0" />
-                  <Double fx:value="89.0" />
-                  <Double fx:value="95.0" />
-                  <Double fx:value="50.0" />
-               </points>
-            </Polygon>
-            <Polygon fill="#4db34d" layoutX="246.0" layoutY="9.0" rotate="90.0" stroke="BLACK" strokeType="INSIDE">
-               <points>
-                  <Double fx:value="73.0" />
-                  <Double fx:value="11.0" />
-                  <Double fx:value="27.0" />
-                  <Double fx:value="11.0" />
-                  <Double fx:value="5.0" />
-                  <Double fx:value="50.0" />
-                  <Double fx:value="28.0" />
-                  <Double fx:value="89.0" />
-                  <Double fx:value="72.0" />
-                  <Double fx:value="89.0" />
-                  <Double fx:value="95.0" />
-                  <Double fx:value="50.0" />
-               </points>
-            </Polygon>
-            <Polygon fill="#4db34d" layoutX="155.0" layoutY="9.0" rotate="90.0" stroke="BLACK" strokeType="INSIDE">
-               <points>
-                  <Double fx:value="73.0" />
-                  <Double fx:value="11.0" />
-                  <Double fx:value="27.0" />
-                  <Double fx:value="11.0" />
-                  <Double fx:value="5.0" />
-                  <Double fx:value="50.0" />
-                  <Double fx:value="28.0" />
-                  <Double fx:value="89.0" />
-                  <Double fx:value="72.0" />
-                  <Double fx:value="89.0" />
-                  <Double fx:value="95.0" />
-                  <Double fx:value="50.0" />
-               </points>
-            </Polygon>
             <Button id="9,2" layoutX="166.0" layoutY="203.0" mnemonicParsing="false" onAction="#chooseGhostCaptainIslands" prefHeight="46.0" prefWidth="78.0" styleClass="ghostCaptainButton" stylesheets="@Styles.css" text="Place Here" wrapText="true" />
             <Button id="9,6" layoutX="166.0" layoutY="37.0" mnemonicParsing="false" onAction="#chooseGhostCaptainIslands" prefHeight="46.0" prefWidth="78.0" styleClass="ghostCaptainButton" stylesheets="@Styles.css" text="Place Here" wrapText="true" />
             <Button id="13,6" layoutX="257.0" layoutY="37.0" mnemonicParsing="false" onAction="#chooseGhostCaptainIslands" prefHeight="46.0" prefWidth="78.0" styleClass="ghostCaptainButton" stylesheets="@Styles.css" text="Place Here" wrapText="true" />
@@ -258,7 +49,7 @@
             <Button id="3,4" layoutX="26.0" layoutY="120.0" mnemonicParsing="false" onAction="#chooseGhostCaptainIslands" prefHeight="46.0" prefWidth="78.0" styleClass="ghostCaptainButton" stylesheets="@Styles.css" text="Place Here" wrapText="true" />
             <Button id="7,4" layoutX="117.0" layoutY="120.0" mnemonicParsing="false" onAction="#chooseGhostCaptainIslands" prefHeight="46.0" prefWidth="78.0" styleClass="ghostCaptainButton" stylesheets="@Styles.css" text="Place Here" wrapText="true" />
             <Button id="11,4" layoutX="211.0" layoutY="120.0" mnemonicParsing="false" onAction="#chooseGhostCaptainIslands" prefHeight="46.0" prefWidth="78.0" styleClass="ghostCaptainButton" stylesheets="@Styles.css" text="Place Here" wrapText="true" />
-            <Button id="15,4" layoutX="303.0" layoutY="125.0" mnemonicParsing="false" onAction="#chooseGhostCaptainIslands" prefHeight="46.0" prefWidth="78.0" styleClass="ghostCaptainButton" stylesheets="@Styles.css" text="Place Here" underline="true" />
+            <Button id="15,4" layoutX="303.0" layoutY="120.0" mnemonicParsing="false" onAction="#chooseGhostCaptainIslands" prefHeight="46.0" prefWidth="78.0" styleClass="ghostCaptainButton" stylesheets="@Styles.css" text="Place Here" underline="true" />
             <Button id="19,4" layoutX="396.0" layoutY="120.0" mnemonicParsing="false" onAction="#chooseGhostCaptainIslands" prefHeight="46.0" prefWidth="78.0" styleClass="ghostCaptainButton" stylesheets="@Styles.css" text="Place Here" wrapText="true" />
             <Button id="5,2" layoutX="71.0" layoutY="203.0" mnemonicParsing="false" onAction="#chooseGhostCaptainIslands" prefHeight="46.0" prefWidth="78.0" styleClass="ghostCaptainButton" stylesheets="@Styles.css" text="Place Here" wrapText="true" />
             <Button id="5,6" layoutX="71.0" layoutY="37.0" mnemonicParsing="false" onAction="#chooseGhostCaptainIslands" prefHeight="46.0" prefWidth="78.0" styleClass="ghostCaptainButton" stylesheets="@Styles.css" text="Place Here" wrapText="true" />
@@ -266,5 +57,10 @@
             <Button id="17,2" layoutX="349.0" layoutY="203.0" mnemonicParsing="false" onAction="#chooseGhostCaptainIslands" prefHeight="46.0" prefWidth="78.0" styleClass="ghostCaptainButton" stylesheets="@Styles.css" text="Place Here" wrapText="true" />
          </children>
       </Pane>
+      <Label layoutX="532.0" layoutY="125.0" prefHeight="46.0" prefWidth="354.0" text="Choose Island To Place Ghost Captain" wrapText="true">
+         <font>
+            <Font name="Papyrus" size="19.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

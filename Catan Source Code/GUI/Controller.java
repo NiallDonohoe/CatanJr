@@ -2,31 +2,19 @@ package GUI;
 
 
 import java.io.IOException;
-import java.net.URL;
-import java.util.ResourceBundle;
 
 import Board.Board;
 import Board.DevelopedLocation;
-import Board.Location;
 import CocoCards.CocoCard;
-import CocoCards.CocoDeck;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
-import javafx.scene.control.TableView;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
-import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import Game.Dice;
 import Game.GameRunner;
@@ -40,8 +28,9 @@ import Trading.ResourceHolder.ResourceType;
 public class Controller {
 
 	Button button;
-	private Stage primaryStage;
-	@FXML AnchorPane rootLayout;
+	private static Stage primaryStage;
+	@FXML 
+	AnchorPane rootLayout;
     Button[] btn = new Button[100];
     @FXML
     private Label label;
@@ -49,15 +38,42 @@ public class Controller {
     private static ResourceType requestedResource;
     private static boolean isCocoDevelopment;
     
-    public void initialize() {
-        String javaVersion = System.getProperty("java.version");
-        String javafxVersion = System.getProperty("javafx.version");
+	//===========================================================
+	// Setters
+	//===========================================================
+    public static void setPrimaryStage(Stage stage) {
+    	primaryStage = stage;
     }
-    
+	//===========================================================
+	// GameWinner Scene and Event Handler
+	//===========================================================
+    public void gameWinnerScene() throws IOException {
+    	FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(Main.class.getResource("CatanMainScene.fxml"));
+        Pane catanMain = (Pane) loader.load();
+        
+    	FXMLLoader loader1 = new FXMLLoader();
+        loader1.setLocation(Main.class.getResource("GameWinner.fxml"));
+        Pane scene2 = (Pane) loader1.load();
+        
+        Label L = (Label) scene2.lookup("#gameWinnerLabel");
+        L.setText(GameRunner.getGameWinner()+L.getText());
+        scene2.getChildren().add(L);
+        
+        
+        catanMain.getChildren().add(scene2);
+        Scene catanMainScene = new Scene(catanMain);
+        addMainSceneDetails(catanMainScene);
+        primaryStage.setScene(catanMainScene);
+        primaryStage.show();
+    }
+    public void endGame(ActionEvent event) throws IOException{
+    	primaryStage.close();
+    }
+        
 	//===========================================================
 	// Player Number Selection
 	//===========================================================
-
     public void playerSelection(ActionEvent event) throws IOException {
     	int numPlayers = (Integer.parseInt(((Button) event.getSource()).getText()));
     	System.out.println("Picked "+numPlayers+ " Players");
@@ -74,14 +90,11 @@ public class Controller {
     		Scene ChooseColourScene = new Scene(ChooseColour);
     		Label L = (Label) ChooseColourScene.lookup("#playerChooseColour");
     		L.setText("Player"+(GameRunner.players.size()+1)+" choose your colour:");
-    		Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-    		stage.setScene(ChooseColourScene);
-    		stage.show();
+    		primaryStage.setScene(ChooseColourScene);
+    		primaryStage.show();
     	}
     	else
-    		loadRollDie(event);
-//    		loadMap(event);
-    		
+    		loadRollDie();    		
     }
     
 	//===========================================================
@@ -93,7 +106,9 @@ public class Controller {
     	
     	if (colour.contentEquals("Blue")) { 
     		BluePlayer.getInstance();
+    		System.out.println("Declared player");
     		BluePlayer.getInstance().developStartingPositions();
+    		System.out.println("Developed player starting positions.");
     		Game.GameRunner.addPlayer(BluePlayer.getInstance());
     	}
     	if (colour.contentEquals("White")) { 
@@ -116,7 +131,7 @@ public class Controller {
 	//===========================================================
 	// Add Scene to Main Scene
 	//===========================================================     
-    public Scene addToMainScene(String File2) throws IOException{
+    public void addToMainScene(String File2) throws IOException{
     	FXMLLoader loader = new FXMLLoader();
         loader.setLocation(Main.class.getResource("CatanMainScene.fxml"));
         Pane catanMain = (Pane) loader.load();
@@ -128,7 +143,8 @@ public class Controller {
         catanMain.getChildren().add(scene2);
         Scene catanMainScene = new Scene(catanMain);
         addMainSceneDetails(catanMainScene);
-        return catanMainScene;
+        primaryStage.setScene(catanMainScene);
+        primaryStage.show();
     }
     public void addMainSceneDetails(Scene mainScene) {
         loadMapColours(mainScene);
@@ -139,13 +155,9 @@ public class Controller {
 	//===========================================================
 	// Roll Die Scene and Event Handler
 	//=========================================================== 
-    public void loadRollDie(ActionEvent event) throws IOException{
+    public void loadRollDie() throws IOException{
     	try {
-	        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-	        Scene updatedScene = addToMainScene("RollDie.fxml");
-	        stage.setScene(updatedScene);
-	        stage.show();
-	        
+	        addToMainScene("RollDie.fxml");	        
     	} catch (IOException e) {
             e.printStackTrace();
     	}
@@ -156,20 +168,17 @@ public class Controller {
     	System.out.println("Player rolled a "+dieResult);
     	if(dieResult<6) {
     		Board.getInstance().handleGeneratingIslandResources(dieResult);
-    		loadChooseActionMenu(event);
+    		loadChooseActionMenu();
     	}
     	if(dieResult == 6) {
-    		loadGhostCaptainScene(event);
+    		loadGhostCaptainScene();
     	}
     }
 	//===========================================================
 	// Choose Action Scene and Event Handler
 	//===========================================================    
-    public void loadChooseActionMenu(ActionEvent event) throws IOException {
-        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        Scene updatedScene = addToMainScene("ChooseAction.fxml");
-        stage.setScene(updatedScene);
-        stage.show();
+    public void loadChooseActionMenu() throws IOException {
+        addToMainScene("ChooseAction.fxml");
     }
   
     public void chooseAction(ActionEvent event) throws IOException{
@@ -177,81 +186,66 @@ public class Controller {
     	System.out.println(Action);
     	System.out.println(GameRunner.getCurrentPlayer().getColour());
     	if(Action.contentEquals("Build")) {
-    		loadMap(event);
+    		loadMap();
     	}
     	else if(Action.contentEquals("Buy Coco Tile")) {
     		CocoCard card = GameRunner.getCurrentPlayer().buyCocoCard();
     		if(card instanceof CocoCards.GetShipOrLairCoco) {
     			System.out.print("Choose Free Ship or Lair");
     			isCocoDevelopment = true;
-    			loadMap(event);
+    			loadMap();
     		}
     		else if(card instanceof CocoCards.MoveGhostCaptainCoco) {
-    			loadGhostCaptainScene(event);
+    			loadGhostCaptainScene();
     		}
     	}
     	else if(Action.contentEquals("Trade")) {
-    		loadOfferedResource(event);
+    		loadOfferedResource();
     	}
     	else if(Action.contentEquals("End Turn")) {
     		GameRunner.nextPlayer();
     		System.out.println(GameRunner.getCurrentPlayer().getColour()+" players turn.");
-    		loadRollDie(event);
+    		loadRollDie();
     	}
     }
 	//===========================================================
 	// Ghost Captain Scene and Event Handler
 	//===========================================================
-    public void loadGhostCaptainScene(ActionEvent event) throws IOException {
-        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        Scene updatedScene = addToMainScene("GhostCaptainIslands.fxml");
-        stage.setScene(updatedScene);
-        stage.show();    	
+    public void loadGhostCaptainScene() throws IOException {
+    	System.out.println("Choose Island to place ghost captain.");
+        addToMainScene("GhostCaptainIslands.fxml");  	
     }
     public void chooseGhostCaptainIslands(ActionEvent event) throws IOException{
     	String[] LocationSelected = ((Button) event.getSource()).getId().split(",",2);
     	System.out.println("\nGhost captain placed on: "+LocationSelected[0]+","+LocationSelected[1]);
     	GameRunner.getCurrentPlayer().moveGhostCaptain(Integer.parseInt(LocationSelected[0]), Integer.parseInt(LocationSelected[1]));
-    	loadChooseActionMenu(event);
+    	loadChooseActionMenu();
     }
-    
-    
-    
+     
 	//===========================================================
 	// Trade Scenes and Event Handlers
 	//===========================================================
-    public void loadOfferedResource(ActionEvent event) throws IOException {
-        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        Scene updatedScene = addToMainScene("SelectOfferedResource.fxml");
-        stage.setScene(updatedScene);
-        stage.show();
-    }
-    public void loadRequestedResource(ActionEvent event) throws IOException {
-        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        Scene updatedScene = addToMainScene("SelectRequestedResource.fxml");
-        stage.setScene(updatedScene);
-        stage.show();
-    }
-    public void loadTradeMenu(ActionEvent event) throws IOException {
-        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        Scene updatedScene = addToMainScene("ChooseTradePartner.fxml");
-        stage.setScene(updatedScene);
-        stage.show();
+    public void loadOfferedResource() throws IOException {
+        addToMainScene("SelectOfferedResource.fxml");
 
+    }
+    public void loadRequestedResource() throws IOException {
+        addToMainScene("SelectRequestedResource.fxml");
+    }
+    public void loadTradeMenu() throws IOException {
+        addToMainScene("ChooseTradePartner.fxml");
     }
     public void chooseTradePartner(ActionEvent event) throws IOException {
     	String tradingPartner = ((Button) event.getSource()).getText();
     	System.out.println("Player offers: "+offeredResource);
 
-    	System.out.println(this.offeredResource+""+this.requestedResource);
     	if(tradingPartner.contentEquals("Stockpile")) {
     		System.out.println(GameRunner.getCurrentPlayer().getColour());
     		GameRunner.getCurrentPlayer().trade(Trading.Stockpile.getInstance(),offeredResource, requestedResource);
     	}
     	else
     		GameRunner.getCurrentPlayer().trade(Trading.Market.getInstance(),offeredResource, requestedResource);
-    	loadChooseActionMenu(event);
-    	
+    	loadChooseActionMenu();
     }
 
     public void chooseOfferedResource(ActionEvent event) throws IOException {
@@ -267,7 +261,7 @@ public class Controller {
     	else if(resource.contentEquals("Wood"))
     		offeredResource = ResourceType.wood;
     	System.out.println("Player offers: "+offeredResource);
-    	loadRequestedResource(event);
+    	loadRequestedResource();
     }
     public void chooseRequestedResource(ActionEvent event) throws IOException {
     	String resource = ((Button) event.getSource()).getText();
@@ -283,25 +277,21 @@ public class Controller {
     		requestedResource = ResourceType.wood;
     	System.out.println("Player requests: "+requestedResource);
 
-    	loadTradeMenu(event);
+    	loadTradeMenu();
     }
     
 	//===========================================================
 	// Main Scene with map
 	//===========================================================     
-    public void loadMap(ActionEvent event) {
+    public void loadMap() {
 		try {
             // Load person overview.
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(Main.class.getResource("CatanMainScene.fxml"));
             Pane map = (Pane) loader.load();
             Scene mapScene = new Scene(map);
-            loadMapColours(mapScene);
-            setPlayerVariableLabel(mapScene);
-            setMarketVariableLabels(mapScene);
-            setStockpileVariableLabels(mapScene);
-            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            stage.setScene(mapScene);
+            addMainSceneDetails(mapScene);
+            primaryStage.setScene(mapScene);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -327,7 +317,7 @@ public class Controller {
   	//===========================================================
     public void chooseLocation(ActionEvent event) throws IOException{
         if(((Button) event.getSource()).getId().contains("endturn"))
-        	loadChooseActionMenu(event);
+        	loadChooseActionMenu();
         else {
 	       	String[] LocationSelected = ((Button) event.getSource()).getId().split(",",2);
 	    	int x = Integer.parseInt(LocationSelected[0]);
@@ -335,13 +325,17 @@ public class Controller {
 	    	if(isCocoDevelopment) {
 	    		Board.getInstance().developLocation(x, y, GameRunner.getCurrentPlayer());
 	    		isCocoDevelopment = false;
-	    		Game.GameRunner.checkForAWinner();
-	    		loadChooseActionMenu(event);
+	    		if(Game.GameRunner.checkForAWinner())
+	    			gameWinnerScene();
+	    		else
+	    			loadChooseActionMenu();
 	    	}
 	    	else {
 	    		Board.getInstance().buyLairOrShip(x, y, GameRunner.getCurrentPlayer());
-	    		Game.GameRunner.checkForAWinner();
-	    		loadMap(event);
+	    		if(Game.GameRunner.checkForAWinner())
+	    			gameWinnerScene();
+	    		else
+	    			loadMap();
 	    	}
         }    	
     }
@@ -385,7 +379,7 @@ public class Controller {
 	    		if(variableLabel[i]=="wood")
 	    			L.setText(L.getText() + GameRunner.getPlayer(p).getNumWood());
 	    		if(variableLabel[i]=="UsedCoco")
-	    			L.setText(L.getText() + "###");
+	    			L.setText(L.getText() + GameRunner.getPlayer(p).getNumUsedCoco());
 	    		if(variableLabel[i]=="UnusedLairs")
 	    			L.setText(L.getText() + GameRunner.getPlayer(p).getUnbuiltLairs());
 	    		if(variableLabel[i]=="UnusedShips")
@@ -393,7 +387,6 @@ public class Controller {
 	    	}
     	}
     	if(GameRunner.getNumPlayers()==3) {
-    		Label L = (Label) mapScene.lookup("#PlayerP4");
 	    	for(int i = 0; i < variableLabel.length;i++) {
 	    		Label L1 = (Label) mapScene.lookup("#"+variableLabel[i]+"P4");
 	    		L1.setText("");

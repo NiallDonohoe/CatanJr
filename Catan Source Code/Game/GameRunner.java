@@ -66,12 +66,19 @@ public class GameRunner {
 		for(Player p: players) {
 			if(p.getUnbuiltLairs()==0) {
 				System.out.println("We have a Winner!!! "+ p.getColour() +" has won.");
-				// destroy instances
 				return true;
 			}
 		}
 		return false;
 		
+	}
+	public static String getGameWinner() {
+		for(Player p: players) {
+			if(p.getUnbuiltLairs()==0) {
+				return ""+ p.getColour()+"";
+			}
+		}
+		return "No player has won the game.";
 	}
 	
 }

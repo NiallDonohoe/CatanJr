@@ -3,6 +3,7 @@ import java.util.ArrayList;
 import Board.Board;
 import Board.DevelopedLocation;
 import Board.Island;
+import Board.Location.lairOrShip;
 import CocoCards.CocoCard;
 import CocoCards.CocoDeck;
 
@@ -60,6 +61,9 @@ public abstract class Player extends TradingResourceHolder{
 	}
 	public int getUnbuiltShips() {
 		return this.numUnbuiltShips;
+	}
+	public int getNumUsedCoco() {
+		return this.numUsedCoco;
 	}
 	
 	//===========================================================
@@ -145,21 +149,28 @@ public abstract class Player extends TradingResourceHolder{
 	// Allows a player to build on a locations if they have they are adjacent to the position or if
 	// they are taking their start positions.
 	public boolean positionAvailableForPlayer(int x, int y) {
-		for(int i = 0; i < this.DevelopedPlayerLocations.size(); i++) {
-			int xPL = this.DevelopedPlayerLocations.get(i).getX();
-			int yPL = this.DevelopedPlayerLocations.get(i).getY();
-//			System.out.println("x="+x+","+xPL+"|| y="+y+","+yPL);
-			if((x == (xPL - 1) && y == yPL) ||
-				(x == (xPL +1) && y == yPL) ||	
-				(x == xPL && y == (yPL -1)) ||
-				(x == xPL && y == (yPL +1))) {
-					return true;
-			}
-		}
-		if(this.DevelopedPlayerLocations.size()<4)
-			return true;
-		else
+		int j = Board.getInstance().positionAvailable(x, y);
+		lairOrShip lairOrShip = Board.getInstance().getAvailableLocations().get(j).getLairOrShip();
+		if(lairOrShip == lairOrShip.ship && this.numUnbuiltShips == 0) {
+			System.out.println("The player does not have any unbuilt ships left.");
 			return false;
+		}
+		else {
+			for(int i = 0; i < this.DevelopedPlayerLocations.size(); i++) {
+				int xPL = this.DevelopedPlayerLocations.get(i).getX();
+				int yPL = this.DevelopedPlayerLocations.get(i).getY();
+				if((x == (xPL - 1) && y == yPL) ||
+					(x == (xPL +1) && y == yPL) ||	
+					(x == xPL && y == (yPL -1)) ||
+					(x == xPL && y == (yPL +1))) {
+						return true;
+				}
+			}
+			if(this.DevelopedPlayerLocations.size()<4)
+				return true;
+			else
+				return false;
+		}
 	}
 
 
