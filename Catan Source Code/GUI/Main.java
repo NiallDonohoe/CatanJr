@@ -1,21 +1,13 @@
 package GUI;
 	
 import java.io.IOException;
-import Board.Board;
-import Board.Location;
 import Game.GameRunner;
 import javafx.application.Application;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.*;
 import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.Pane;
-import javafx.scene.layout.StackPane;
-import javafx.scene.layout.VBox;
 import javafx.stage.*;
 
 
@@ -53,6 +45,7 @@ public class Main extends Application {
             Scene scene = new Scene(rootLayout);
             primaryStage.setScene(scene);
             primaryStage.show();
+            Controller.setPrimaryStage(primaryStage);
         } catch (IOException e) {
             e.printStackTrace();
         }

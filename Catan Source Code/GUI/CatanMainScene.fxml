@@ -37,7 +37,9 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.shape.Circle?>
 <?import javafx.scene.shape.Polygon?>
+<?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="900.0" stylesheets="@Styles.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Controller">
@@ -288,7 +290,7 @@
             <Button id="9,7" layoutX="197.0" layoutY="-0.4" mnemonicParsing="false" onAction="#chooseLocation" style="-fx-background-radius: 15; -fx-min-width: 15; -fx-min-height: 15; -fx-max-width: 15; -fx-max-height: 15;" />
             <Button id="13,7" layoutX="289.0" layoutY="-0.4" mnemonicParsing="false" onAction="#chooseLocation" style="-fx-background-radius: 15; -fx-min-width: 15; -fx-min-height: 15; -fx-max-width: 15; -fx-max-height: 15;" />
             <Button id="15,6" layoutX="338.0" layoutY="45.0" mnemonicParsing="false" onAction="#chooseLocation" style="-fx-background-radius: 30; -fx-min-width: 7.5; -fx-min-height: 30; -fx-max-width: 4; -fx-max-height: 15;" />
-            <Button id="11,7" layoutX="247.0" layoutY="45.0" mnemonicParsing="false" onAction="#chooseLocation" style="-fx-background-radius: 30; -fx-min-width: 7.5; -fx-min-height: 30; -fx-max-width: 4; -fx-max-height: 15;" />
+            <Button id="11,6" layoutX="247.0" layoutY="45.0" mnemonicParsing="false" onAction="#chooseLocation" style="-fx-background-radius: 30; -fx-min-width: 7.5; -fx-min-height: 30; -fx-max-width: 4; -fx-max-height: 15;" />
             <Button id="7,6" layoutX="153.0" layoutY="44.0" mnemonicParsing="false" onAction="#chooseLocation" style="-fx-background-radius: 30; -fx-min-width: 7.5; -fx-min-height: 30; -fx-max-width: 4; -fx-max-height: 15;" />
             <Button id="1,4" layoutX="12.0" layoutY="128.0" mnemonicParsing="false" onAction="#chooseLocation" style="-fx-background-radius: 30; -fx-min-width: 7.5; -fx-min-height: 30; -fx-max-width: 4; -fx-max-height: 15;" />
             <Button id="5,4" layoutX="106.0" layoutY="128.0" mnemonicParsing="false" onAction="#chooseLocation" style="-fx-background-radius: 30; -fx-min-width: 7.5; -fx-min-height: 30; -fx-max-width: 4; -fx-max-height: 15;" />
@@ -334,9 +336,67 @@
                   <Font size="14.0" />
                </font>
             </Button>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="30.0" layoutX="95.0" layoutY="211.0" stroke="BLACK" strokeType="INSIDE" width="30.0" />
+            <Circle layoutX="102.0" layoutY="218.0" radius="3.0" stroke="BLACK" strokeType="INSIDE" />
+            <Circle layoutX="118.0" layoutY="218.0" radius="3.0" stroke="BLACK" strokeType="INSIDE" />
+            <Circle layoutX="102.0" layoutY="235.0" radius="3.0" stroke="BLACK" strokeType="INSIDE" />
+            <Circle layoutX="118.0" layoutY="235.0" radius="3.0" stroke="BLACK" strokeType="INSIDE" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="30.0" layoutX="49.0" layoutY="128.0" stroke="BLACK" strokeType="INSIDE" width="30.0" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="30.0" layoutX="96.0" layoutY="45.0" stroke="BLACK" strokeType="INSIDE" width="30.0" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="30.0" layoutX="142.0" layoutY="131.0" stroke="BLACK" strokeType="INSIDE" width="30.0" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="30.0" layoutX="189.0" layoutY="44.0" stroke="BLACK" strokeType="INSIDE" width="30.0" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="30.0" layoutX="189.0" layoutY="211.0" stroke="BLACK" strokeType="INSIDE" width="30.0" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="30.0" layoutX="281.0" layoutY="45.0" stroke="BLACK" strokeType="INSIDE" width="30.0" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="30.0" layoutX="285.0" layoutY="211.0" stroke="BLACK" strokeType="INSIDE" width="30.0" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="30.0" layoutX="370.0" layoutY="45.0" stroke="BLACK" strokeType="INSIDE" width="30.0" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="30.0" layoutX="326.0" layoutY="128.0" stroke="BLACK" strokeType="INSIDE" width="30.0" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="30.0" layoutX="373.0" layoutY="211.0" stroke="BLACK" strokeType="INSIDE" width="30.0" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="30.0" layoutX="420.0" layoutY="128.0" stroke="BLACK" strokeType="INSIDE" width="30.0" />
+            <Circle layoutX="380.0" layoutY="218.0" radius="3.0" stroke="BLACK" strokeType="INSIDE" />
+            <Circle layoutX="396.0" layoutY="218.0" radius="3.0" stroke="BLACK" strokeType="INSIDE" />
+            <Circle layoutX="380.0" layoutY="235.0" radius="3.0" stroke="BLACK" strokeType="INSIDE" />
+            <Circle layoutX="396.0" layoutY="235.0" radius="3.0" stroke="BLACK" strokeType="INSIDE" />
+            <Circle layoutX="427.0" layoutY="135.0" radius="3.0" stroke="BLACK" strokeType="INSIDE" />
+            <Circle layoutX="443.0" layoutY="135.0" radius="3.0" stroke="BLACK" strokeType="INSIDE" />
+            <Circle layoutX="427.0" layoutY="152.0" radius="3.0" stroke="BLACK" strokeType="INSIDE" />
+            <Circle layoutX="443.0" layoutY="152.0" radius="3.0" stroke="BLACK" strokeType="INSIDE" />
+            <Circle layoutX="436.0" layoutY="143.0" radius="3.0" stroke="BLACK" strokeType="INSIDE" />
+            <Circle layoutX="377.0" layoutY="52.0" radius="3.0" stroke="BLACK" strokeType="INSIDE" />
+            <Circle layoutX="393.0" layoutY="69.0" radius="3.0" stroke="BLACK" strokeType="INSIDE" />
+            <Circle layoutX="333.0" layoutY="135.0" radius="3.0" stroke="BLACK" strokeType="INSIDE" />
+            <Circle layoutX="349.0" layoutY="152.0" radius="3.0" stroke="BLACK" strokeType="INSIDE" />
+            <Circle layoutX="292.0" layoutY="219.0" radius="3.0" stroke="BLACK" strokeType="INSIDE" />
+            <Circle layoutX="308.0" layoutY="236.0" radius="3.0" stroke="BLACK" strokeType="INSIDE" />
+            <Circle layoutX="149.0" layoutY="138.0" radius="3.0" stroke="BLACK" strokeType="INSIDE" />
+            <Circle layoutX="165.0" layoutY="138.0" radius="3.0" stroke="BLACK" strokeType="INSIDE" />
+            <Circle layoutX="149.0" layoutY="155.0" radius="3.0" stroke="BLACK" strokeType="INSIDE" />
+            <Circle layoutX="165.0" layoutY="155.0" radius="3.0" stroke="BLACK" strokeType="INSIDE" />
+            <Circle layoutX="55.0" layoutY="134.0" radius="3.0" stroke="BLACK" strokeType="INSIDE" />
+            <Circle layoutX="71.0" layoutY="151.0" radius="3.0" stroke="BLACK" strokeType="INSIDE" />
+            <Circle layoutX="195.0" layoutY="52.0" radius="3.0" stroke="BLACK" strokeType="INSIDE" />
+            <Circle layoutX="211.0" layoutY="69.0" radius="3.0" stroke="BLACK" strokeType="INSIDE" />
+            <Circle layoutX="204.0" layoutY="226.0" radius="3.0" stroke="BLACK" strokeType="INSIDE" />
+            <Circle layoutX="296.0" layoutY="60.0" radius="3.0" stroke="BLACK" strokeType="INSIDE" />
+            <Circle layoutX="111.0" layoutY="60.0" radius="3.0" stroke="BLACK" strokeType="INSIDE" />
+            <Circle layoutX="64.0" layoutY="142.0" radius="3.0" stroke="BLACK" strokeType="INSIDE" />
+            <Circle layoutX="156.0" layoutY="146.0" radius="3.0" stroke="BLACK" strokeType="INSIDE" />
+            <Circle layoutX="342.0" layoutY="143.0" radius="3.0" stroke="BLACK" strokeType="INSIDE" />
+            <Label layoutX="93.0" layoutY="188.0" text="cutlass" />
+            <Label layoutX="190.0" layoutY="188.0" text="wood" />
+            <Label layoutX="283.0" layoutY="185.0" text="goat" />
+            <Label layoutX="365.0" layoutY="190.0" text="molasses" />
+            <Label layoutX="48.0" layoutY="104.0" text="wood" />
+            <Label layoutX="145.0" layoutY="104.0" text="gold" />
+            <Label contentDisplay="CENTER" layoutX="224.0" layoutY="116.0" prefHeight="50.0" prefWidth="51.0" text="Ghost Captain" wrapText="true" />
+            <Label layoutX="328.0" layoutY="104.0" text="gold" />
+            <Label layoutX="423.0" layoutY="104.0" text="goat" />
+            <Label layoutX="93.0" layoutY="21.0" text="cutlass" />
+            <Label layoutX="189.0" layoutY="21.0" text="wood" />
+            <Label layoutX="283.0" layoutY="21.0" text="goat" />
+            <Label layoutX="364.0" layoutY="23.0" text="molasses" />
          </children>
       </Pane>
-      <Pane layoutY="296.0" prefHeight="209.0" prefWidth="900.0">
+      <Pane layoutY="296.0" prefHeight="209.0" prefWidth="900.0" styleClass="resourceHolderPane" stylesheets="@Styles.css">
          <children>
             <Pane id="paneP1" prefHeight="201.0" prefWidth="150.0" stylesheets="@Styles.css">
                <children>
