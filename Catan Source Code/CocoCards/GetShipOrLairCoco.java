@@ -24,7 +24,7 @@ public class GetShipOrLairCoco extends CocoCard{
 	@Override
 	public void use(Player player) {
 	System.out.println("Player can choose to build a Ship or Lair for free!!!");
-	
+	// Building a Lair or Ship is handled in the GUI
 	}
 
 }

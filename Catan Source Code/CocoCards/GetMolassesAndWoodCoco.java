@@ -23,6 +23,7 @@ public class GetMolassesAndWoodCoco extends CocoCard{
 	
 	@Override
 	public void use(Player player) {
+		System.out.println("Player "+ player.getColour() + " gets 2 molasses and 2 wood");
 		player.moveResource(ResourceHolder.ResourceType.molasses, 2, Trading.Stockpile.getInstance());
 		player.moveResource(ResourceHolder.ResourceType.wood, 2, Trading.Stockpile.getInstance());
 	}

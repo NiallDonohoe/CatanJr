@@ -23,6 +23,7 @@ public class GetGoatAndCutlassCoco extends CocoCard{
 	
 	@Override
 	public void use(Player player) {
+		System.out.println(player.getColour()+" player gets 2 goats and 2 cutlasses");
 		player.moveResource(ResourceHolder.ResourceType.goat, 2, Trading.Stockpile.getInstance());
 		player.moveResource(ResourceHolder.ResourceType.cutlass, 2, Trading.Stockpile.getInstance());
 	}

@@ -93,7 +93,7 @@ public abstract class Player extends TradingResourceHolder{
 		return null;
 	}
 	
-	private void handleMovingGhostCaptain(int x,int y) {
+	public void moveGhostCaptain(int x,int y) {
 		
 		for(Island island: board.getIslands()) {
 			if(island.checkIfHasGhostCaptain())
@@ -106,12 +106,6 @@ public abstract class Player extends TradingResourceHolder{
 			}
 		}
 	}
-	
-	public void moveGhostCaptain(int x, int y) {
-		System.out.println("Choose where we place Ghost Captain");
-		handleMovingGhostCaptain(x,y);
-	}
-	
 	
 	public void printDevelopedLocations() {
 		System.out.println("\n"+this.playerColour+" player developed locations:");

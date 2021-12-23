@@ -22,7 +22,8 @@ public class MoveGhostCaptainCoco extends CocoCard{
 	
 	@Override
 	public void use(Player player) {
-		player.moveGhostCaptain(1,2);
+		System.out.println(player.getColour() + " can move the ghost Captain in the GUI");
+		// Moving of the Ghost Captain is handled by the GUI
 	}
 
 }
