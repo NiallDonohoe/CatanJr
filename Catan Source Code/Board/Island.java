@@ -4,17 +4,23 @@ import Trading.Player;
 import Trading.Stockpile;
 import Board.Location.lairOrShip;
 
+/**
+ * Class for an Island in a game of CatanJr
+ * 
+ * @author  Niall Donohoe & Shea O'Sullivan
+ * @version 1.0
+ */
+
 public class Island {
-	
 	//===========================================================
 	// Class Variables 
 	//===========================================================
-	protected Board board = Board.getInstance();
+	private Board board = Board.getInstance();
 	private Stockpile stockpile = Stockpile.getInstance();
-	protected int x;
-	protected int y;
-	protected Trading.ResourceHolder.ResourceType resource;
-	protected int die;
+	private int x;
+	private int y;
+	private Trading.ResourceHolder.ResourceType resource;
+	private int die;
 	private boolean hasGhostCaptain;
 	private Trading.Player.colour ghostCaptainLastMovedBy;
 	
@@ -27,7 +33,14 @@ public class Island {
 	//===========================================================
 	// Constructor
 	//===========================================================
-	protected Island(int[] center, Board.corner loc, Trading.ResourceHolder.ResourceType resource, int die){
+    /**
+     * Island constructor 
+     * @param center is the [x,y] coordinate of the island
+     * @param corner is the enum indicating if the island is one of the 4 edge islands or a regular island
+     * @param resource is the resource type associated with the island
+     * @param die is the die number associated with the island
+     */
+	protected Island(int[] center, Board.corner corner, Trading.ResourceHolder.ResourceType resource, int die){
 		this.x = center[0]; this.y = center[1];
 	    this.resource = resource;
 	    this.die = die;
@@ -40,29 +53,33 @@ public class Island {
 	    	this.setGhostCaptain(false,null);
 	    }
 	    
-	    if(loc==Board.corner.Regular) {
+	    if(corner==Board.corner.Regular) {
 	    	this.setLairLocations();
         	this.setShipLocations();
 	    }
 	    else {
-	    	this.setCornerLairLocations(loc);
-    		this.setCornerShipLocations(loc);
+	    	this.setCornerLairLocations(corner);
+    		this.setCornerShipLocations(corner);
 	    }
 	}
 	
-    //===========================================================
-  	// Getters and Setters
-  	//===========================================================
-	public int getX() { return x; }
-	public int getY() { return y; }
-	
+	//===========================================================
+	// Methods for manipulating Island
+	//===========================================================
+	/**
+     * setLairLocations method.
+     * sets Locations for Lairs for an Island
+     */
 	public void setLairLocations() {
 		for(int xi = x-2; xi <= (x + 2); xi+=2)
 			for(int yi = y-1; yi <= (y+1); yi+=2) {
 				this.addLairToAvailableForIsland(xi, yi);
 			}
 	}
-	
+	 /**
+     * setShipLocations method.
+     * sets Locations for Ships for an Island
+     */
 	public void setShipLocations() {
 		for(int xi = x-1; xi <= (x+1); xi+=2)	
 			for(int yi = y-1; yi<= y+1; yi+=2)
@@ -71,6 +88,10 @@ public class Island {
 		this.addShipToAvailableForIsland(x+2, y);	
 	}
 	
+	/**
+     * setCornerLairLocations method.
+     * sets Locations for Lairs for a Corner Island
+     */
 	public void setCornerLairLocations(Board.corner LOC) {
 		int yi = 0, yi2 = 0, xi2 = 0;
 		if(LOC==Board.corner.SW||LOC==Board.corner.SE) {
@@ -93,6 +114,10 @@ public class Island {
 		}
 	}
 	
+	/**
+     * setCornerShipLocations method.
+     * sets Locations for Ships for a Corner Island
+     */
 	public void setCornerShipLocations(Board.corner LOC) {
 		int yi = 0, xi = 0;
 		if(LOC==Board.corner.SW||LOC==Board.corner.SE) {
@@ -111,13 +136,6 @@ public class Island {
 		this.addShipToAvailableForIsland(x+1, yi);
 	}
 	
-	public boolean checkIfHasGhostCaptain() {
-		return hasGhostCaptain;
-	}
-	
-  	//===========================================================
-  	// Other Methods
-  	//===========================================================
 	public void addLairToAvailableForIsland(int xi,int yi) {
 		Location Ltemp = new Location(xi,yi,lairOrShip.lair);
 		this.islandAvailableLairLocations.add(Ltemp); 
@@ -130,11 +148,59 @@ public class Island {
 		board.addToBoard(Ltemp);
 	}
 	
+    //===========================================================
+  	// Getters and Setters
+  	//===========================================================
+    /**
+     * getX method.
+     * @return island x coordinate
+     */
+	public int getX() { return x; }
+	 /**
+     * getY method.
+     * @return island y coordinate
+     */
+	public int getY() { return y; }
+	 /**
+     * getDieNum method.
+     * @return die number associated with island
+     */
+	public int getDieNum() {
+		return die;
+	}
+	/**
+     * getResourceType method.
+     * @return resource associated with island
+     */
+	public Trading.ResourceHolder.ResourceType getResourceType() {
+		return this.resource;
+	}
+	
+	/**
+     * checkIfHasGhostCaptain method.
+     * @return boolean indicating if Ghost Captain on island
+     */
+	public boolean checkIfHasGhostCaptain() {
+		return hasGhostCaptain;
+	}
+	/**
+     * setGhostCaptain method.
+     * @param hereOrNot booloean indicating Ghost Captain on the island or not
+     * @param ghostCaptainLastMovedBy colour of player who last moved Ghost Captain
+     */
 	public void setGhostCaptain(boolean hereOrNot, Trading.Player.colour ghostCaptainLastMovedBy) {
 		this.hasGhostCaptain = hereOrNot;
 		this.ghostCaptainLastMovedBy = ghostCaptainLastMovedBy;
 	}
 	
+  	//===========================================================
+  	// Other Methods
+  	//===========================================================
+
+	/**
+     * generateResources method.
+     * Generates resources for an island if ghost captain absent
+     */
 	public void generateResources() {
 		
 			if(!hasGhostCaptain) { // if ghostCaptain absent, increment each lair owner's resource
@@ -156,23 +222,12 @@ public class Island {
 				}
 			}
 	
-	public Trading.ResourceHolder.ResourceType getResourceType() {
-		return this.resource;
-	}
-
-	public void printEach() {
-		System.out.println("\nThe Locations in island:");
-		for(int i=0; i < islandAvailableLairLocations.size();i++) {
-			int[] temp = islandAvailableLairLocations.get(i).getLocation();
-			System.out.println("x="+temp[0]+", y="+temp[1]);
-		}
-	}
-	@Override
-	public String toString(){
-	    return "Center: " + this.x + " " + this.y + "available " + islandAvailableLairLocations;
-	}
-	
-	// Develop an available position. If it is a lair.
+	/**
+     * developPosotion method.
+     * @param xi is the x coordinate of the location
+     * @param yi is the y coordinate of the location
+     * @param p is the player developing the position
+     */
 	public void developPosition(int xi, int yi ,Player p) {
 		int i = this.PositionInList(xi,yi);
 		lairOrShip LairOrShip;
@@ -190,16 +245,13 @@ public class Island {
 		}
 	}
 	
-	// Prints the players with developed lairs on the island.
-	public void playersWithDevelopedLairs() {
-		System.out.println("Players with lairs on island "+this.resource+this.die+":");
-		for(int i=0; i < islandDevelopedLairLocations.size();i++) {
-			x = this.islandDevelopedLairLocations.get(i).getX();
-			y = this.islandDevelopedLairLocations.get(i).getY();
-			System.out.println(this.islandDevelopedLairLocations.get(i).getPlayer().getColour()+": "+x+","+y);
-		}
-	}
-	
+
+	/**
+     * positionInList method. Finds the index of the location in the ArrayList
+     * @param xi is the x coordinate of the location
+     * @param yi is the y coordinate of the location
+     * @return i the index of the location in the ArrayList
+     */
 	// Return the position in the list of the Location
 	public int PositionInList(int xi, int yi) {
 		for(int i=0; i < islandAvailableLairLocations.size();i++) {
@@ -211,5 +263,29 @@ public class Island {
     	}
 		return -1;
     }
+  	//===========================================================
+  	// Printing Methods
+  	//===========================================================
 
+	// Prints the players with developed lairs on the island.
+	public void playersWithDevelopedLairs() {
+		System.out.println("Players with lairs on island "+this.resource+this.die+":");
+		for(int i=0; i < islandDevelopedLairLocations.size();i++) {
+			x = this.islandDevelopedLairLocations.get(i).getX();
+			y = this.islandDevelopedLairLocations.get(i).getY();
+			System.out.println(this.islandDevelopedLairLocations.get(i).getPlayer().getColour()+": "+x+","+y);
+		}
+	}
+	
+	public void printEach() {
+		System.out.println("\nThe Locations in island:");
+		for(int i=0; i < islandAvailableLairLocations.size();i++) {
+			int[] temp = islandAvailableLairLocations.get(i).getLocation();
+			System.out.println("x="+temp[0]+", y="+temp[1]);
+		}
+	}
+	@Override
+	public String toString(){
+	    return "Center: " + this.x + " " + this.y + "available " + islandAvailableLairLocations;
+	}
 }

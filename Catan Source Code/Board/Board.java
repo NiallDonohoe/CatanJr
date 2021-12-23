@@ -2,7 +2,6 @@ package Board;
 import java.util.*;
 import Trading.Player;
 import Board.Location.lairOrShip;
-import CocoCards.CocoCard;
 import CocoCards.CocoDeck;
 
 /**
@@ -20,23 +19,20 @@ public class Board {
     public enum corner {
         NE, SE, SW, NW, Regular	
     }
-    static Board instance = null;
-    public static ArrayList<Island> islands = new ArrayList<Island>();
-    public static ArrayList<Location> availableLocations = new ArrayList<Location>();	
-    public static ArrayList<DevelopedLocation> developedLocations = new ArrayList<DevelopedLocation>();
-    public static CocoDeck cocoDeck = new CocoDeck();
+    private static Board instance = null;
+    private static ArrayList<Island> islands = new ArrayList<Island>();
+    private static ArrayList<Location> availableLocations = new ArrayList<Location>();	
+    private static ArrayList<DevelopedLocation> developedLocations = new ArrayList<DevelopedLocation>();
+    private static CocoDeck cocoDeck = new CocoDeck();
     
 	//===========================================================
 	// Constructor - Singleton
 	//===========================================================
-	/**
-	 * Constructor for a Board object
-	 */
-    
-    private Board() {} 
-    
-    // There should only be one instance of Board
-    static public Board getInstance() {
+    /**
+     * getInstance method returns single instance of board.
+     * @return theBoard. singleton Board object.
+     */
+    public static Board getInstance() {
 		if(instance == null) {
 			instance = new Board();
 		}
@@ -46,58 +42,95 @@ public class Board {
     //===========================================================
   	// Getters and Setters
   	//===========================================================
+    /**
+     * getIslands method.
+     * @return islands. An ArrayList of island objects
+     */
     public ArrayList<Island> getIslands(){
     	return islands;
     }
-    
+    /**
+     * getAvailableLocations method.
+     * @return availableLocations. An ArrayList of undeveloped locations
+     */
+    public ArrayList<Location> getAvailableLocations(){
+    	return availableLocations;
+    }
+    /**
+     * getDevelopedLocations method.
+     * @return developedLocations. An ArrayList of locations with either a Lair or Ship built
+     */
+    public ArrayList<DevelopedLocation> getDevelopedLocations(){
+    	return developedLocations;
+    }
+    /**
+     * getCocoDeck method.
+     * @return cocoDeck. A cocoDeck object.
+     */
     public CocoDeck getCocoDeck(){
     	return cocoDeck;
     }
     
   	//===========================================================
-  	// Other Methods
+  	// Methods for Adding Islands to the Board
   	//===========================================================
-    
-    public void addIsland(int[] center, Board.corner loc, Trading.ResourceHolder.ResourceType resource, int die) {
-    	Island island = new Island(center,loc,resource,die);
+    /**
+     * addIsland adds an island object to the board.
+     * @param center is the [x,y] coordinate of the island as defined on the map
+     * @param corner is the enum indicating if the island is one of the 4 edge islands or a regular island
+     * @param resource is the resource type associated with the island
+     * @param die is the die number associated with the island
+     */
+    public void addIsland(int[] center, Board.corner corner, Trading.ResourceHolder.ResourceType resource, int die) {
+    	Island island = new Island(center,corner,resource,die);
     	islands.add(island);
     }
     
+    /**
+     * declareIslands adds each island as explicitly defined within the method
+     */
     public void declareIslands() {
-		addIsland(new int[]{ 5,2}, Board.corner.SW,Trading.ResourceHolder.ResourceType.cutlass,4);
+		addIsland(new int[]{5,2}, Board.corner.SW,Trading.ResourceHolder.ResourceType.cutlass,4);
 		addIsland(new int[]{9,2}, Board.corner.Regular,Trading.ResourceHolder.ResourceType.wood,1);
-		addIsland(new int[]{ 13,2}, Board.corner.Regular,Trading.ResourceHolder.ResourceType.goat,2);
-		addIsland(new int[]{ 17,2}, Board.corner.SE,Trading.ResourceHolder.ResourceType.molasses,4);
+		addIsland(new int[]{13,2}, Board.corner.Regular,Trading.ResourceHolder.ResourceType.goat,2);
+		addIsland(new int[]{17,2}, Board.corner.SE,Trading.ResourceHolder.ResourceType.molasses,4);
 
-		addIsland(new int[]{ 3,4}, Board.corner.Regular,Trading.ResourceHolder.ResourceType.wood,3);
-		addIsland(new int[]{ 7,4}, Board.corner.Regular,Trading.ResourceHolder.ResourceType.gold,5);
-		addIsland(new int[]{ 11,4}, Board.corner.Regular,Trading.ResourceHolder.ResourceType.none,6);
-		addIsland(new int[]{ 15,4}, Board.corner.Regular,Trading.ResourceHolder.ResourceType.gold,3);
-		addIsland(new int[]{ 19,4}, Board.corner.Regular,Trading.ResourceHolder.ResourceType.goat,5);
+		addIsland(new int[]{3,4}, Board.corner.Regular,Trading.ResourceHolder.ResourceType.wood,3);
+		addIsland(new int[]{7,4}, Board.corner.Regular,Trading.ResourceHolder.ResourceType.gold,5);
+		addIsland(new int[]{11,4}, Board.corner.Regular,Trading.ResourceHolder.ResourceType.none,6);
+		addIsland(new int[]{15,4}, Board.corner.Regular,Trading.ResourceHolder.ResourceType.gold,3);
+		addIsland(new int[]{19,4}, Board.corner.Regular,Trading.ResourceHolder.ResourceType.goat,5);
 
-		addIsland(new int[]{ 5,6}, Board.corner.NW,Trading.ResourceHolder.ResourceType.cutlass,1);
-		addIsland(new int[]{ 9,6}, Board.corner.Regular,Trading.ResourceHolder.ResourceType.wood,2);
-		addIsland(new int[]{ 13,6}, Board.corner.Regular,Trading.ResourceHolder.ResourceType.goat,1);
-		addIsland(new int[]{ 17,6}, Board.corner.NE,Trading.ResourceHolder.ResourceType.molasses,2);
+		addIsland(new int[]{5,6}, Board.corner.NW,Trading.ResourceHolder.ResourceType.cutlass,1);
+		addIsland(new int[]{9,6}, Board.corner.Regular,Trading.ResourceHolder.ResourceType.wood,2);
+		addIsland(new int[]{13,6}, Board.corner.Regular,Trading.ResourceHolder.ResourceType.goat,1);
+		addIsland(new int[]{17,6}, Board.corner.NE,Trading.ResourceHolder.ResourceType.molasses,2);
     }
     
+  	//===========================================================
+  	// Methods for manipulating locations and islands
+  	//===========================================================
+    /**
+     * addToBoard adds a location to the board if the location is valid
+     * @param location is the location to be added
+     * @return boolean indicating if location added
+     */
     public boolean addToBoard(Location location) {
-    	for(int i=0; i < availableLocations.size();i++) {
-    		if(availableLocations.get(i).isEqual(location.getX(),location.getY()))
+    	for(Location L: availableLocations) {
+    		if(L.isEqual(location.getX(),location.getY())) {
     			return false;
+    		}	
     	}
     	availableLocations.add(location);
-    	return true;
+		return true;
     }
-    
-    public void printEach() {
-    	System.out.println("\nThe Locations on board:");
-    	for(int i=0; i < availableLocations.size();i++) {
-    		System.out.println(availableLocations.get(i).toString()+", i="+(i+1));    		
-    	}
-    }
-       
-    public int PositionAvailable(int xi, int yi) {
+    /**
+     * positionAvailable checks if a location is available
+     * @param xi x coordinate of location
+     * @param yi y coordinate of location
+     * @return i an int indication where in the ArrayList availableLocations the location is
+     */   
+    public int positionAvailable(int xi, int yi) {
     	for(int i=0; i < availableLocations.size();i++) {
 	       	if(availableLocations.get(i).isEqual(xi, yi)) {
 	   			return i;
@@ -105,8 +138,13 @@ public class Board {
 	   	}
 		return -1;
 	 }
-    
-    public int PositionDeveloped(int xi, int yi) {
+    /**
+     * positionDeveloped checks if a location is developed
+     * @param xi x coordinate of location
+     * @param yi y coordinate of location
+     * @return i an int indication where in the ArrayList developedLocations the location is
+     */ 
+    public int positionDeveloped(int xi, int yi) {
     	for(int i=0; i < developedLocations.size();i++) {
     		if(developedLocations.get(i).isEqual(xi, yi)) {
 	   			return i;
@@ -115,9 +153,15 @@ public class Board {
 		return -1;
 	}
 
-    // Buys a ship or lair for player p if they have the required resources
+    /**
+     * buildLairOrShip build a Lair Or Ship depending on the location
+     * @param xi x coordinate of location
+     * @param yi y coordinate of location
+     * @param p player wishing to build
+     * @return boolean indicating successful build
+     */ 
     public boolean buyLairOrShip(int xi,int yi, Player p) {
-    	int i = this.PositionAvailable(xi,yi);
+    	int i = this.positionAvailable(xi,yi);
     	lairOrShip lairOrShip = availableLocations.get(i).getLairOrShip();
     	if(canBuildOnLocation(xi,yi,p)) {
 	    	if(lairOrShip == lairOrShip.lair && p.buildLair()) {
@@ -134,13 +178,17 @@ public class Board {
     	else
     		return false;
     }
-    // Used to check if the player is adjacent to this position and if it is undeveloped
+    /**
+     * canBuildOnLocation checks if a location can be built on by a player
+     * @param xi x coordinate of location
+     * @param yi y coordinate of location
+     * @param p player wishing to build
+     * @return boolean indicating if the player can build
+     */ 
     private boolean canBuildOnLocation (int xi, int yi, Player p){
-    	int i = this.PositionAvailable(xi,yi);
+    	int i = this.positionAvailable(xi,yi);
     	boolean  positionAvailableToPlayer = p.positionAvailableForPlayer(xi, yi);
     	if(i!=-1 && positionAvailableToPlayer) {
-    		int x = availableLocations.get(i).getX();
-    		int y = availableLocations.get(i).getY();
     		return true;
     	}
     	else if(i==-1) {
@@ -157,10 +205,15 @@ public class Board {
     		return false;
     	}
     }
-    // Used to develop a position on the board
+    /**
+     * developLocation transforms locations into Lairs or Ships
+     * @param xi x coordinate of location
+     * @param yi y coordinate of location
+     * @param p player wishing to build
+     */ 
     public void developLocation(int xi,int yi, Player p) {
     	if(canBuildOnLocation(xi,yi,p)) {
-	    	int i = this.PositionAvailable(xi,yi);
+	    	int i = this.positionAvailable(xi,yi);
 			int x = availableLocations.get(i).getX();
 			int y = availableLocations.get(i).getY();
 			lairOrShip lairOrShip = availableLocations.get(i).getLairOrShip();
@@ -175,14 +228,28 @@ public class Board {
     	}
     }
     
-    public void handleGeneratingIslandResources(int result, Player player) {
+    /**
+     * handleGeneratingIslandResources generates resources for a die roll matching the die number of the island
+     * @param result is the number rolled by the die
+     * @param p player wishing to build
+     */ 
+    public void handleGeneratingIslandResources(int result) {
     		for (Island island: islands) {
-    			if(result == island.die) {
+    			if(result == island.getDieNum()) {
     				island.generateResources();
     			}
     		}
     }
  
+  	//===========================================================
+  	// Methods for Printing
+  	//===========================================================
+    public void printEach() {
+    	System.out.println("\nThe Locations on board:");
+    	for(int i=0; i < availableLocations.size();i++) {
+    		System.out.println(availableLocations.get(i).toString()+", i="+(i+1));    		
+    	}
+    }
     public void printDevelopedLocations() {
     	for(DevelopedLocation D : Board.developedLocations) {
     		System.out.println(D.getX()+","+D.getY());

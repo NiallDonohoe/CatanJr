@@ -32,17 +32,17 @@ public class BoardTests {
 	
 	@Test
 	public void weHave72AvailableLocations() {
-		assertEquals("We should have 72 available positions at the start:", 72, Board.availableLocations.size());
+		assertEquals("We should have 72 available positions at the start:", 72, Board.getInstance().getAvailableLocations().size());
 	}
 
 	@Test
 	public void weHave0DevelopedLocations() {
-		assertEquals("We should have 0 Developed Locations at the start:", 0, Board.developedLocations.size());
+		assertEquals("We should have 0 Developed Locations at the start:", 0, Board.getInstance().getDevelopedLocations().size());
 	}
 	
 	@Test
 	public void weHaveACocoDeck() {
-		assertNotNull("We should have 0 Developed Locations at the start:", Board.cocoDeck);
+		assertNotNull("We should have a CocoDeck:", Board.getInstance().getCocoDeck());
 	}
 	
 	
