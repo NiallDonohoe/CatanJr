@@ -155,7 +155,7 @@ public class Controller {
     	int dieResult = Dice.getInstance().roll();
     	System.out.println("Player rolled a "+dieResult);
     	if(dieResult<6) {
-    		Board.getInstance().handleGeneratingIslandResources(dieResult,  GameRunner.getCurrentPlayer());
+    		Board.getInstance().handleGeneratingIslandResources(dieResult);
     		loadChooseActionMenu(event);
     	}
     	if(dieResult == 6) {
@@ -307,7 +307,7 @@ public class Controller {
         }
 	}
     public void loadMapColours(Scene mapScene) {
-		for(DevelopedLocation D : Board.developedLocations) {
+		for(DevelopedLocation D : Board.getInstance().getDevelopedLocations()) {
     		String ID = "#"+String.valueOf(D.getX())+","+String.valueOf(D.getY())+"";
     		Player p = D.getPlayer();
         	Button bt = (Button) mapScene.lookup(ID);
