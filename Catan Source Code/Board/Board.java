@@ -85,6 +85,12 @@ public class Board {
     	Island island = new Island(center,corner,resource,die);
     	islands.add(island);
     }
+    /**
+     * addSpookyIsland adds a SpookyIsland object to the board.
+     */
+    public void addSpookyIsland() {
+    	islands.add(SpookyIsland.getInstance());
+    }
     
     /**
      * declareIslands adds each island as explicitly defined within the method
@@ -97,7 +103,9 @@ public class Board {
 
 		addIsland(new int[]{3,4}, Board.corner.Regular,Trading.ResourceHolder.ResourceType.wood,3);
 		addIsland(new int[]{7,4}, Board.corner.Regular,Trading.ResourceHolder.ResourceType.gold,5);
-		addIsland(new int[]{11,4}, Board.corner.Regular,Trading.ResourceHolder.ResourceType.none,6);
+//		addIsland(new int[]{11,4}, Board.corner.Regular,Trading.ResourceHolder.ResourceType.none,6);
+//		addSpookyIsland(new int[]{11,4}, Board.corner.Regular,Trading.ResourceHolder.ResourceType.none,6);
+		addSpookyIsland();
 		addIsland(new int[]{15,4}, Board.corner.Regular,Trading.ResourceHolder.ResourceType.gold,3);
 		addIsland(new int[]{19,4}, Board.corner.Regular,Trading.ResourceHolder.ResourceType.goat,5);
 
@@ -165,11 +173,11 @@ public class Board {
     	
     	if(canBuildOnLocation(xi,yi,p)) {
     		lairOrShip lairOrShip = availableLocations.get(i).getLairOrShip();
-	    	if(lairOrShip == lairOrShip.lair && p.buildLair()) {
+	    	if(lairOrShip == Location.lairOrShip.lair && p.buildLair()) {
 	    		this.developLocation(xi,yi,p);
 	    		return true;
 	    	}
-	    	else if(lairOrShip == lairOrShip.ship && p.buildShip()) {
+	    	else if(lairOrShip == Location.lairOrShip.ship && p.buildShip()) {
 	    		this.developLocation(xi,yi,p);
 	    		return true;
 	    	}
@@ -188,7 +196,7 @@ public class Board {
      */ 
     private boolean canBuildOnLocation (int xi, int yi, Player p){
     	int i = this.positionAvailable(xi,yi);
-    	boolean  positionAvailableToPlayer = p.positionAvailableForPlayer(xi, yi);
+    	boolean  positionAvailableToPlayer = p.locationAvailableForPlayer(xi, yi);
     	if(i!=-1 && positionAvailableToPlayer) {
     		return true;
     	}
@@ -222,11 +230,29 @@ public class Board {
 			developedLocations.add(DL);
 			p.DevelopedPlayerLocations.add(DL);
 			availableLocations.remove(i);
-	
+			if(lairOrShip == Location.lairOrShip.lair)
+				p.decrementUnusedLairs();
+			else if(lairOrShip == Location.lairOrShip.ship)
+				p.decrementUnusedShips();
+			
 			for(int j = 0; j < islands.size(); j++) {
 				islands.get(j).developPosition(xi, yi, p);
 			}
     	}
+    }
+    /**
+    * getSpookyIsland returns the SpookyIsland on the board.
+    * @param xi x coordinate of location
+    * @param yi y coordinate of location
+    * @param p player wishing to build
+    */ 
+    public SpookyIsland getSpookyIsland() {
+    	for(int i = 0; i < islands.size(); i++ ) {
+    		if(islands.get(i) instanceof SpookyIsland) {
+    			return ((SpookyIsland) islands.get(i));
+    		}
+    	}
+		return null;
     }
     
     /**

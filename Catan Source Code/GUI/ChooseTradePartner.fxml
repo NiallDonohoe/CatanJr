@@ -3,9 +3,11 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ButtonBar?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Tooltip?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
+<?import javafx.util.Duration?>
 
 <AnchorPane xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Controller">
    <children>
@@ -16,11 +18,29 @@
                <font>
                   <Font name="Papyrus" size="19.0" />
                </font>
+               <tooltip>
+                  <Tooltip anchorLocation="CONTENT_TOP_RIGHT" anchorX="570.0" anchorY="100.0" opacity="0.7" text="Exchanges 2 offered resource for 1 of requested resource." wrapText="true" x="570.0" y="100.0">
+                     <font>
+                        <Font size="9.0" />
+                     </font></Tooltip>
+                    <showDelay>
+               			<Duration millis="1" />
+               		</showDelay>
+               </tooltip>
             </Button>
             <Button layoutX="570.0" layoutY="200.0" minHeight="-Infinity" mnemonicParsing="false" onAction="#chooseTradePartner" prefHeight="60.0" prefWidth="300.0" text="Market">
                <font>
                   <Font name="Papyrus" size="19.0" />
                </font>
+               <tooltip>
+                  <Tooltip anchorLocation="CONTENT_TOP_RIGHT" opacity="0.7" text="Exchanges 1 offered resource for 1 requested resource," wrapText="true">
+                     <font>
+                        <Font size="9.0" />
+                     </font></Tooltip>
+               		<showDelay>
+               			<Duration millis="1" />
+               		</showDelay>
+               </tooltip>
             </Button>
             <Label layoutX="550.0" prefHeight="100.0" prefWidth="289.0" text="Choose Who You Would Like To Trade With:" wrapText="true">
                <font>

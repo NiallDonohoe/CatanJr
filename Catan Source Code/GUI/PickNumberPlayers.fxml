@@ -7,23 +7,23 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Controller">
+<AnchorPane prefHeight="500.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Controller">
    <children>
-      <BorderPane>
+      <BorderPane prefHeight="500.0" prefWidth="900.0">
          <top>
             <AnchorPane prefHeight="500.0" prefWidth="600.0" BorderPane.alignment="CENTER">
                <children>
-                  <Label layoutX="143.0" layoutY="107.0" prefHeight="89.0" prefWidth="362.0" text="Choose Number of Players:">
+                  <Label layoutX="311.0" layoutY="107.0" prefHeight="89.0" prefWidth="362.0" text="Choose Number of Players:">
                      <font>
-                        <Font size="27.0" />
+                        <Font name="Papyrus" size="27.0" />
                      </font>
                   </Label>
-                  <Label layoutX="103.0" layoutY="14.0" prefHeight="95.0" prefWidth="405.0" text="Welcome to Catan Jr!">
+                  <Label layoutX="282.0" layoutY="29.0" prefHeight="95.0" prefWidth="405.0" text="Welcome to Catan Jr!">
                      <font>
                         <Font name="Papyrus" size="39.0" />
                      </font>
                   </Label>
-                  <ButtonBar buttonMinWidth="200.0" layoutX="170.0" layoutY="187.0" prefHeight="102.0" prefWidth="227.0">
+                  <ButtonBar buttonMinWidth="200.0" layoutX="371.0" layoutY="181.0" prefHeight="102.0" prefWidth="227.0">
                     <buttons>
                       <Button mnemonicParsing="false" onAction="#playerSelection" prefHeight="96.0" prefWidth="275.0" text="3">
                            <font>
@@ -32,7 +32,7 @@
                         </Button>
                     </buttons>
                   </ButtonBar>
-                  <ButtonBar buttonMinWidth="200.0" layoutX="158.0" layoutY="268.0" prefHeight="169.0" prefWidth="239.0">
+                  <ButtonBar buttonMinWidth="200.0" layoutX="358.0" layoutY="259.0" prefHeight="169.0" prefWidth="239.0">
                     <buttons>
                       <Button mnemonicParsing="false" onAction="#playerSelection" prefHeight="95.0" prefWidth="217.0" text="4">
                            <font>

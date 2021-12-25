@@ -1,8 +1,12 @@
 package Trading;
 
 import Board.Board;
-import Trading.Player.colour;
-
+/**
+ * Class for RedPlayer in a game of CatanJr
+ * 
+ * @author  Niall Donohoe & Shea O'Sullivan
+ * @version 1.0
+ */
 public class RedPlayer extends Player{
 	//===========================================================
 	// Class Variables 
@@ -19,18 +23,29 @@ public class RedPlayer extends Player{
   	//===========================================================
   	// Other Methods
   	//===========================================================
+    /**
+     * getInstance method returns single instance of RedPlayer.
+     * @return RedPlayer. Singleton OrangePlayer object.
+     */
 	static public RedPlayer getInstance() {
 		if(instance == null)
 			instance = new RedPlayer();
 		return instance;
 	}
-	static public boolean PlayerExists() {
+	/**
+	 * playerExists used to check if an instance of this player exists without
+	 * instantiating that instance.
+	 * @return boolean indicating whether this Player object has been instantiated. 
+	 */
+	static public boolean playerExists() {
 		if (instance == null)
 			return false;
 		else 
 			return true;
 	}
-	
+	/**
+	 * developStartingPositions develops the starting positions of the player.
+	 */
     public void developStartingPositions() {
     	Board.getInstance().developLocation(19,3,this);	// first lair
     	Board.getInstance().developLocation(18,3,this);	// first ship

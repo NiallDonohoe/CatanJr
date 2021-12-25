@@ -1,7 +1,11 @@
 package Trading;
 
-import Trading.ResourceHolder.ResourceType;
-
+/**
+ * Class for ResourceHolder in a game of CatanJr. An object that holds resources.
+ * 
+ * @author  Niall Donohoe & Shea O'Sullivan
+ * @version 1.0
+ */
 public abstract class ResourceHolder {
 	//===========================================================
 	// Class Variables 
@@ -43,6 +47,13 @@ public abstract class ResourceHolder {
 	}
 	
 	// Add resources to class with the specified amount
+	/**
+	 * moveResource moves resources from ResourceHolder holder in the argument of the method
+	 * to the resource holder that the method is being used on.
+	 * @param resType The resource type being moved.
+	 * @param i The number of the resource being moved.
+	 * @param RH The resource holder that the resources are being taken from.
+	 */
 	public void moveResource(ResourceType resType, int i, ResourceHolder RH) {
 		switch (resType){
 		case gold:
@@ -70,7 +81,13 @@ public abstract class ResourceHolder {
 		}
 		Stockpile.getInstance().checkRefreshStockpile(); // makes sure no resources are depleted in stockpile.
 	}
-	
+	/**
+	 * resourceAvailable checks if a ResourceHolder has a specified amount of resources of 
+	 * a certain type.
+	 * @param resource The resource type that is being checked.
+	 * @param i The number of resources that we are checking the resource holder has.
+	 * @return boolean If the ResourceHolder has the required number of resources.
+	 */
 	// Checks if a resource is available for a resource holder
 	public boolean resourcesAvailable(ResourceType resource, int i) {
 		switch(resource) {
@@ -93,7 +110,11 @@ public abstract class ResourceHolder {
 			return false;
 		}
 	}
-	
+	/**
+	 * instanceType determines the type of ResourceHolder and returns the name of the instance in string form.
+	 * @param RH The ResourceHolder that is being tested.
+	 * @return String Containing the name of the ResourceHolder object that was entered.
+	 */
 	public String instanceType(ResourceHolder RH) {
 		if(RH instanceof Player)
 			return "Player";
@@ -103,18 +124,38 @@ public abstract class ResourceHolder {
 			return "Market";
 		return null;
 	}
+	/**
+	 * getNumGold returns the number of gold that the ResourceHolder has.
+	 * @return int numGold The number of gold the ResourceHolder has.
+	 */
 	public int getNumGold() {
 		return this.numGold;
 	}
+	/**
+	 * getNumMolasses returns the number of molasses that the ResourceHolder has.
+	 * @return int numGold The number of molasses the ResourceHolder has.
+	 */
 	public int getNumMolasses() {
 		return this.numMolasses;
 	}
+	/**
+	 * getNumCutlasses returns the number of cutlasses that the ResourceHolder has.
+	 * @return int numGold The number of cutlasses the ResourceHolder has.
+	 */
 	public int getNumCutlasses() {
 		return this.numCutlasses;
 	}
+	/**
+	 * getNumGoats returns the number of goats that the ResourceHolder has.
+	 * @return int numGoats The number of goats the ResourceHolder has.
+	 */
 	public int  getNumGoats() {
 		return this.numGoats;
 	}
+	/**
+	 * getNumWood returns the number of wood that the ResourceHolder has.
+	 * @return int numWood The number of wood the ResourceHolder has.
+	 */
 	public int getNumWood() {
 		return this.numWood;
 	}

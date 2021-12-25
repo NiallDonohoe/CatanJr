@@ -83,7 +83,7 @@
                   <Double fx:value="50.0" />
                </points>
             </Polygon>
-            <Polygon fill="#4db34d" layoutX="200.0" layoutY="93.0" rotate="90.0" stroke="BLACK" strokeType="INSIDE">
+            <Polygon fill="DARKGRAY" layoutX="200.0" layoutY="93.0" rotate="90.0" stroke="DARKSLATEGRAY" strokeType="INSIDE">
                <points>
                   <Double fx:value="73.0" />
                   <Double fx:value="11.0" />
@@ -262,7 +262,7 @@
             <Button id="3,5" layoutX="56.0" layoutY="83.0" mnemonicParsing="false" onAction="#chooseLocation" style="-fx-background-radius: 15; -fx-min-width: 15; -fx-min-height: 15; -fx-max-width: 15; -fx-max-height: 15;" />
             <Button id="3,3" layoutX="58.0" layoutY="188.0" mnemonicParsing="false" onAction="#chooseLocation" style="-fx-background-radius: 15; -fx-min-width: 15; -fx-min-height: 15; -fx-max-width: 15; -fx-max-height: 15;" />
             <Button id="5,3" layoutX="103.0" layoutY="166.0" mnemonicParsing="false" onAction="#chooseLocation" style="-fx-background-radius: 15; -fx-min-width: 15; -fx-min-height: 15; -fx-max-width: 15; -fx-max-height: 15;" />
-            <Button id="7,3" layoutX="149.0" layoutY="188.0" mnemonicParsing="false" onAction="#chooseLocation" style="-fx-background-radius: 15; -fx-min-width: 15; -fx-min-height: 15; -fx-max-width: 15; -fx-max-height: 15;" />
+            <Button id="7,3" layoutX="149.0" layoutY="188.0" mnemonicParsing="false" onAction="#chooseLocation" style="-fx-background-radius: 15; -fx-min-width: 15; -fx-min-height: 15; -fx-max-width: 15; -fx-max-height: 15; -fx-text-fill: transparent;" />
             <Button id="9,3" layoutX="196.0" layoutY="166.0" mnemonicParsing="false" onAction="#chooseLocation" style="-fx-background-radius: 15; -fx-min-width: 15; -fx-min-height: 15; -fx-max-width: 15; -fx-max-height: 15;" />
             <Button id="11,3" layoutX="243.0" layoutY="188.0" mnemonicParsing="false" onAction="#chooseLocation" style="-fx-background-radius: 15; -fx-min-width: 15; -fx-min-height: 15; -fx-max-width: 15; -fx-max-height: 15;" />
             <Button id="13,3" layoutX="289.0" layoutY="166.0" mnemonicParsing="false" onAction="#chooseLocation" style="-fx-background-radius: 15; -fx-min-width: 15; -fx-min-height: 15; -fx-max-width: 15; -fx-max-height: 15;" />
@@ -381,24 +381,29 @@
             <Circle layoutX="64.0" layoutY="142.0" radius="3.0" stroke="BLACK" strokeType="INSIDE" />
             <Circle layoutX="156.0" layoutY="146.0" radius="3.0" stroke="BLACK" strokeType="INSIDE" />
             <Circle layoutX="342.0" layoutY="143.0" radius="3.0" stroke="BLACK" strokeType="INSIDE" />
-            <Label layoutX="93.0" layoutY="188.0" text="cutlass" />
-            <Label layoutX="190.0" layoutY="188.0" text="wood" />
-            <Label layoutX="283.0" layoutY="185.0" text="goat" />
-            <Label layoutX="365.0" layoutY="190.0" text="molasses" />
-            <Label layoutX="48.0" layoutY="104.0" text="wood" />
-            <Label layoutX="145.0" layoutY="104.0" text="gold" />
-            <Label contentDisplay="CENTER" layoutX="224.0" layoutY="116.0" prefHeight="50.0" prefWidth="51.0" text="Ghost Captain" wrapText="true" />
-            <Label layoutX="328.0" layoutY="104.0" text="gold" />
-            <Label layoutX="423.0" layoutY="104.0" text="goat" />
-            <Label layoutX="93.0" layoutY="21.0" text="cutlass" />
-            <Label layoutX="189.0" layoutY="21.0" text="wood" />
-            <Label layoutX="283.0" layoutY="21.0" text="goat" />
-            <Label layoutX="364.0" layoutY="23.0" text="molasses" />
+            <Label layoutX="93.0" layoutY="188.0" text="cutlass" textFill="WHITE" />
+            <Label layoutX="190.0" layoutY="188.0" text="wood" textFill="WHITE" />
+            <Label layoutX="283.0" layoutY="185.0" text="goat" textFill="WHITE" />
+            <Label layoutX="365.0" layoutY="190.0" text="molasses" textFill="WHITE" />
+            <Label layoutX="48.0" layoutY="102.0" text="wood" textFill="WHITE" />
+            <Label layoutX="145.0" layoutY="102.0" text="gold" textFill="WHITE" />
+            <Label layoutX="328.0" layoutY="102.0" text="gold" textFill="WHITE" />
+            <Label layoutX="423.0" layoutY="102.0" text="goat" textFill="WHITE" />
+            <Label layoutX="93.0" layoutY="21.0" text="cutlass" textFill="WHITE" />
+            <Label layoutX="189.0" layoutY="21.0" text="wood" textFill="WHITE" />
+            <Label layoutX="283.0" layoutY="21.0" text="goat" textFill="WHITE" />
+            <Label layoutX="364.0" layoutY="23.0" text="molasses" textFill="WHITE" />
+            <Button id="11,4" layoutX="243.0" layoutY="134.0" mnemonicParsing="false" style="-fx-background-radius: 15; -fx-min-width: 15; -fx-min-height: 15; -fx-max-width: 15; -fx-max-height: 15;" />
+            <Label id="ghostCaptain" layoutX="213.0" layoutY="133.0" text="GC">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Label>
          </children>
       </Pane>
       <Pane layoutY="296.0" prefHeight="209.0" prefWidth="900.0" styleClass="resourceHolderPane" stylesheets="@Styles.css">
          <children>
-            <Pane id="paneP1" prefHeight="201.0" prefWidth="150.0" stylesheets="@Styles.css">
+            <Pane id="paneP1" prefHeight="209.0" prefWidth="150.0" stylesheets="@Styles.css">
                <children>
                   <Label id="PlayerP1" text="Player1">
                      <font>
@@ -410,12 +415,12 @@
                   <Label id="cutlassesP1" layoutX="5.0" layoutY="55.0" text="Cutlasses:" />
                   <Label id="goatsP1" layoutX="5.0" layoutY="72.5" text="Goats:" />
                   <Label id="woodP1" layoutX="5.0" layoutY="90.0" text="Wood:" />
-                  <Label id="UsedCocoP1" layoutX="5.0" layoutY="105.0" prefHeight="44.0" prefWidth="69.0" text="Used Coco:" wrapText="true" />
+                  <Label id="UsedCocoP1" layoutX="5.0" layoutY="105.0" prefHeight="44.0" prefWidth="69.0" text="Used Coco:" />
                   <Label id="UnusedLairsP1" layoutX="5.0" layoutY="145.0" text="Unbuilt Lairs:" />
                   <Label id="UnusedShipsP1" layoutX="5.0" layoutY="162.5" text="Unbuilt Ships:" />
                </children>
             </Pane>
-            <Pane id="paneP2" layoutX="150.0" prefHeight="201.0" prefWidth="150.0" stylesheets="@Styles.css">
+            <Pane id="paneP2" layoutX="150.0" prefHeight="209.0" prefWidth="150.0" stylesheets="@Styles.css">
                <children>
                   <Label id="PlayerP2" text="Player2">
                      <font>
@@ -427,12 +432,12 @@
                   <Label id="cutlassesP2" layoutX="5.0" layoutY="55.0" text="Cutlasses:" />
                   <Label id="goatsP2" layoutX="5.0" layoutY="72.5" text="Goats:" />
                   <Label id="woodP2" layoutX="5.0" layoutY="90.0" text="Wood: " />
-                  <Label id="UsedCocoP2" layoutX="5.0" layoutY="105.0" prefHeight="44.0" prefWidth="69.0" text="Used Coco:" wrapText="true" />
+                  <Label id="UsedCocoP2" layoutX="5.0" layoutY="105.0" prefHeight="44.0" prefWidth="69.0" text="Used Coco:" />
                   <Label id="UnusedLairsP2" layoutX="5.0" layoutY="145.0" text="Unbuilt Lairs:" />
                   <Label id="UnusedShipsP2" layoutX="5.0" layoutY="162.5" text="Unbuilt Ships:" />
                </children>
             </Pane>
-            <Pane id="paneP3" layoutX="300.0" prefHeight="201.0" prefWidth="150.0" stylesheets="@Styles.css">
+            <Pane id="paneP3" layoutX="300.0" prefHeight="209.0" prefWidth="150.0" stylesheets="@Styles.css">
                <children>
                   <Label id="PlayerP3" text="Player3">
                      <font>
@@ -444,12 +449,12 @@
                   <Label id="cutlassesP3" layoutX="5.0" layoutY="55.0" text="Cutlasses:" />
                   <Label id="goatsP3" layoutX="5.0" layoutY="72.5" prefHeight="15.0" prefWidth="62.0" text="Goats:" />
                   <Label id="woodP3" layoutX="5.0" layoutY="90.0" text="Wood: " />
-                  <Label id="UsedCocoP3" layoutX="5.0" layoutY="105.0" prefHeight="44.0" prefWidth="69.0" text="Used Coco:" wrapText="true" />
+                  <Label id="UsedCocoP3" layoutX="5.0" layoutY="105.0" prefHeight="44.0" prefWidth="69.0" text="Used Coco:" />
                   <Label id="UnusedLairsP3" layoutX="5.0" layoutY="145.0" text="Unbuilt Lairs:" />
                   <Label id="UnusedShipsP3" layoutX="6.0" layoutY="162.5" text="Unbuilt Ships:" />
                </children>
             </Pane>
-            <Pane id="paneP4" layoutX="450.0" prefHeight="201.0" prefWidth="150.0" stylesheets="@Styles.css">
+            <Pane id="paneP4" layoutX="450.0" prefHeight="209.0" prefWidth="150.0" stylesheets="@Styles.css">
                <children>
                   <Label id="PlayerP4" text="Player4">
                      <font>
@@ -461,12 +466,12 @@
                   <Label id="cutlassesP4" layoutX="5.0" layoutY="55.0" text="Cutlasses:" />
                   <Label id="goatsP4" layoutX="5.0" layoutY="72.5" text="Goats:" />
                   <Label id="woodP4" layoutX="5.0" layoutY="90.0" text="Wood: " />
-                  <Label id="UsedCocoP4" layoutX="5.0" layoutY="105.0" prefHeight="44.0" prefWidth="69.0" text="Used Coco:" wrapText="true" />
+                  <Label id="UsedCocoP4" layoutX="5.0" layoutY="105.0" prefHeight="44.0" prefWidth="69.0" text="Used Coco:" />
                   <Label id="UnusedLairsP4" layoutX="5.0" layoutY="145.0" text="Unbuilt Lairs:" />
                   <Label id="UnusedShipsP4" layoutX="5.0" layoutY="162.5" text="Unbuilt Ships:" />
                </children>
             </Pane>
-            <Pane layoutX="600.0" layoutY="1.0" prefHeight="200.0" prefWidth="150.0" styleClass="resourceHolderPane" stylesheets="@Styles.css">
+            <Pane layoutX="600.0" layoutY="1.0" prefHeight="209.0" prefWidth="150.0" styleClass="resourceHolderPane" stylesheets="@Styles.css">
                <children>
                   <Label text="Stockpile">
                      <font>
@@ -480,7 +485,7 @@
                   <Label id="woodS" layoutX="5.0" layoutY="90.0" text="Wood:" />
                </children>
             </Pane>
-            <Pane layoutX="750.0" prefHeight="201.0" prefWidth="150.0" styleClass="resourceHolderPane" stylesheets="@Styles.css">
+            <Pane layoutX="750.0" prefHeight="209.0" prefWidth="150.0" styleClass="resourceHolderPane" stylesheets="@Styles.css">
                <children>
                   <Label text="Market">
                      <font>

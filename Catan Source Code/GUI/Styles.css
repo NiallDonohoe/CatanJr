@@ -1,14 +1,32 @@
 .red{
     -fx-color: #DC143C;
+    -fx-text-fill: #DC143C;
 }
 .white{
 	-fx-color: #FFFAF0;
+	-fx-text-fill: #FFFAF0;
 }
 .orange{
 	-fx-color: #FF8C00;
+	-fx-text-fill: #FF8C00;
 }
 .blue{
 	-fx-color: #0000CD;
+	-fx-text-fill: #0000CD;
+	-fx-stroke: firebrick;
+	-fx-stroke:5;
+}
+.chooseColourButton{
+	-fx-border-color: #000000;
+    -fx-border-width: 0.5;
+    -fx-border-radius: 5;
+	-fx-background-radius: 0;
+    -fx-background-color: transparent;
+	-fx-backgroundcolor:transparent;
+}
+.default{
+	-fx-color: #000000;
+	-fx-text-fill: #000000;
 }
 #mapBack{
 	-fx-color: #708090;
@@ -16,7 +34,8 @@
 }
 .currentPlayer{
 	-fx-color: #000000;
-	-fx-background-color: #000000
+	-fx-background-color: #000000;
+	
 }
 .resourceHolderPane{
 	-fx-border-color:grey grey grey grey;

@@ -6,20 +6,18 @@ import javafx.application.Application;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.*;
-import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.*;
 
-
+/**
+ * Class main used to launch CatanJr GUI and set initial stage and layout.
+ * @author Niall Donohoe & Shea O'Sullivan
+ */
 public class Main extends Application {
-	
-	Button button;
 	private Stage primaryStage;
 	@FXML 
 	public AnchorPane rootLayout;
-    Button[] btn = new Button[100];
 
-    
 	public static void main(String[] args) {
 		GameRunner.startGame();
 		launch(args);

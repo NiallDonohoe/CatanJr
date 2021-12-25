@@ -1,5 +1,11 @@
 package Trading;
 
+/**
+ * Class for Market in a game of CatanJr
+ * 
+ * @author  Niall Donohoe & Shea O'Sullivan
+ * @version 1.0
+ */
 public class Market extends ResourceHolder{
 	//===========================================================
 	// Class Variables 
@@ -17,7 +23,10 @@ public class Market extends ResourceHolder{
   	// Other Methods
   	//===========================================================
 	
-	// There should only be one instance of Market
+    /**
+     * getInstance method returns single instance of Market.
+     * @return Market. Singleton Market object.
+     */
 	static public Market getInstance() {
 		if(instance == null)
 			instance = new Market();
@@ -27,7 +36,10 @@ public class Market extends ResourceHolder{
 		System.out.println("\nMarket");
 		super.printResources();
 	}
-	// Checks if the market needs to be refreshed after every trade with the market.
+	/**
+	 * checkRefreshMarket checks if any market resource have reached capacity. 
+	 * Moves resource at capacity to stockpile and calls refresh market.
+	 */
 	protected void checkRefreshMarket() {
 		if( this.numGold==5) {
 			Stockpile.getInstance().moveResource(ResourceType.gold,5,this);
@@ -52,6 +64,9 @@ public class Market extends ResourceHolder{
 	}
 	
 	// Refreshes market if checkRefreshMarket finds the market needs to be refreshed and at the start of the game
+	/**
+	 * refreshMarket moves one of each resource from the stockpile to the market.
+	 */
 	private void refreshMarket() {
 		this.moveResource(ResourceType.gold,1,Stockpile.getInstance());
 		this.moveResource(ResourceType.molasses,1,Stockpile.getInstance());
