@@ -21,6 +21,13 @@ public class GetGoatAndCutlassCoco extends CocoCard{
 		this.cardType = CocoDeck.cocoCardType.getGoatAndCutlass;
 	}
 	
+	//===========================================================
+	// Methods
+	//===========================================================
+    /**
+     * use method for a coco card. 
+     * Gives player 2 goats and 2 cutlasses.
+     */
 	@Override
 	public void use(Player player) {
 		System.out.println(player.getColour()+" player gets 2 goats and 2 cutlasses");

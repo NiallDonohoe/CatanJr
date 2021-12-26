@@ -20,10 +20,17 @@ public class GetShipOrLairCoco extends CocoCard{
 		this.cardType = CocoDeck.cocoCardType.getShipOrLair;
 	}
 	
+	//===========================================================
+	// Methods
+	//===========================================================
+    /**
+     * use method for a coco card. 
+     * Allows player to build a free lair or ship, this is handled through the GUI
+     */
 	@Override
 	public void use(Player player) {
-	System.out.println("Player can choose to build a Ship or Lair for free!!!");
-	// Building a Lair or Ship is handled in the GUI
+		System.out.println("Player can choose to build a Ship or Lair for free!!!");
+		// Building a Lair or Ship is handled in the GUI
 	}
 
 }

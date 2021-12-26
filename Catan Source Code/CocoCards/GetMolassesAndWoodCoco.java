@@ -21,6 +21,13 @@ public class GetMolassesAndWoodCoco extends CocoCard{
 		this.cardType = CocoDeck.cocoCardType.getMolassesAndWood;
 	}
 	
+	//===========================================================
+	// Methods
+	//===========================================================
+    /**
+     * use method for a coco card. 
+     * Gives player 2 molasses and 2 wood.
+     */
 	@Override
 	public void use(Player player) {
 		System.out.println("Player "+ player.getColour() + " gets 2 molasses and 2 wood");

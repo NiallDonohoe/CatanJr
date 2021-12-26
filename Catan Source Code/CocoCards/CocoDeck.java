@@ -2,6 +2,13 @@ package CocoCards;
 import java.util.ArrayList;
 import java.util.Collections;
 
+/**
+ * Class for Coco Deck made up of Coco Cards
+ * 
+ * @author  Niall Donohoe & Shea O'Sullivan
+ * @version 1.0
+ */
+
 public class CocoDeck {
 	
 	//===========================================================
@@ -20,10 +27,13 @@ public class CocoDeck {
 	//===========================================================
 	// Constructor - Singleton
 	//===========================================================
+	/**
+	* Constructor for a CocoDeck
+	*/
     public CocoDeck() {
     	this.declareCocoCards();
     } 
-    // There should only be one instance of Board
+    // There should only be one instance of CocoDeck
     static public CocoDeck getInstance() {
 		if(instance == null) {
 			instance = new CocoDeck();
@@ -34,27 +44,31 @@ public class CocoDeck {
     //===========================================================
   	// Getters and Setters
   	//===========================================================
-    
+	/**
+	* getCocoCardDeck method.
+	* @return Arraylist of CocoCards representing the CocoDeck
+	*/
     public ArrayList<CocoCard> getCocoCardDeck(){
     	return CocoCardDeck;
     }
     
+	/**
+	* getCocoCard method.
+	* @return cocoCard chosen from the deck.
+	*/
     public CocoCard getCocoCard(){
     	this.usedCards++;
     	return CocoCardDeck.get(usedCards-1);
     }
-    
-    public boolean checkIfCardsRemaining() {
-    	if(usedCards<20) {
-    		return true;
-    	}
-    	else return false;
-    }
-    
-  	
+    	
   	//===========================================================
   	// Other Methods
   	//===========================================================
+    
+	/**
+	* declareCocoCards method.
+	* Creates the required number of each Coco card type, and then shuffles the deck
+	*/
     public void declareCocoCards() {
     	
     	for(int i = 0; i<11; i++) {
@@ -72,8 +86,19 @@ public class CocoDeck {
     	for(int i = 0; i<3; i++) {
     		CocoCardDeck.add(new GetMolassesAndWoodCoco());
     	} 
-    	
+    	// shuffle to randomize order
     	Collections.shuffle(CocoCardDeck);	
+    }
+    
+	/**
+	* checkIfCardsRemaining method.
+	* @return boolean indicating if deck is empty
+	*/
+    public boolean checkIfCardsRemaining() {
+    	if(usedCards<20) {
+    		return true;
+    	}
+    	else return false;
     }
     
     //===========================================================
