@@ -64,20 +64,20 @@ public class Stockpile extends ResourceHolder{
 	 * @param resource the resource being taken by the stockpile.
 	 * @param player the player the resource is being taken from.
 	 */
-	private void takePlayerResource(ResourceType resource,Player player) {
+	private void takePlayerResource(ResourceType resType,Player player) {
 		int numResource = 0;
 		// Set the number of resources to be moved
-		if(resource == ResourceType.gold)
+		if(resType == ResourceType.gold)
 			numResource = player.getNumGold();
-		if(resource == ResourceType.molasses)
+		if(resType == ResourceType.molasses)
 			numResource = player.getNumMolasses();
-		if(resource == ResourceType.cutlass)
+		if(resType == ResourceType.cutlass)
 			numResource = player.getNumCutlasses();
-		if(resource == ResourceType.goat)
+		if(resType == ResourceType.goat)
 			numResource = player.getNumGoats();
-		if(resource == ResourceType.wood)
+		if(resType == ResourceType.wood)
 			numResource = player.getNumWood();
-		this.moveResource(resource, numResource, player);
+		this.moveResource(resType, numResource, player);
 	}
 
     //===========================================================
