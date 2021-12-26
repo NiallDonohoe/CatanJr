@@ -44,8 +44,8 @@ private RedPlayer redPlayer;
 		
 	}
 	
-	@Test
-	public void bluePlayerTurn() {
-		
-	}
+//	@Test
+//	public void bluePlayerTurn() {
+//		
+//	}
 }

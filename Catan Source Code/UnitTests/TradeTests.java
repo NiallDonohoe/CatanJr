@@ -37,12 +37,14 @@ class TradeTests {
 		Stockpile.getInstance();
 	}
 	
+	
 	@AfterEach
 	public void tearDown() throws Exception{
 		Stockpile.getInstance().destroyMe();
 //		Market.getInstance().destroyMe();
+		Board.getInstance().destroyMe();
 	}
-
+	
 	// Stockpile should start with 18 of each resource. 
 	@Test
 	public void stockpileHasCorrectStartingResources() {

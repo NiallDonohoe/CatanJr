@@ -5,6 +5,7 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import Board.Board;
 import CocoCards.CocoCard;
 import CocoCards.CocoDeck;
 import CocoCards.GetGoatAndCutlassCoco;
@@ -27,6 +28,7 @@ public class CocoCardDeckTests {
 	@After
 	public void tearDown() throws Exception{
 		CocoDeck.getInstance().destroyMe();
+		Board.getInstance().destroyMe();
 	}
 
 	@Test

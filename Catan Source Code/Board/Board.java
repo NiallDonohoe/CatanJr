@@ -288,6 +288,7 @@ public class Board {
     //===========================================================
     
     public void destroyMe() {
+    	islands = null;
         instance = null;
     }
 }

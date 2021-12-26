@@ -9,6 +9,7 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import Board.Board;
 import Trading.BluePlayer;
 import Trading.Player;
 
@@ -28,7 +29,10 @@ class PlayerTests {
 	}
 	
 	@After
-	//
+	public void tearDown() throws Exception{
+		Board.getInstance().destroyMe();
+	}
+	
 
 	@Test
 	public void player0UsedCoco() {

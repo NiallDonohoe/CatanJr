@@ -9,7 +9,8 @@ The assignment was to implement Catan Junior in Java,
 as outlined in CatanJr Project Specification.pdf.
 
 This project leverages JUnit 5 for extensive testing. 
-Tests can be ran from the directory /Catan Source Code/Unit Tests/ 
+Tests can be seen in the directory /Catan Source Code/Unit Tests/ 
+To run all the tests, right click on the Unit Tests Package, and click as Run As > JUnit Test
 
 This project also utilizes JavaFx for an interactive GUI.
 JavaFx installation instructions can be found here https://www.youtube.com/watch?v=bk28ytggz7E
