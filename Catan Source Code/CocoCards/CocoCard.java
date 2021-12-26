@@ -9,7 +9,6 @@ import Trading.Player;
  * @version 1.0
  */
 
-
 public abstract class CocoCard {
 	//===========================================================
 	// Class Variables 
@@ -19,12 +18,20 @@ public abstract class CocoCard {
 	//===========================================================
 	// Class Methods
 	//===========================================================
+    /**
+     * Abstract use method for a coco card. 
+     * Overridden in each subclass
+     */
 	public abstract void use(Player player);
 	
 	//===========================================================
 	// Getters & Setters
 	//===========================================================
-	
+    /**
+     * getCardType method.
+     * @return gets the type of coco card
+     * Overridden in each subclass
+     */
 	public CocoDeck.cocoCardType getCardType() {
 		return cardType;
 	}

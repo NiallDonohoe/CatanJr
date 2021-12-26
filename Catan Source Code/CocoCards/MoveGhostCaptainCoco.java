@@ -20,6 +20,13 @@ public class MoveGhostCaptainCoco extends CocoCard{
 		this.cardType = CocoDeck.cocoCardType.moveGhostCaptain;
 	}
 	
+	//===========================================================
+	// Methods
+	//===========================================================
+    /**
+     * use method for a coco card. 
+     * Allows player to move the Ghost Captain, this is handled through the GUI
+     */
 	@Override
 	public void use(Player player) {
 		System.out.println(player.getColour() + " can move the ghost Captain in the GUI");
