@@ -89,8 +89,8 @@ public abstract class ResourceHolder {
 	 * @return boolean If the ResourceHolder has the required number of resources.
 	 */
 	// Checks if a resource is available for a resource holder
-	public boolean resourcesAvailable(ResourceType resource, int i) {
-		switch(resource) {
+	public boolean resourcesAvailable(ResourceType resType, int i) {
+		switch(resType) {
 		case gold:
 			if(this.numGold>=i)
 				return true;

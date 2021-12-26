@@ -5,24 +5,30 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>300</x>
-      <y>380</y>
-      <w>190</w>
-      <h>210</h>
+      <x>260</x>
+      <y>690</y>
+      <w>460</w>
+      <h>280</h>
     </coordinates>
-    <panel_attributes>/ResourceHolder/
+    <panel_attributes>/ResourceHolder (Abstract)/
 -
-- gold: int
-- molasses: int
-- swords: int
-- goats: int
-- wood: int
+- numGold: int
+- numMolasses: int
+- numCutlasses: int
+- numGoats: int
+- numWood: int
 -
-+ResourceHolder()
++ResourceHolder(numCards: int)
 +printResources()
-+MoveResource()
-+ResourcesAvailable()
-+InstanceType()
++moveResource(resType: ResourceType, i: int, RH: ResourceHolder)
++resourcesAvailable(resType: ResourceType, i: int): boolean
++instanceType(RH: ResourceHolder): String
++getNumGold(): int
++getNumMolasses(): int
++getNumCutlasses(): int
++getNumGoats(): int
++getNumWood(): int
+
 
 
 
@@ -32,16 +38,16 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>100</x>
-      <y>380</y>
+      <x>310</x>
+      <y>1040</y>
       <w>160</w>
-      <h>130</h>
+      <h>120</h>
     </coordinates>
     <panel_attributes>Market (Singleton)
 -
-instance
+instance: Market
 -
-+getInstance()
++getInstance(): Market
 +Market()
 +checkRefreshMarket()
 +refreshMarket()
@@ -51,40 +57,19 @@ instance
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>530</x>
-      <y>380</y>
-      <w>150</w>
+      <x>510</x>
+      <y>1040</y>
+      <w>170</w>
       <h>80</h>
     </coordinates>
     <panel_attributes>Stockpile (Singleton)
 -
-instance
+-instance: Stockpile
 -
-+getInstance()
++getInstance(): Stockpile
 +Stockpile()
-</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>UMLClass</id>
-    <coordinates>
-      <x>270</x>
-      <y>80</y>
-      <w>260</w>
-      <h>190</h>
-    </coordinates>
-    <panel_attributes>Player
--
-- developedLocations: Locations
-- numUsedCoco: int
-- playerColour: enum
--
-+getColour()
-+BuildOptions()
-+Trade()
-+StockpileTrade()
-+MarketTrade()
-+TradePossible()
++checkRefreshStockpile()
++refreshResource(resType: ResourceType, player: Player)
 
 </panel_attributes>
     <additional_attributes/>
@@ -92,13 +77,51 @@ instance
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>110</x>
-      <y>100</y>
+      <x>300</x>
+      <y>130</y>
+      <w>380</w>
+      <h>400</h>
+    </coordinates>
+    <panel_attributes>Player (Abstract)
+-
+- developedLocations: Locations
+- numUsedCoco: int
+- numUnbuiltShips: int
+- numUnBuiltLairs: int
+- DevelopedPlayerLocations: ArrayList&lt;DevelopedLocation&gt;
+- playerColour: colour
+-
++getColour(): int
++getUnbuiltLairs(): int
++getUnbuiltShips(): int
++getNumUsedCoco(): int
++getPlayerDevelopedLocations(): ArrayList&lt;DevelopedLocation&gt;
++decrementUnusedLairs()
++decrementUnusedShips()
++incrementUnusedLairs()
++buyCocoCard(): CocoCard
++moveGhostCaptain(x: int, y: int)
++buildLair(): boolean
++buildShip(): boolean
++locationAvailableForPlayer(x: int, y: int): boolean
++initialiseResources()
++canAffordShip(): boolean
++canAffordLair(): boolean
++canAffordCocoCard(): boolean
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>160</x>
+      <y>130</y>
       <w>130</w>
       <h>110</h>
     </coordinates>
     <panel_attributes>&lt;&lt;Enumeration&gt;&gt;
-playerColour
+colour
 -
 - White
 - Orange
@@ -108,43 +131,10 @@ playerColour
     <additional_attributes/>
   </element>
   <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>400</x>
-      <y>260</y>
-      <w>30</w>
-      <h>140</h>
-    </coordinates>
-    <panel_attributes>lt=&lt;-</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;120.0</additional_attributes>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>250</x>
-      <y>390</y>
-      <w>70</w>
-      <h>30</h>
-    </coordinates>
-    <panel_attributes>lt=&lt;-</panel_attributes>
-    <additional_attributes>10.0;10.0;50.0;10.0</additional_attributes>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>480</x>
-      <y>390</y>
-      <w>70</w>
-      <h>30</h>
-    </coordinates>
-    <panel_attributes>lt=&lt;-</panel_attributes>
-    <additional_attributes>50.0;10.0;10.0;10.0</additional_attributes>
-  </element>
-  <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>530</x>
-      <y>490</y>
+      <x>740</x>
+      <y>690</y>
       <w>120</w>
       <h>130</h>
     </coordinates>
@@ -158,6 +148,174 @@ ResourceType
 -wood
 
 </panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>0</x>
+      <y>550</y>
+      <w>990</w>
+      <h>110</h>
+    </coordinates>
+    <panel_attributes>TradingResourceHolder
+(Abstract)
+-
++tradePossible(RH: ResourceHolder, offeredRes: ResourceType, numOfferedRes: int, requestedRes: ResourceType, numRequestedResource: int ): boolean
++handleTrade(RH: ResourceHolder, offeredRes: ResourceType, numOfferedRes: int, requestedRes: ResourceType, numRequestedResource: int)
++trade(RH: ResourceHolder, offeredRes: ResourceType, requestedResource: requestedRes)</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>480</x>
+      <y>650</y>
+      <w>30</w>
+      <h>60</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;40.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>480</x>
+      <y>960</y>
+      <w>130</w>
+      <h>100</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;60.0;110.0;60.0;110.0;80.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>390</x>
+      <y>960</y>
+      <w>120</w>
+      <h>100</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>100.0;10.0;100.0;60.0;10.0;60.0;10.0;80.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>480</x>
+      <y>520</y>
+      <w>30</w>
+      <h>50</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;30.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>90</x>
+      <y>0</y>
+      <w>190</w>
+      <h>90</h>
+    </coordinates>
+    <panel_attributes>BluePlayer (Singleton)
+-
+-instance: BluePlayer
+-
++playerExists()
++developStartingPositions()</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>480</x>
+      <y>80</y>
+      <w>120</w>
+      <h>70</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;50.0;10.0;30.0;100.0;30.0;100.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>160</x>
+      <y>80</y>
+      <w>350</w>
+      <h>70</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>330.0;50.0;330.0;30.0;10.0;30.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>370</x>
+      <y>80</y>
+      <w>140</w>
+      <h>70</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>120.0;50.0;120.0;30.0;10.0;30.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>480</x>
+      <y>80</y>
+      <w>320</w>
+      <h>70</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;50.0;10.0;30.0;300.0;30.0;300.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>490</x>
+      <y>0</y>
+      <w>190</w>
+      <h>90</h>
+    </coordinates>
+    <panel_attributes>RedPlayer (Singleton)
+-
+-instance: BluePlayer
+-
++playerExists()
++developStartingPositions()</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>690</x>
+      <y>0</y>
+      <w>190</w>
+      <h>90</h>
+    </coordinates>
+    <panel_attributes>WhitePlayer (Singleton)
+-
+-instance: BluePlayer
+-
++playerExists()
++developStartingPositions()</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>290</x>
+      <y>0</y>
+      <w>190</w>
+      <h>90</h>
+    </coordinates>
+    <panel_attributes>OrangePlayer (Singleton)
+-
+-instance: OrangePlayer
+-
++playerExists()
++developStartingPositions()</panel_attributes>
     <additional_attributes/>
   </element>
 </diagram>

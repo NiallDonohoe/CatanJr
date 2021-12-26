@@ -23,7 +23,7 @@ public abstract class Player extends TradingResourceHolder{
 	private int numUnbuiltShips = 7;
 	private int numUnbuiltLairs = 8;
     public ArrayList<DevelopedLocation> DevelopedPlayerLocations = new ArrayList<DevelopedLocation>();
-    private Board board = Board.getInstance();
+//    private Board board = Board.getInstance();
     private colour playerColour;
 	public enum colour{
 		Red,
@@ -41,7 +41,7 @@ public abstract class Player extends TradingResourceHolder{
 	 * @param numUsedCoco   The number of Coco cards used by the player, initially 0
 	 */
 	protected Player(colour playerColour) {
-		super(100);
+		super(0);
 		this.playerColour = playerColour;
 		this.numUsedCoco = 0;
 		this.intialiseResources();
@@ -140,12 +140,12 @@ public abstract class Player extends TradingResourceHolder{
 	 * @param y. The y coordinate of the island the ghostCaptain is being moved to.
 	 */
 	public void moveGhostCaptain(int x,int y) {
-		for(Island island: board.getIslands()) {
+		for(Island island: Board.getInstance().getIslands()) {
 			if(island.getHasGhostCaptain())
 				island.setGhostCaptain(false, this.playerColour);
 		}
 		
-		for(Island island: board.getIslands()) {
+		for(Island island: Board.getInstance().getIslands()) {
 			if(island.getX() == x && island.getY() == y) {
 				island.setGhostCaptain(true, this.playerColour);
 			}
