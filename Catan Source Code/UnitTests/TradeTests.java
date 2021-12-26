@@ -88,9 +88,9 @@ class TradeTests {
 	@Test
 	public void playerHasCorrectStartingResources() {
 //		testPlayer = new Player(Player.colour.Blue);
-		System.out.println(BluePlayer.PlayerExists());
+		System.out.println(BluePlayer.playerExists());
 		testPlayer = BluePlayer.getInstance();
-		System.out.println(BluePlayer.PlayerExists());
+		System.out.println(BluePlayer.playerExists());
 
 		
 		assertEquals("The player should start with 0 gold.",0,

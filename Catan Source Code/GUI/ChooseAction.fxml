@@ -47,7 +47,7 @@
                   </Button>
                </buttons>
             </ButtonBar>
-            <Label layoutX="571.0" layoutY="6.0" prefHeight="51.0" prefWidth="250.0" text="Choose Action">
+            <Label layoutX="571.0" layoutY="6.0" prefHeight="51.0" prefWidth="250.0" text="Choose Action:">
                <font>
                   <Font name="Papyrus" size="23.0" />
                </font>

@@ -1,7 +1,6 @@
 package CocoCards;
 
 import Trading.Player;
-import Trading.ResourceHolder;
 
 /**
  * Class for Coco Card giving a player a Ship or Lair

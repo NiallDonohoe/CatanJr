@@ -2,9 +2,9 @@ package GUI;
 
 
 import java.io.IOException;
-
 import Board.Board;
 import Board.DevelopedLocation;
+import Board.Island;
 import CocoCards.CocoCard;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -13,27 +13,22 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
+import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import Game.Dice;
 import Game.GameRunner;
 import Trading.BluePlayer;
 import Trading.OrangePlayer;
 import Trading.Player;
+import Trading.Player.colour;
 import Trading.RedPlayer;
 import Trading.WhitePlayer;
 import Trading.ResourceHolder.ResourceType;
 
 public class Controller {
 
-	Button button;
 	private static Stage primaryStage;
-	@FXML 
-	AnchorPane rootLayout;
-    Button[] btn = new Button[100];
-    @FXML
-    private Label label;
     private static ResourceType offeredResource;
     private static ResourceType requestedResource;
     private static boolean isCocoDevelopment;
@@ -41,13 +36,13 @@ public class Controller {
 	//===========================================================
 	// Setters
 	//===========================================================
-    public static void setPrimaryStage(Stage stage) {
+    protected static void setPrimaryStage(Stage stage) {
     	primaryStage = stage;
     }
 	//===========================================================
 	// GameWinner Scene and Event Handler
 	//===========================================================
-    public void gameWinnerScene() throws IOException {
+    private void gameWinnerScene() throws IOException {
     	FXMLLoader loader = new FXMLLoader();
         loader.setLocation(Main.class.getResource("CatanMainScene.fxml"));
         Pane catanMain = (Pane) loader.load();
@@ -60,21 +55,22 @@ public class Controller {
         L.setText(GameRunner.getGameWinner()+L.getText());
         scene2.getChildren().add(L);
         
-        
         catanMain.getChildren().add(scene2);
         Scene catanMainScene = new Scene(catanMain);
         addMainSceneDetails(catanMainScene);
         primaryStage.setScene(catanMainScene);
         primaryStage.show();
     }
-    public void endGame(ActionEvent event) throws IOException{
+    @FXML
+    private void endGame(ActionEvent event) throws IOException{
     	primaryStage.close();
     }
         
 	//===========================================================
 	// Player Number Selection
 	//===========================================================
-    public void playerSelection(ActionEvent event) throws IOException {
+    @FXML
+    private void playerSelection(ActionEvent event) throws IOException {
     	int numPlayers = (Integer.parseInt(((Button) event.getSource()).getText()));
     	System.out.println("Picked "+numPlayers+ " Players");
     	Game.GameRunner.setNumPlayers(numPlayers);
@@ -84,7 +80,8 @@ public class Controller {
 	//===========================================================
 	// Handle Colour Selection
 	//===========================================================
-    public void handleChooseColour(ActionEvent event) throws IOException {
+    @FXML
+    private void handleChooseColour(ActionEvent event) throws IOException {
     	if(Game.GameRunner.players.size()< Game.GameRunner.getNumPlayers()) {
     		Parent ChooseColour = FXMLLoader.load(getClass().getResource("ChooseColour.fxml"));
     		Scene ChooseColourScene = new Scene(ChooseColour);
@@ -100,15 +97,14 @@ public class Controller {
 	//===========================================================
 	// Player Colour Selection
 	//===========================================================    
-    public void chooseColour(ActionEvent event) throws IOException {
+    @FXML
+    private void chooseColour(ActionEvent event) throws IOException {
     	String colour = ((Button) event.getSource()).getText();
     	System.out.println("Picked "+colour);
     	
     	if (colour.contentEquals("Blue")) { 
     		BluePlayer.getInstance();
-    		System.out.println("Declared player");
     		BluePlayer.getInstance().developStartingPositions();
-    		System.out.println("Developed player starting positions.");
     		Game.GameRunner.addPlayer(BluePlayer.getInstance());
     	}
     	if (colour.contentEquals("White")) { 
@@ -127,11 +123,10 @@ public class Controller {
     	this.handleChooseColour(event);	
 	}
     
-    
 	//===========================================================
 	// Add Scene to Main Scene
 	//===========================================================     
-    public void addToMainScene(String File2) throws IOException{
+    private void addToMainScene(String File2) throws IOException{
     	FXMLLoader loader = new FXMLLoader();
         loader.setLocation(Main.class.getResource("CatanMainScene.fxml"));
         Pane catanMain = (Pane) loader.load();
@@ -146,7 +141,8 @@ public class Controller {
         primaryStage.setScene(catanMainScene);
         primaryStage.show();
     }
-    public void addMainSceneDetails(Scene mainScene) {
+    private void addMainSceneDetails(Scene mainScene) {
+    	setGhostCaptainIndicator(mainScene);
         loadMapColours(mainScene);
         setPlayerVariableLabel(mainScene);
         setMarketVariableLabels(mainScene);
@@ -155,14 +151,15 @@ public class Controller {
 	//===========================================================
 	// Roll Die Scene and Event Handler
 	//=========================================================== 
-    public void loadRollDie() throws IOException{
+    private void loadRollDie() throws IOException{
     	try {
 	        addToMainScene("RollDie.fxml");	        
     	} catch (IOException e) {
             e.printStackTrace();
     	}
     }
-    public void rollDie(ActionEvent event) throws IOException {
+    @FXML
+    private void rollDie(ActionEvent event) throws IOException {
     	
     	int dieResult = Dice.getInstance().roll();
     	System.out.println("Player rolled a "+dieResult);
@@ -177,14 +174,13 @@ public class Controller {
 	//===========================================================
 	// Choose Action Scene and Event Handler
 	//===========================================================    
-    public void loadChooseActionMenu() throws IOException {
+    private void loadChooseActionMenu() throws IOException {
         addToMainScene("ChooseAction.fxml");
     }
-  
-    public void chooseAction(ActionEvent event) throws IOException{
+    @FXML
+    private void chooseAction(ActionEvent event) throws IOException{
     	String Action = ((Button) event.getSource()).getText();
     	System.out.println(Action);
-    	System.out.println(GameRunner.getCurrentPlayer().getColour());
     	if(Action.contentEquals("Build")) {
     		loadMap();
     	}
@@ -198,6 +194,8 @@ public class Controller {
     		else if(card instanceof CocoCards.MoveGhostCaptainCoco) {
     			loadGhostCaptainScene();
     		}
+    		else
+    			loadChooseActionMenu();
     	}
     	else if(Action.contentEquals("Trade")) {
     		loadOfferedResource();
@@ -211,11 +209,12 @@ public class Controller {
 	//===========================================================
 	// Ghost Captain Scene and Event Handler
 	//===========================================================
-    public void loadGhostCaptainScene() throws IOException {
+    private void loadGhostCaptainScene() throws IOException {
     	System.out.println("Choose Island to place ghost captain.");
         addToMainScene("GhostCaptainIslands.fxml");  	
     }
-    public void chooseGhostCaptainIslands(ActionEvent event) throws IOException{
+    @FXML
+    private void chooseGhostCaptainIslands(ActionEvent event) throws IOException{
     	String[] LocationSelected = ((Button) event.getSource()).getId().split(",",2);
     	System.out.println("\nGhost captain placed on: "+LocationSelected[0]+","+LocationSelected[1]);
     	GameRunner.getCurrentPlayer().moveGhostCaptain(Integer.parseInt(LocationSelected[0]), Integer.parseInt(LocationSelected[1]));
@@ -225,30 +224,30 @@ public class Controller {
 	//===========================================================
 	// Trade Scenes and Event Handlers
 	//===========================================================
-    public void loadOfferedResource() throws IOException {
+    private void loadOfferedResource() throws IOException {
         addToMainScene("SelectOfferedResource.fxml");
 
     }
-    public void loadRequestedResource() throws IOException {
+    private void loadRequestedResource() throws IOException {
         addToMainScene("SelectRequestedResource.fxml");
     }
-    public void loadTradeMenu() throws IOException {
+    private void loadTradeMenu() throws IOException {
         addToMainScene("ChooseTradePartner.fxml");
     }
-    public void chooseTradePartner(ActionEvent event) throws IOException {
+    @FXML
+    private void chooseTradePartner(ActionEvent event) throws IOException {
     	String tradingPartner = ((Button) event.getSource()).getText();
     	System.out.println("Player offers: "+offeredResource);
 
     	if(tradingPartner.contentEquals("Stockpile")) {
-    		System.out.println(GameRunner.getCurrentPlayer().getColour());
     		GameRunner.getCurrentPlayer().trade(Trading.Stockpile.getInstance(),offeredResource, requestedResource);
     	}
     	else
     		GameRunner.getCurrentPlayer().trade(Trading.Market.getInstance(),offeredResource, requestedResource);
     	loadChooseActionMenu();
     }
-
-    public void chooseOfferedResource(ActionEvent event) throws IOException {
+    @FXML
+    private void chooseOfferedResource(ActionEvent event) throws IOException {
     	String resource = ((Button) event.getSource()).getText();
     	if(resource.contentEquals("Gold"))
     		offeredResource = ResourceType.gold;
@@ -263,7 +262,8 @@ public class Controller {
     	System.out.println("Player offers: "+offeredResource);
     	loadRequestedResource();
     }
-    public void chooseRequestedResource(ActionEvent event) throws IOException {
+    @FXML
+    private void chooseRequestedResource(ActionEvent event) throws IOException {
     	String resource = ((Button) event.getSource()).getText();
     	if(resource.contentEquals("Gold"))
     		requestedResource = ResourceType.gold;
@@ -281,14 +281,28 @@ public class Controller {
     }
     
 	//===========================================================
-	// Main Scene with map
+	// Load Map Scene
 	//===========================================================     
-    public void loadMap() {
+    private void loadMap() {
 		try {
             // Load person overview.
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(Main.class.getResource("CatanMainScene.fxml"));
             Pane map = (Pane) loader.load();
+            if(!isCocoDevelopment) {
+	            Label label = new Label("Lair costs 1 molasses, 1 cutlass, 1 goat, 1 wood");
+	            Label label1 = new Label("Ship costs 1 goat, 1 wood");
+	            label.setFont(new Font("Papyrus",15));label1.setFont(new Font("Papyrus",15));
+	            label.setLayoutX(550);label.setLayoutY(50);
+	            label1.setLayoutX(550);label1.setLayoutY(70);
+	            map.getChildren().add(label);map.getChildren().add(label1);
+            }
+            else{
+            	Label label = new Label("Build a ship or lair for free!");
+            	label.setFont(new Font("Papyrus",15));
+            	label.setLayoutX(550);label.setLayoutY(50);
+            	map.getChildren().add(label);
+            }
             Scene mapScene = new Scene(map);
             addMainSceneDetails(mapScene);
             primaryStage.setScene(mapScene);
@@ -296,7 +310,7 @@ public class Controller {
             e.printStackTrace();
         }
 	}
-    public void loadMapColours(Scene mapScene) {
+    private void loadMapColours(Scene mapScene) {
 		for(DevelopedLocation D : Board.getInstance().getDevelopedLocations()) {
     		String ID = "#"+String.valueOf(D.getX())+","+String.valueOf(D.getY())+"";
     		Player p = D.getPlayer();
@@ -309,13 +323,23 @@ public class Controller {
     			bt.getStyleClass().add("white");
  			if(p instanceof Trading.OrangePlayer)
     			bt.getStyleClass().add("orange");
+ 			// To deal with case where spooky island becomes undeveloped.
+ 			if(Board.getInstance().getSpookyIsland().getX()==D.getX() &&
+ 			   Board.getInstance().getSpookyIsland().getY()==D.getY()) {
+ 				
+ 	 			if(Board.getInstance().getSpookyIsland().getCocoCardLair()==null) {
+ 	 				bt.getStyleClass().add("default");
+ 	 				
+ 	 			}
+ 			}
     	}
     }
     
     //===========================================================
   	// Select Location On Map 
   	//===========================================================
-    public void chooseLocation(ActionEvent event) throws IOException{
+    @FXML
+    protected void chooseLocation(ActionEvent event) throws IOException{
         if(((Button) event.getSource()).getId().contains("endturn"))
         	loadChooseActionMenu();
         else {
@@ -339,21 +363,10 @@ public class Controller {
 	    	}
         }    	
     }
-    public void changeButtonColour(Button bt) {
-    	if(GameRunner.getCurrentPlayer() instanceof Trading.BluePlayer)
-			bt.getStyleClass().add("blue");
-		if(GameRunner.getCurrentPlayer() instanceof Trading.RedPlayer)
-			bt.getStyleClass().add("red");
-		if(GameRunner.getCurrentPlayer() instanceof Trading.WhitePlayer)
-			bt.getStyleClass().add("white");
-		if(GameRunner.getCurrentPlayer() instanceof Trading.OrangePlayer)
-			bt.getStyleClass().add("orange");
-    }
-    
     //===========================================================
   	// Load resource variables.
   	//===========================================================
-    public void setPlayerVariableLabel(Scene mapScene) {
+    private void setPlayerVariableLabel(Scene mapScene) {
     	String[] playerNum = {"P1","P2","P3","P4"};
     	String[] variableLabel = {"Player","gold","molasses","cutlasses","goats",
     			"wood","UsedCoco","UnusedLairs","UnusedShips"};
@@ -393,7 +406,7 @@ public class Controller {
 	    	}
     	}
     }
-    public void setMarketVariableLabels(Scene mapScene) {
+    private void setMarketVariableLabels(Scene mapScene) {
     	String[] variableLabel = {"gold","molasses","cutlasses","goats","wood"};
     	for(int i = 0; i < variableLabel.length;i++) {
     		Label L = (Label) mapScene.lookup("#"+variableLabel[i]+"M");
@@ -409,7 +422,7 @@ public class Controller {
     			L.setText(L.getText() + Trading.Market.getInstance().getNumWood());
     	}
     }
-    public void setStockpileVariableLabels(Scene mapScene) {
+    private void setStockpileVariableLabels(Scene mapScene) {
     	String[] variableLabel = {"gold","molasses","cutlasses","goats","wood"};
     	for(int i = 0; i < variableLabel.length;i++) {
     		Label L = (Label) mapScene.lookup("#"+variableLabel[i]+"S");
@@ -424,5 +437,65 @@ public class Controller {
     		if(variableLabel[i]=="wood")
     			L.setText(L.getText() + Trading.Stockpile.getInstance().getNumWood());
     	}
+    }
+    //===========================================================
+  	// Set ghost captain indicator for islands.
+  	//===========================================================
+    protected void setGhostCaptainIndicator(Scene mapScene) {
+    	for(Island island : Board.getInstance().getIslands()) {
+    		if(island.getHasGhostCaptain() && island.getGhostCaptainLastMovedColour()!=null) {
+    			colour colour = island.getGhostCaptainLastMovedColour();
+    			int x = island.getX();
+    			int y = island.getY();
+    			changeGhostCaptainIndicatorColour(mapScene,colour);
+    			changeGhostCaptainPosition(mapScene,x,y);
+    		}
+    	}
+    }
+    private void changeGhostCaptainIndicatorColour(Scene mapScene, colour colour) {
+    	Label L = (Label) mapScene.lookup("#ghostCaptain");
+    	switch (colour) {
+	    	case Red:
+	    		L.getStyleClass().add("red");
+	    		break;
+	    	case Orange:
+	    		L.getStyleClass().add("orange");
+	    		break;
+	    	case Blue:
+	    		L.getStyleClass().add("blue");
+	    		break;
+	    	case White:
+	    		L.getStyleClass().add("white");
+	    		break;
+	    	default:
+	    		L.getStyleClass().add("default");
+    	}
+    }
+    private void changeGhostCaptainPosition(Scene mapScene, int x, int y) {
+    	Label L = (Label) mapScene.lookup("#ghostCaptain");
+    	if(y==2)
+    		L.setLayoutY(218);
+    	else if(y==4)
+    		L.setLayoutY(133);
+    	else if(y==6)
+    		L.setLayoutY(50);
+    	if(x==3)
+    		L.setLayoutX(28);
+    	else if(x==5)
+    		L.setLayoutX(73);
+    	else if(x==7)
+    		L.setLayoutX(119);
+    	else if(x==9)
+    		L.setLayoutX(168);
+    	else if(x==11)
+    		L.setLayoutX(213);
+    	else if(x==13)
+    		L.setLayoutX(259);
+    	else if(x==15)
+    		L.setLayoutX(305);
+    	else if(x==17)
+    		L.setLayoutX(351);
+    	else if(x==19)
+    		L.setLayoutX(398);
     }
 }

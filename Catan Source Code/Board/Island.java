@@ -1,6 +1,7 @@
 package Board;
 import java.util.*;
 import Trading.Player;
+import Trading.Player.colour;
 import Trading.Stockpile;
 import Board.Location.lairOrShip;
 
@@ -17,8 +18,8 @@ public class Island {
 	//===========================================================
 	private Board board = Board.getInstance();
 	private Stockpile stockpile = Stockpile.getInstance();
-	private int x;
-	private int y;
+	protected int xC;
+	protected int yC;
 	private Trading.ResourceHolder.ResourceType resource;
 	private int die;
 	private boolean hasGhostCaptain;
@@ -41,7 +42,7 @@ public class Island {
      * @param die is the die number associated with the island
      */
 	protected Island(int[] center, Board.corner corner, Trading.ResourceHolder.ResourceType resource, int die){
-		this.x = center[0]; this.y = center[1];
+		this.xC = center[0]; this.yC = center[1];
 	    this.resource = resource;
 	    this.die = die;
 	    
@@ -71,8 +72,8 @@ public class Island {
      * sets Locations for Lairs for an Island
      */
 	public void setLairLocations() {
-		for(int xi = x-2; xi <= (x + 2); xi+=2)
-			for(int yi = y-1; yi <= (y+1); yi+=2) {
+		for(int xi = xC-2; xi <= (xC + 2); xi+=2)
+			for(int yi = yC-1; yi <= (yC+1); yi+=2) {
 				this.addLairToAvailableForIsland(xi, yi);
 			}
 	}
@@ -81,11 +82,11 @@ public class Island {
      * sets Locations for Ships for an Island
      */
 	public void setShipLocations() {
-		for(int xi = x-1; xi <= (x+1); xi+=2)	
-			for(int yi = y-1; yi<= y+1; yi+=2)
+		for(int xi = xC-1; xi <= (xC+1); xi+=2)	
+			for(int yi = yC-1; yi<= yC+1; yi+=2)
 				this.addShipToAvailableForIsland(xi, yi);
-		this.addShipToAvailableForIsland(x-2, y);
-		this.addShipToAvailableForIsland(x+2, y);	
+		this.addShipToAvailableForIsland(xC-2, yC);
+		this.addShipToAvailableForIsland(xC+2, yC);	
 	}
 	
 	/**
@@ -95,21 +96,21 @@ public class Island {
 	public void setCornerLairLocations(Board.corner LOC) {
 		int yi = 0, yi2 = 0, xi2 = 0;
 		if(LOC==Board.corner.SW||LOC==Board.corner.SE) {
-			yi = y+1;	// The y coord of lairs for corner
-			yi2= y-1;	// The y coord of single lair for corner 
+			yi = yC+1;	// The y coord of lairs for corner
+			yi2= yC-1;	// The y coord of single lair for corner 
 		}
 		else if(LOC==Board.corner.NW||LOC==Board.corner.NE) {
-			yi = y-1;	
-			yi2= y+1;
+			yi = yC-1;	
+			yi2= yC+1;
 		}
 		if(LOC==Board.corner.SW||LOC==Board.corner.NW)
-			xi2 = x+2;
+			xi2 = xC+2;
 		else if(LOC==Board.corner.SE||LOC==Board.corner.NE)
-			xi2 = x-2;
+			xi2 = xC-2;
 		
 		this.addLairToAvailableForIsland(xi2, yi2);
 		
-		for(int xi=x-2;xi<=(x+2);xi+=2) { 
+		for(int xi=xC-2;xi<=(xC+2);xi+=2) { 
 			this.addLairToAvailableForIsland(xi, yi);
 		}
 	}
@@ -121,19 +122,19 @@ public class Island {
 	public void setCornerShipLocations(Board.corner LOC) {
 		int yi = 0, xi = 0;
 		if(LOC==Board.corner.SW||LOC==Board.corner.SE) {
-			yi= y+1;	// The y coord of single lair for corner 
+			yi= yC+1;	// The y coord of single lair for corner 
 		}
 		else if(LOC==Board.corner.NW||LOC==Board.corner.NE) {
-			yi= y-1;
+			yi= yC-1;
 		}
 		if(LOC==Board.corner.SW||LOC==Board.corner.NW)
-			xi = x+2;
+			xi = xC+2;
 		else if(LOC==Board.corner.SE||LOC==Board.corner.NE)
-			xi = x-2;
+			xi = xC-2;
 		
-		this.addShipToAvailableForIsland(xi, y);
-		this.addShipToAvailableForIsland(x-1, yi);
-		this.addShipToAvailableForIsland(x+1, yi);
+		this.addShipToAvailableForIsland(xi, yC);
+		this.addShipToAvailableForIsland(xC-1, yi);
+		this.addShipToAvailableForIsland(xC+1, yi);
 	}
 	
 	public void addLairToAvailableForIsland(int xi,int yi) {
@@ -155,12 +156,12 @@ public class Island {
      * getX method.
      * @return island x coordinate
      */
-	public int getX() { return x; }
+	public int getX() { return xC; }
 	 /**
      * getY method.
      * @return island y coordinate
      */
-	public int getY() { return y; }
+	public int getY() { return yC; }
 	 /**
      * getDieNum method.
      * @return die number associated with island
@@ -180,7 +181,7 @@ public class Island {
      * checkIfHasGhostCaptain method.
      * @return boolean indicating if Ghost Captain on island
      */
-	public boolean checkIfHasGhostCaptain() {
+	public boolean getHasGhostCaptain() {
 		return hasGhostCaptain;
 	}
 	/**
@@ -192,7 +193,9 @@ public class Island {
 		this.hasGhostCaptain = hereOrNot;
 		this.ghostCaptainLastMovedBy = ghostCaptainLastMovedBy;
 	}
-	
+	public colour getGhostCaptainLastMovedColour() {
+		return this.ghostCaptainLastMovedBy;
+	}
   	//===========================================================
   	// Other Methods
   	//===========================================================
@@ -255,8 +258,8 @@ public class Island {
 	// Return the position in the list of the Location
 	public int PositionInList(int xi, int yi) {
 		for(int i=0; i < islandAvailableLairLocations.size();i++) {
-			x = islandAvailableLairLocations.get(i).getX();
-			y = islandAvailableLairLocations.get(i).getY();
+			int x = islandAvailableLairLocations.get(i).getX();
+			int y = islandAvailableLairLocations.get(i).getY();
         	if(x == xi && y == yi) {
     			return i;
     		}
@@ -271,8 +274,8 @@ public class Island {
 	public void playersWithDevelopedLairs() {
 		System.out.println("Players with lairs on island "+this.resource+this.die+":");
 		for(int i=0; i < islandDevelopedLairLocations.size();i++) {
-			x = this.islandDevelopedLairLocations.get(i).getX();
-			y = this.islandDevelopedLairLocations.get(i).getY();
+			int x = this.islandDevelopedLairLocations.get(i).getX();
+			int y = this.islandDevelopedLairLocations.get(i).getY();
 			System.out.println(this.islandDevelopedLairLocations.get(i).getPlayer().getColour()+": "+x+","+y);
 		}
 	}
@@ -286,6 +289,6 @@ public class Island {
 	}
 	@Override
 	public String toString(){
-	    return "Center: " + this.x + " " + this.y + "available " + islandAvailableLairLocations;
+	    return "Center: " + this.xC + " " + this.yC + "available " + islandAvailableLairLocations;
 	}
 }
