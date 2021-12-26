@@ -36,12 +36,20 @@ public class Controller {
 	//===========================================================
 	// Setters
 	//===========================================================
+    /**
+     * setPrimary sets the stage for the controller class.
+     * @param stage the stage that is being set as the primary stage.
+     */
     protected static void setPrimaryStage(Stage stage) {
     	primaryStage = stage;
     }
 	//===========================================================
 	// GameWinner Scene and Event Handler
 	//===========================================================
+    /**
+     * gameWinnerScene loads the game winner scene when a player wins.
+     * @throws IOException
+     */
     private void gameWinnerScene() throws IOException {
     	FXMLLoader loader = new FXMLLoader();
         loader.setLocation(Main.class.getResource("CatanMainScene.fxml"));
@@ -61,42 +69,39 @@ public class Controller {
         primaryStage.setScene(catanMainScene);
         primaryStage.show();
     }
+    /**
+     * endGame closes stage when a player presses endgame button on GameWinner scene.
+     * @param event tied to the pressing of End Game button.
+     * @throws IOException
+     */
     @FXML
     private void endGame(ActionEvent event) throws IOException{
     	primaryStage.close();
-    }
-        
+    }  
 	//===========================================================
 	// Player Number Selection
 	//===========================================================
+    /**
+     * playerSelection is the event handler for player selection scene.
+     * @param event tied to 2 buttons with the number of players that are to play the game.
+     * @throws IOException
+     */
     @FXML
     private void playerSelection(ActionEvent event) throws IOException {
     	int numPlayers = (Integer.parseInt(((Button) event.getSource()).getText()));
     	System.out.println("Picked "+numPlayers+ " Players");
     	Game.GameRunner.setNumPlayers(numPlayers);
-		this.handleChooseColour(event);
-    }
-    
-	//===========================================================
-	// Handle Colour Selection
-	//===========================================================
-    @FXML
-    private void handleChooseColour(ActionEvent event) throws IOException {
-    	if(Game.GameRunner.players.size()< Game.GameRunner.getNumPlayers()) {
-    		Parent ChooseColour = FXMLLoader.load(getClass().getResource("ChooseColour.fxml"));
-    		Scene ChooseColourScene = new Scene(ChooseColour);
-    		Label L = (Label) ChooseColourScene.lookup("#playerChooseColour");
-    		L.setText("Player"+(GameRunner.players.size()+1)+" choose your colour:");
-    		primaryStage.setScene(ChooseColourScene);
-    		primaryStage.show();
-    	}
-    	else
-    		loadRollDie();    		
+		this.handleChooseColour();
     }
     
 	//===========================================================
 	// Player Colour Selection
-	//===========================================================    
+	//===========================================================  
+    /**
+     * chooseColour is the event handler for the choose colour scene.
+     * @param event tied to 4 different buttons with the different player colour options.
+     * @throws IOException
+     */
     @FXML
     private void chooseColour(ActionEvent event) throws IOException {
     	String colour = ((Button) event.getSource()).getText();
@@ -120,12 +125,34 @@ public class Controller {
     		OrangePlayer.getInstance().developStartingPositions();
     		Game.GameRunner.addPlayer(OrangePlayer.getInstance());}
     	
-    	this.handleChooseColour(event);	
+    	this.handleChooseColour();	
 	}
-    
+    /**
+     * handleChooseColour loads the Choose Colour scene until all players have a colour and then 
+     * loads roll die scene.
+     * @throws IOException
+     */
+    @FXML
+    private void handleChooseColour() throws IOException {
+    	if(Game.GameRunner.players.size()< Game.GameRunner.getNumPlayers()) {
+    		Parent ChooseColour = FXMLLoader.load(getClass().getResource("ChooseColour.fxml"));
+    		Scene ChooseColourScene = new Scene(ChooseColour);
+    		Label L = (Label) ChooseColourScene.lookup("#playerChooseColour");
+    		L.setText("Player"+(GameRunner.players.size()+1)+" choose your colour:");
+    		primaryStage.setScene(ChooseColourScene);
+    		primaryStage.show();
+    	}
+    	else
+    		loadRollDie();    		
+    }
 	//===========================================================
 	// Add Scene to Main Scene
-	//===========================================================     
+	//===========================================================
+    /**
+     * addToMain scene is used to overlay other scenes over the CatanMainScene.
+     * @param File2 the fxml file containing the scene to be overlayed.
+     * @throws IOException
+     */
     private void addToMainScene(String File2) throws IOException{
     	FXMLLoader loader = new FXMLLoader();
         loader.setLocation(Main.class.getResource("CatanMainScene.fxml"));
@@ -141,6 +168,10 @@ public class Controller {
         primaryStage.setScene(catanMainScene);
         primaryStage.show();
     }
+    /**
+     * addMainSceneDetails calls the methods which are used to update details in the main scene.
+     * @param mainScene the scene which the details are being added to.
+     */
     private void addMainSceneDetails(Scene mainScene) {
     	setGhostCaptainIndicator(mainScene);
         loadMapColours(mainScene);
@@ -150,14 +181,20 @@ public class Controller {
     }
 	//===========================================================
 	// Roll Die Scene and Event Handler
-	//=========================================================== 
+	//===========================================================
+    /**
+     * loadRollDie adds the RollDie scene to the main scene.
+     * @throws IOException
+     */
     private void loadRollDie() throws IOException{
-    	try {
-	        addToMainScene("RollDie.fxml");	        
-    	} catch (IOException e) {
-            e.printStackTrace();
-    	}
+    	addToMainScene("RollDie.fxml");	        
     }
+    /**
+     * rollDie is the event handler for RollDie scene, calls roll method on dice after
+     * die in scene is pressed and then loads the next scene based on the result
+     * @param event tied to the die in the RollDie scene.
+     * @throws IOException
+     */
     @FXML
     private void rollDie(ActionEvent event) throws IOException {
     	
@@ -173,10 +210,20 @@ public class Controller {
     }
 	//===========================================================
 	// Choose Action Scene and Event Handler
-	//===========================================================    
+	//===========================================================
+    /**
+     * loadChooseActionMenu adds the ChooseAction scene to the main scene.
+     * @throws IOException
+     */
     private void loadChooseActionMenu() throws IOException {
         addToMainScene("ChooseAction.fxml");
     }
+    /**
+     * chooseAction is the event handler for the choose action scene which controls
+     * which scene is loaded next based on the option picked.
+     * @param event tied to the pressing of the different action options.
+     * @throws IOException
+     */
     @FXML
     private void chooseAction(ActionEvent event) throws IOException{
     	String Action = ((Button) event.getSource()).getText();
@@ -209,10 +256,20 @@ public class Controller {
 	//===========================================================
 	// Ghost Captain Scene and Event Handler
 	//===========================================================
+    /**
+     * loadGhostCaptainScene adds the GhostCaptain scene to the main scene.
+     * @throws IOException
+     */
     private void loadGhostCaptainScene() throws IOException {
     	System.out.println("Choose Island to place ghost captain.");
         addToMainScene("GhostCaptainIslands.fxml");  	
     }
+    /**
+     * chooseGhostCaptainIslands is the event handler for the GhostCaptainIslands scene.
+     * Which calls moveGhostCaptain to the selected location for the player whose turn it is.
+     * @param event the picking of one of the islands.
+     * @throws IOException
+     */
     @FXML
     private void chooseGhostCaptainIslands(ActionEvent event) throws IOException{
     	String[] LocationSelected = ((Button) event.getSource()).getId().split(",",2);
@@ -220,20 +277,35 @@ public class Controller {
     	GameRunner.getCurrentPlayer().moveGhostCaptain(Integer.parseInt(LocationSelected[0]), Integer.parseInt(LocationSelected[1]));
     	loadChooseActionMenu();
     }
-     
 	//===========================================================
 	// Trade Scenes and Event Handlers
 	//===========================================================
+    /**
+     * loadOfferedResource adds SelectOfferedResource scene to main screen.
+     * @throws IOException
+     */
     private void loadOfferedResource() throws IOException {
         addToMainScene("SelectOfferedResource.fxml");
 
     }
+    /**
+     * loadRequestedResource adds SelectRequestedResource scene to main screen.
+     * @throws IOException
+     */
     private void loadRequestedResource() throws IOException {
         addToMainScene("SelectRequestedResource.fxml");
     }
+    /**
+     * loadTradeMenu adds the ChooseTradePartner scene to the main screen.
+     * @throws IOException
+     */
     private void loadTradeMenu() throws IOException {
         addToMainScene("ChooseTradePartner.fxml");
     }
+    /**
+     * chooseTradePartner is the event hander for ChooseTradePartner scene.
+     * @param event button press selecting Market or Stockpile
+     */
     @FXML
     private void chooseTradePartner(ActionEvent event) throws IOException {
     	String tradingPartner = ((Button) event.getSource()).getText();
@@ -246,6 +318,11 @@ public class Controller {
     		GameRunner.getCurrentPlayer().trade(Trading.Market.getInstance(),offeredResource, requestedResource);
     	loadChooseActionMenu();
     }
+    /**
+     * chooseOfferedResource is the event handler for the SelectOfferedResourceScene
+     * @param event button press selecting which of the 5 resources the player would like to offer.
+     * @throws IOException
+     */
     @FXML
     private void chooseOfferedResource(ActionEvent event) throws IOException {
     	String resource = ((Button) event.getSource()).getText();
@@ -262,6 +339,11 @@ public class Controller {
     	System.out.println("Player offers: "+offeredResource);
     	loadRequestedResource();
     }
+    /**
+     * chooseRequestedResource is the event handler for the SelectRequestedResourceScreen
+     * @param event button press selecting which of the 5 resources the player requests.
+     * @throws IOException
+     */
     @FXML
     private void chooseRequestedResource(ActionEvent event) throws IOException {
     	String resource = ((Button) event.getSource()).getText();
@@ -279,10 +361,12 @@ public class Controller {
 
     	loadTradeMenu();
     }
-    
 	//===========================================================
 	// Load Map Scene
-	//===========================================================     
+	//=========================================================== 
+    /**
+     * loadMap loads the MainSceneContaining the map on its own.
+     */
     private void loadMap() {
 		try {
             // Load person overview.
@@ -310,6 +394,11 @@ public class Controller {
             e.printStackTrace();
         }
 	}
+    /**
+     * loadMapColours changes the colours of the buttons on the map based on the status of their
+     * corresponding locations.
+     * @param mapScene the scene that these changes are being added to.
+     */
     private void loadMapColours(Scene mapScene) {
 		for(DevelopedLocation D : Board.getInstance().getDevelopedLocations()) {
     		String ID = "#"+String.valueOf(D.getX())+","+String.valueOf(D.getY())+"";
@@ -334,10 +423,14 @@ public class Controller {
  			}
     	}
     }
-    
     //===========================================================
   	// Select Location On Map 
   	//===========================================================
+    /**
+     * chooseLocation is the event handler for locations selection for building on the CatanMainScene.
+     * @param event button press of a ship or lair location  on map or end building button.
+     * @throws IOException
+     */
     @FXML
     protected void chooseLocation(ActionEvent event) throws IOException{
         if(((Button) event.getSource()).getId().contains("endturn"))
@@ -366,6 +459,11 @@ public class Controller {
     //===========================================================
   	// Load resource variables.
   	//===========================================================
+    /**
+     * setPlayerVariables updates the player variables in the CatanMainScene. And sets style to
+     * player variable pane for the player whose turn it currently is.
+     * @param mapScene the scene these details are being added to.
+     */
     private void setPlayerVariableLabel(Scene mapScene) {
     	String[] playerNum = {"P1","P2","P3","P4"};
     	String[] variableLabel = {"Player","gold","molasses","cutlasses","goats",
@@ -406,6 +504,10 @@ public class Controller {
 	    	}
     	}
     }
+    /**
+     * setMarketVariableLabels updates the market variables in the CatanMainScene.
+     * @param mapScene the scene these details are being added to.
+     */
     private void setMarketVariableLabels(Scene mapScene) {
     	String[] variableLabel = {"gold","molasses","cutlasses","goats","wood"};
     	for(int i = 0; i < variableLabel.length;i++) {
@@ -422,6 +524,10 @@ public class Controller {
     			L.setText(L.getText() + Trading.Market.getInstance().getNumWood());
     	}
     }
+    /**
+     * setStockpileVariableLabels updates the stockpile variables in the CatanMainScene.
+     * @param mapScene the scene these details are being added to.
+     */
     private void setStockpileVariableLabels(Scene mapScene) {
     	String[] variableLabel = {"gold","molasses","cutlasses","goats","wood"};
     	for(int i = 0; i < variableLabel.length;i++) {
@@ -441,6 +547,10 @@ public class Controller {
     //===========================================================
   	// Set ghost captain indicator for islands.
   	//===========================================================
+    /**
+     * setGhostCaptainIndicator is used to change the ghost captain indicator in the MainScene.
+     * @param mapScene
+     */
     protected void setGhostCaptainIndicator(Scene mapScene) {
     	for(Island island : Board.getInstance().getIslands()) {
     		if(island.getHasGhostCaptain() && island.getGhostCaptainLastMovedColour()!=null) {
@@ -452,6 +562,12 @@ public class Controller {
     		}
     	}
     }
+    /**
+     * changeGhostCaptainIndicatorColour sets the indicator to the colour of the player 
+     * to last move the ghost captain.
+     * @param mapScene the scene the indicator is being modified on.
+     * @param colour the colour of the player to last move the GhostCaptain.
+     */
     private void changeGhostCaptainIndicatorColour(Scene mapScene, colour colour) {
     	Label L = (Label) mapScene.lookup("#ghostCaptain");
     	switch (colour) {
@@ -471,6 +587,13 @@ public class Controller {
 	    		L.getStyleClass().add("default");
     	}
     }
+    /**
+     * changeGhostCaptainPosition changes the position of the Ghost Captain indicator in
+     * the main scene based on the island it is on.
+     * @param mapScene
+     * @param x
+     * @param y
+     */
     private void changeGhostCaptainPosition(Scene mapScene, int x, int y) {
     	Label L = (Label) mapScene.lookup("#ghostCaptain");
     	if(y==2)
