@@ -18,6 +18,7 @@ private static Dice testDice;
 	@After
 	public void tearDown() throws Exception{
 		Dice.getInstance().destroyMe();
+		Board.Board.getInstance().destroyMe();
 	}
 
 	@BeforeEach
