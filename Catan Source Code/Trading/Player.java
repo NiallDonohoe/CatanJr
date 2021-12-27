@@ -237,7 +237,7 @@ public abstract class Player extends TradingResourceHolder{
 	 * @return boolean. True if player has the required resources, false if they do not.
 	 */
 	private boolean canAffordLair() {
-		return this.numWood > 0 && this.numCutlasses > 0 && this.numGoats > 0 && this.numWood > 0; 	
+		return this.numWood > 0 && this.numCutlasses > 0 && this.numGoats > 0 && this.numMolasses > 0; 	
 	}
 	/**
 	 * canAffordCocoCard checks if a player has the required resources to buy a coco card.

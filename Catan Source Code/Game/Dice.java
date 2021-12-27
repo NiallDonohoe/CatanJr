@@ -38,7 +38,9 @@ public class Dice {
 	//===========================================================
 	
 	public int roll(){
-	    return (dice.nextInt(6)+1);
+		int result = (dice.nextInt(6)+1);
+		System.out.println("Player Rolled a "+ result);
+	    return result;
 	}
 	
 	//===========================================================

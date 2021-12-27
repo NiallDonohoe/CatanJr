@@ -6,7 +6,7 @@ import java.util.HashSet;
 import Board.Board;
 import Trading.Player;
 
-public class GameRunner {
+public class Game {
 	
 	private static int numPlayers;
 	public static HashSet<Player> playersSet = new HashSet<Player>();
@@ -84,16 +84,16 @@ public class GameRunner {
 	 * nextPlayer is used on end turn to switch the current player to the next player.
 	 */
 	public static void nextPlayer() {
-		if(GameRunner.Turn == 1)
-			GameRunner.Turn = 2;
-		else if(GameRunner.Turn == 2)
-			GameRunner.Turn = 3;
-		else if(GameRunner.Turn == 3 && players.size() == 3)
-			GameRunner.Turn = 1;
-		else if (GameRunner.Turn == 3 && players.size() == 4)
-			GameRunner.Turn = 4;
-		else if (GameRunner.Turn == 4)
-			GameRunner.Turn = 1;
+		if(Game.Turn == 1)
+			Game.Turn = 2;
+		else if(Game.Turn == 2)
+			Game.Turn = 3;
+		else if(Game.Turn == 3 && players.size() == 3)
+			Game.Turn = 1;
+		else if (Game.Turn == 3 && players.size() == 4)
+			Game.Turn = 4;
+		else if (Game.Turn == 4)
+			Game.Turn = 1;
 		System.out.println(getCurrentPlayer().getColour()+" players turn.");
 	}
 	/**

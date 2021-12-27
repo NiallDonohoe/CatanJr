@@ -1,7 +1,7 @@
 package GUI;
 	
 import java.io.IOException;
-import Game.GameRunner;
+import Game.Game;
 import javafx.application.Application;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -19,7 +19,7 @@ public class Main extends Application {
 	public AnchorPane rootLayout;
 
 	public static void main(String[] args) {
-		GameRunner.startGame();
+		Game.startGame();
 		launch(args);
 	}
 	@Override
