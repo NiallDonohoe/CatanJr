@@ -36,13 +36,14 @@ public class Location {
 	//===========================================================
 	// Getters & Setters
 	//===========================================================
-	 /**
-     * getLocation method.
+	/**
+	 * getLocation method.
      * @return location. [x,y] of the location
      */
 	public int[] getLocation() {
 		return location;
 	}
+	
 	 /**
      * getX method.
      * @return x. x coordinate of the location
@@ -50,13 +51,15 @@ public class Location {
 	public int getX() {
 		return x;
 	}
+	
 	 /**
-     * getU method.
+     * getY method.
      * @return y. y coordinate of the location
      */
 	public int getY() {
 		return y;
 	}
+	
 	 /**
      * getLairOrShip method.
      * @return lairOrShip. Enum indication if location is a Lair or Ship location

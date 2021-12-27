@@ -21,7 +21,7 @@ public class Island {
 	protected int xC;
 	protected int yC;
 	private Trading.ResourceHolder.ResourceType resource;
-	private int die;
+	private int dieNum;
 	private boolean hasGhostCaptain;
 	private Trading.Player.colour ghostCaptainLastMovedBy;
 	
@@ -44,16 +44,9 @@ public class Island {
 	protected Island(int[] center, Board.corner corner, Trading.ResourceHolder.ResourceType resource, int die){
 		this.xC = center[0]; this.yC = center[1];
 	    this.resource = resource;
-	    this.die = die;
-	    
-	    // if the island is the ghost island set the ghost captain here
-	    if(center[0]==11 && center[1]==4) {
-	    	this.setGhostCaptain(true,null);
-	    }
-	    else {
-	    	this.setGhostCaptain(false,null);
-	    }
-	    
+	    this.dieNum = die;
+	    this.setGhostCaptain(false,null);
+	   
 	    if(corner==Board.corner.Regular) {
 	    	this.setLairLocations();
         	this.setShipLocations();
@@ -64,6 +57,60 @@ public class Island {
 	    }
 	}
 	
+    //===========================================================
+  	// Getters and Setters
+  	//===========================================================
+    /**
+     * getX method.
+     * @return island x coordinate
+     */
+	public int getX() { return xC; }
+	 /**
+     * getY method.
+     * @return island y coordinate
+     */
+	public int getY() { return yC; }
+	 /**
+     * getDieNum method.
+     * @return die number associated with island
+     */
+	public int getDieNum() {
+		return dieNum;
+	}
+	/**
+     * getResourceType method.
+     * @return resource associated with island
+     */
+	public Trading.ResourceHolder.ResourceType getResourceType() {
+		return this.resource;
+	}
+	
+	/**
+     * checkIfHasGhostCaptain method.
+     * @return boolean indicating if Ghost Captain on island
+     */
+	public boolean getHasGhostCaptain() {
+		return hasGhostCaptain;
+	}
+	
+	/**
+     * setGhostCaptain method.
+     * @param hereOrNot booloean indicating Ghost Captain on the island or not
+     * @param ghostCaptainLastMovedBy colour of player who last moved Ghost Captain
+     */
+	public void setGhostCaptain(boolean hereOrNot, Trading.Player.colour ghostCaptainLastMovedBy) {
+		this.hasGhostCaptain = hereOrNot;
+		this.ghostCaptainLastMovedBy = ghostCaptainLastMovedBy;
+	}
+	
+	/**
+     * colour getGhostCaptainLastMovedColour method.
+     * @return colour that last moved the Ghost Captain
+     */
+	public colour getGhostCaptainLastMovedColour() {
+		return this.ghostCaptainLastMovedBy;
+	}
+	
 	//===========================================================
 	// Methods for manipulating Island
 	//===========================================================
@@ -71,17 +118,18 @@ public class Island {
      * setLairLocations method.
      * sets Locations for Lairs for an Island
      */
-	public void setLairLocations() {
+	private void setLairLocations() {
 		for(int xi = xC-2; xi <= (xC + 2); xi+=2)
 			for(int yi = yC-1; yi <= (yC+1); yi+=2) {
 				this.addLairToAvailableForIsland(xi, yi);
 			}
 	}
+	
 	 /**
      * setShipLocations method.
      * sets Locations for Ships for an Island
      */
-	public void setShipLocations() {
+	private void setShipLocations() {
 		for(int xi = xC-1; xi <= (xC+1); xi+=2)	
 			for(int yi = yC-1; yi<= yC+1; yi+=2)
 				this.addShipToAvailableForIsland(xi, yi);
@@ -93,7 +141,7 @@ public class Island {
      * setCornerLairLocations method.
      * sets Locations for Lairs for a Corner Island
      */
-	public void setCornerLairLocations(Board.corner LOC) {
+	private void setCornerLairLocations(Board.corner LOC) {
 		int yi = 0, yi2 = 0, xi2 = 0;
 		if(LOC==Board.corner.SW||LOC==Board.corner.SE) {
 			yi = yC+1;	// The y coord of lairs for corner
@@ -119,7 +167,7 @@ public class Island {
      * setCornerShipLocations method.
      * sets Locations for Ships for a Corner Island
      */
-	public void setCornerShipLocations(Board.corner LOC) {
+	private void setCornerShipLocations(Board.corner LOC) {
 		int yi = 0, xi = 0;
 		if(LOC==Board.corner.SW||LOC==Board.corner.SE) {
 			yi= yC+1;	// The y coord of single lair for corner 
@@ -136,66 +184,27 @@ public class Island {
 		this.addShipToAvailableForIsland(xC-1, yi);
 		this.addShipToAvailableForIsland(xC+1, yi);
 	}
-	
-	public void addLairToAvailableForIsland(int xi,int yi) {
+	/**
+     * addLairToAvailableForIsland method.
+     * adds Lair Locations around the island to the islandAvailableLairLocations
+     */
+	private void addLairToAvailableForIsland(int xi,int yi) {
 		Location Ltemp = new Location(xi,yi,lairOrShip.lair);
 		this.islandAvailableLairLocations.add(Ltemp); 
 		board.addToBoard(Ltemp);
 	}
 	
-	public void addShipToAvailableForIsland(int xi,int yi) {
+	/**
+     * addShipToAvailableForIsland method.
+     * adds Ship Locations around the island to the islandAvailableShipLocations
+     */
+	private void addShipToAvailableForIsland(int xi,int yi) {
 		Location Ltemp = new Location(xi,yi,lairOrShip.ship);
 		this.islandAvailableShipLocations.add(Ltemp);
 		board.addToBoard(Ltemp);
 	}
 	
-    //===========================================================
-  	// Getters and Setters
-  	//===========================================================
-    /**
-     * getX method.
-     * @return island x coordinate
-     */
-	public int getX() { return xC; }
-	 /**
-     * getY method.
-     * @return island y coordinate
-     */
-	public int getY() { return yC; }
-	 /**
-     * getDieNum method.
-     * @return die number associated with island
-     */
-	public int getDieNum() {
-		return die;
-	}
-	/**
-     * getResourceType method.
-     * @return resource associated with island
-     */
-	public Trading.ResourceHolder.ResourceType getResourceType() {
-		return this.resource;
-	}
-	
-	/**
-     * checkIfHasGhostCaptain method.
-     * @return boolean indicating if Ghost Captain on island
-     */
-	public boolean getHasGhostCaptain() {
-		return hasGhostCaptain;
-	}
-	/**
-     * setGhostCaptain method.
-     * @param hereOrNot booloean indicating Ghost Captain on the island or not
-     * @param ghostCaptainLastMovedBy colour of player who last moved Ghost Captain
-     */
-	public void setGhostCaptain(boolean hereOrNot, Trading.Player.colour ghostCaptainLastMovedBy) {
-		this.hasGhostCaptain = hereOrNot;
-		this.ghostCaptainLastMovedBy = ghostCaptainLastMovedBy;
-	}
-	public colour getGhostCaptainLastMovedColour() {
-		return this.ghostCaptainLastMovedBy;
-	}
+
   	//===========================================================
   	// Other Methods
   	//===========================================================
@@ -231,8 +240,8 @@ public class Island {
      * @param yi is the y coordinate of the location
      * @param p is the player developing the position
      */
-	public void developPosition(int xi, int yi ,Player p) {
-		int i = this.PositionInList(xi,yi);
+	protected void developPosition(int xi, int yi ,Player p) {
+		int i = this.positionInList(xi,yi);
 		lairOrShip LairOrShip;
 		if(i!=-1)
 			LairOrShip = this.islandAvailableLairLocations.get(i).getLairOrShip();
@@ -256,7 +265,7 @@ public class Island {
      * @return i the index of the location in the ArrayList
      */
 	// Return the position in the list of the Location
-	public int PositionInList(int xi, int yi) {
+	private int positionInList(int xi, int yi) {
 		for(int i=0; i < islandAvailableLairLocations.size();i++) {
 			int x = islandAvailableLairLocations.get(i).getX();
 			int y = islandAvailableLairLocations.get(i).getY();
@@ -272,7 +281,7 @@ public class Island {
 
 	// Prints the players with developed lairs on the island.
 	public void playersWithDevelopedLairs() {
-		System.out.println("Players with lairs on island "+this.resource+this.die+":");
+		System.out.println("Players with lairs on island "+this.resource+this.dieNum+":");
 		for(int i=0; i < islandDevelopedLairLocations.size();i++) {
 			int x = this.islandDevelopedLairLocations.get(i).getX();
 			int y = this.islandDevelopedLairLocations.get(i).getY();
