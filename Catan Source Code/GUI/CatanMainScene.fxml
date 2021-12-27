@@ -40,7 +40,7 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="900.0" stylesheets="@Styles.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Controller">
    <children>
-      <Pane id="mapBack" prefHeight="296.0" prefWidth="505.0" stylesheets="@Styles.css">
+      <Pane id="mapBack" prefHeight="296.0" prefWidth="514.2857143" stylesheets="@Styles.css">
          <children>
             <Label prefHeight="24.0" prefWidth="53.0" text="Map">
                <font>
@@ -399,7 +399,7 @@
       </Pane>
       <Pane layoutY="296.0" prefHeight="209.0" prefWidth="900.0" styleClass="resourceHolderPane" stylesheets="@Styles.css">
          <children>
-            <Pane id="paneP1" prefHeight="209.0" prefWidth="150.0" stylesheets="@Styles.css">
+            <Pane id="paneP1" prefHeight="209.0" prefWidth="128.5714286" stylesheets="@Styles.css">
                <children>
                   <Label id="PlayerP1" text="Player1">
                      <font>
@@ -411,12 +411,12 @@
                   <Label id="cutlassesP1" layoutX="5.0" layoutY="55.0" text="Cutlasses:" />
                   <Label id="goatsP1" layoutX="5.0" layoutY="72.5" text="Goats:" />
                   <Label id="woodP1" layoutX="5.0" layoutY="90.0" text="Wood:" />
-                  <Label id="UsedCocoP1" layoutX="5.0" layoutY="105.0" prefHeight="44.0" prefWidth="69.0" text="Used Coco:" />
+                  <Label id="UsedCocoP1" layoutX="5.0" layoutY="105.0" prefHeight="44.0" prefWidth="120.0" text="Used Coco:" />
                   <Label id="UnusedLairsP1" layoutX="5.0" layoutY="145.0" text="Unbuilt Lairs:" />
                   <Label id="UnusedShipsP1" layoutX="5.0" layoutY="162.5" text="Unbuilt Ships:" />
                </children>
             </Pane>
-            <Pane id="paneP2" layoutX="150.0" prefHeight="209.0" prefWidth="150.0" stylesheets="@Styles.css">
+            <Pane id="paneP2" layoutX="128.5714286" prefHeight="209.0" prefWidth="128.5714286" stylesheets="@Styles.css">
                <children>
                   <Label id="PlayerP2" text="Player2">
                      <font>
@@ -428,12 +428,12 @@
                   <Label id="cutlassesP2" layoutX="5.0" layoutY="55.0" text="Cutlasses:" />
                   <Label id="goatsP2" layoutX="5.0" layoutY="72.5" text="Goats:" />
                   <Label id="woodP2" layoutX="5.0" layoutY="90.0" text="Wood: " />
-                  <Label id="UsedCocoP2" layoutX="5.0" layoutY="105.0" prefHeight="44.0" prefWidth="69.0" text="Used Coco:" />
+                  <Label id="UsedCocoP2" layoutX="5.0" layoutY="105.0" prefHeight="44.0" prefWidth="102.0" text="Used Coco:" />
                   <Label id="UnusedLairsP2" layoutX="5.0" layoutY="145.0" text="Unbuilt Lairs:" />
                   <Label id="UnusedShipsP2" layoutX="5.0" layoutY="162.5" text="Unbuilt Ships:" />
                </children>
             </Pane>
-            <Pane id="paneP3" layoutX="300.0" prefHeight="209.0" prefWidth="150.0" stylesheets="@Styles.css">
+            <Pane id="paneP3" layoutX="257.0" prefHeight="209.0" prefWidth="128.5714286" stylesheets="@Styles.css">
                <children>
                   <Label id="PlayerP3" text="Player3">
                      <font>
@@ -445,12 +445,12 @@
                   <Label id="cutlassesP3" layoutX="5.0" layoutY="55.0" text="Cutlasses:" />
                   <Label id="goatsP3" layoutX="5.0" layoutY="72.5" prefHeight="15.0" prefWidth="62.0" text="Goats:" />
                   <Label id="woodP3" layoutX="5.0" layoutY="90.0" text="Wood: " />
-                  <Label id="UsedCocoP3" layoutX="5.0" layoutY="105.0" prefHeight="44.0" prefWidth="69.0" text="Used Coco:" />
+                  <Label id="UsedCocoP3" layoutX="5.0" layoutY="105.0" prefHeight="44.0" prefWidth="102.0" text="Used Coco:" />
                   <Label id="UnusedLairsP3" layoutX="5.0" layoutY="145.0" text="Unbuilt Lairs:" />
                   <Label id="UnusedShipsP3" layoutX="6.0" layoutY="162.5" text="Unbuilt Ships:" />
                </children>
             </Pane>
-            <Pane id="paneP4" layoutX="450.0" prefHeight="209.0" prefWidth="150.0" stylesheets="@Styles.css">
+            <Pane id="paneP4" layoutX="386.0" layoutY="1.0" prefHeight="209.0" prefWidth="128.5714286" stylesheets="@Styles.css">
                <children>
                   <Label id="PlayerP4" text="Player4">
                      <font>
@@ -462,12 +462,12 @@
                   <Label id="cutlassesP4" layoutX="5.0" layoutY="55.0" text="Cutlasses:" />
                   <Label id="goatsP4" layoutX="5.0" layoutY="72.5" text="Goats:" />
                   <Label id="woodP4" layoutX="5.0" layoutY="90.0" text="Wood: " />
-                  <Label id="UsedCocoP4" layoutX="5.0" layoutY="105.0" prefHeight="44.0" prefWidth="69.0" text="Used Coco:" />
+                  <Label id="UsedCocoP4" layoutX="5.0" layoutY="105.0" prefHeight="44.0" prefWidth="95.0" text="Used Coco:" />
                   <Label id="UnusedLairsP4" layoutX="5.0" layoutY="145.0" text="Unbuilt Lairs:" />
                   <Label id="UnusedShipsP4" layoutX="5.0" layoutY="162.5" text="Unbuilt Ships:" />
                </children>
             </Pane>
-            <Pane layoutX="600.0" layoutY="1.0" prefHeight="209.0" prefWidth="150.0" styleClass="resourceHolderPane" stylesheets="@Styles.css">
+            <Pane layoutX="515.0" prefHeight="209.0" prefWidth="128.5714286" styleClass="resourceHolderPane" stylesheets="@Styles.css">
                <children>
                   <Label text="Stockpile">
                      <font>
@@ -481,7 +481,7 @@
                   <Label id="woodS" layoutX="5.0" layoutY="90.0" text="Wood:" />
                </children>
             </Pane>
-            <Pane layoutX="750.0" prefHeight="209.0" prefWidth="150.0" styleClass="resourceHolderPane" stylesheets="@Styles.css">
+            <Pane layoutX="644.0" layoutY="1.0" prefHeight="209.0" prefWidth="128.5714286" styleClass="resourceHolderPane" stylesheets="@Styles.css">
                <children>
                   <Label text="Market">
                      <font>
@@ -493,6 +493,14 @@
                   <Label id="cutlassesM" layoutX="5.0" layoutY="55.0" text="Cutlasses:" />
                   <Label id="goatsM" layoutX="5.0" layoutY="72.5" text="Goats:" />
                   <Label id="woodM" layoutX="5.0" layoutY="90.0" text="Wood:" />
+               </children>
+            </Pane>
+            <Pane layoutX="773.0" layoutY="1.0" prefHeight="209.0" prefWidth="128.5714286" styleClass="resourceHolderPane" stylesheets="@Styles.css">
+               <children>
+                  <Label id="printInfo" layoutY="-1.0" prefHeight="209.0" prefWidth="129.0" wrapText="true">
+                     <font>
+                        <Font name="System Bold" size="9.0" />
+                     </font></Label>
                </children>
             </Pane>
          </children>

@@ -3,9 +3,11 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ButtonBar?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Tooltip?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
+<?import javafx.util.Duration?>
 
 <AnchorPane prefHeight="500.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Controller">
    <children>
@@ -17,6 +19,12 @@
                      <font>
                         <Font name="Papyrus" size="19.0" />
                      </font>
+                     <tooltip>
+                        <Tooltip opacity="0.7" text="Build Ship Or Lair" />
+                        <showDelay>
+               				<Duration millis="100" />
+               			</showDelay>
+                     </tooltip>
                   </Button>
               </buttons>
             </ButtonBar>
@@ -26,6 +34,12 @@
                      <font>
                         <Font name="Papyrus" size="19.0" />
                      </font>
+                     <tooltip>
+                        <Tooltip opacity="0.7" text="Costs 1 cutlass, 1 molasses, 1 gold" />
+                        <showDelay>
+               				<Duration millis="100" />
+               			</showDelay>
+                     </tooltip>
                   </Button>
                </buttons>
             </ButtonBar>
@@ -35,6 +49,12 @@
                      <font>
                         <Font name="Papyrus" size="19.0" />
                      </font>
+                     <tooltip>
+                        <Tooltip opacity="0.7" text="Trade resources with market or stockpile" />
+                        <showDelay>
+               				<Duration millis="100" />
+               			</showDelay>
+                     </tooltip>
                   </Button>
                </buttons>
             </ButtonBar>

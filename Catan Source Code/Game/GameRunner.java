@@ -94,6 +94,7 @@ public class GameRunner {
 			GameRunner.Turn = 4;
 		else if (GameRunner.Turn == 4)
 			GameRunner.Turn = 1;
+		System.out.println(getCurrentPlayer().getColour()+" players turn.");
 	}
 	/**
 	 * addPlayer is used for adding a player to the players array list.

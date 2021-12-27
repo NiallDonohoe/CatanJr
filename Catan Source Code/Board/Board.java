@@ -240,7 +240,7 @@ public class Board {
      * @param yi y coordinate of location
      * @param p player wishing to build
      */ 
-    public void developLocation(int xi,int yi, Player p) {
+    public boolean developLocation(int xi,int yi, Player p) {
     	if(canBuildOnLocation(xi,yi,p)) {
 	    	int i = this.positionAvailable(xi,yi);
 			int x = availableLocations.get(i).getX();
@@ -258,7 +258,10 @@ public class Board {
 			for(int j = 0; j < islands.size(); j++) {
 				islands.get(j).developPosition(xi, yi, p);
 			}
+			return true;
     	}
+    	else
+    		return false;
     }
     
     /**

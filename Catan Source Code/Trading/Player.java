@@ -23,7 +23,6 @@ public abstract class Player extends TradingResourceHolder{
 	private int numUnbuiltShips = 7;
 	private int numUnbuiltLairs = 8;
     public ArrayList<DevelopedLocation> DevelopedPlayerLocations = new ArrayList<DevelopedLocation>();
-//    private Board board = Board.getInstance();
     private colour playerColour;
 	public enum colour{
 		Red,
@@ -162,7 +161,6 @@ public abstract class Player extends TradingResourceHolder{
 			Stockpile.getInstance().moveResource(ResourceType.molasses, 1, this);
 			Stockpile.getInstance().moveResource(ResourceType.goat, 1, this);
 			Stockpile.getInstance().moveResource(ResourceType.wood, 1, this);
-			System.out.println("Player has required resources to build lair.");
 			return true;
 		}
 		else {
@@ -179,7 +177,6 @@ public abstract class Player extends TradingResourceHolder{
 		if(this.canAffordShip()) {
 			Stockpile.getInstance().moveResource(ResourceType.goat, 1, this);
 			Stockpile.getInstance().moveResource(ResourceType.wood, 1, this);
-			System.out.println("Player has required resources to build ship.");
 			return true;
 		}
 		else {

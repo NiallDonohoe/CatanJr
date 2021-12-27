@@ -1,7 +1,9 @@
 package GUI;
 
 
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.io.PrintStream;
 import Board.Board;
 import Board.DevelopedLocation;
 import Board.Island;
@@ -32,6 +34,9 @@ public class Controller {
     private static ResourceType offeredResource;
     private static ResourceType requestedResource;
     private static boolean isCocoDevelopment;
+    private static String printInfo;
+    ByteArrayOutputStream baos;
+    PrintStream old;
     
 	//===========================================================
 	// Setters
@@ -178,6 +183,8 @@ public class Controller {
         setPlayerVariableLabel(mainScene);
         setMarketVariableLabels(mainScene);
         setStockpileVariableLabels(mainScene);
+        addInformationPrint(mainScene);
+        printInfo = null;
     }
 	//===========================================================
 	// Roll Die Scene and Event Handler
@@ -199,12 +206,16 @@ public class Controller {
     private void rollDie(ActionEvent event) throws IOException {
     	
     	int dieResult = Dice.getInstance().roll();
-    	System.out.println("Player rolled a "+dieResult);
+    	this.beginCaptureOutputStream();
+    	System.out.println(GameRunner.getCurrentPlayer().getColour()+" player rolled "+dieResult);
+    	
     	if(dieResult<6) {
     		Board.getInstance().handleGeneratingIslandResources(dieResult);
+    		this.endCaptureOutputStream();
     		loadChooseActionMenu();
     	}
     	if(dieResult == 6) {
+    		this.endCaptureOutputStream();
     		loadGhostCaptainScene();
     	}
     }
@@ -227,14 +238,15 @@ public class Controller {
     @FXML
     private void chooseAction(ActionEvent event) throws IOException{
     	String Action = ((Button) event.getSource()).getText();
-    	System.out.println(Action);
     	if(Action.contentEquals("Build")) {
     		loadMap();
     	}
     	else if(Action.contentEquals("Buy Coco Tile")) {
+    		this.beginCaptureOutputStream();
     		CocoCard card = GameRunner.getCurrentPlayer().buyCocoCard();
+    		this.endCaptureOutputStream();
     		if(card instanceof CocoCards.GetShipOrLairCoco) {
-    			System.out.print("Choose Free Ship or Lair");
+//    			System.out.print("Choose Free Ship or Lair");
     			isCocoDevelopment = true;
     			loadMap();
     		}
@@ -249,7 +261,6 @@ public class Controller {
     	}
     	else if(Action.contentEquals("End Turn")) {
     		GameRunner.nextPlayer();
-    		System.out.println(GameRunner.getCurrentPlayer().getColour()+" players turn.");
     		loadRollDie();
     	}
     }
@@ -273,7 +284,8 @@ public class Controller {
     @FXML
     private void chooseGhostCaptainIslands(ActionEvent event) throws IOException{
     	String[] LocationSelected = ((Button) event.getSource()).getId().split(",",2);
-    	System.out.println("\nGhost captain placed on: "+LocationSelected[0]+","+LocationSelected[1]);
+    	printInfo = "\nGhost captain placed on: "+LocationSelected[0]+","+LocationSelected[1];
+    	System.out.println(printInfo);
     	GameRunner.getCurrentPlayer().moveGhostCaptain(Integer.parseInt(LocationSelected[0]), Integer.parseInt(LocationSelected[1]));
     	loadChooseActionMenu();
     }
@@ -309,13 +321,13 @@ public class Controller {
     @FXML
     private void chooseTradePartner(ActionEvent event) throws IOException {
     	String tradingPartner = ((Button) event.getSource()).getText();
-    	System.out.println("Player offers: "+offeredResource);
-
+    	this.beginCaptureOutputStream();
     	if(tradingPartner.contentEquals("Stockpile")) {
     		GameRunner.getCurrentPlayer().trade(Trading.Stockpile.getInstance(),offeredResource, requestedResource);
     	}
     	else
     		GameRunner.getCurrentPlayer().trade(Trading.Market.getInstance(),offeredResource, requestedResource);
+    	this.endCaptureOutputStream();
     	loadChooseActionMenu();
     }
     /**
@@ -439,16 +451,23 @@ public class Controller {
 	       	String[] LocationSelected = ((Button) event.getSource()).getId().split(",",2);
 	    	int x = Integer.parseInt(LocationSelected[0]);
 	    	int y = Integer.parseInt(LocationSelected[1]);
+	    	this.beginCaptureOutputStream();
 	    	if(isCocoDevelopment) {
-	    		Board.getInstance().developLocation(x, y, GameRunner.getCurrentPlayer());
-	    		isCocoDevelopment = false;
-	    		if(Game.GameRunner.checkForAWinner())
-	    			gameWinnerScene();
+	    		if(Board.getInstance().developLocation(x, y, GameRunner.getCurrentPlayer())) {
+		    		Board.getInstance().developLocation(x, y, GameRunner.getCurrentPlayer());
+		    		isCocoDevelopment = false;
+		    		this.endCaptureOutputStream();
+		    		if(Game.GameRunner.checkForAWinner())
+		    			gameWinnerScene();
+		    		else
+		    			loadChooseActionMenu();
+	    		}
 	    		else
-	    			loadChooseActionMenu();
+	    			loadMap();
 	    	}
 	    	else {
 	    		Board.getInstance().buyLairOrShip(x, y, GameRunner.getCurrentPlayer());
+	    		this.endCaptureOutputStream();
 	    		if(Game.GameRunner.checkForAWinner())
 	    			gameWinnerScene();
 	    		else
@@ -568,8 +587,8 @@ public class Controller {
      * @param mapScene the scene the indicator is being modified on.
      * @param colour the colour of the player to last move the GhostCaptain.
      */
-    private void changeGhostCaptainIndicatorColour(Scene mapScene, colour colour) {
-    	Label L = (Label) mapScene.lookup("#ghostCaptain");
+    private void changeGhostCaptainIndicatorColour(Scene mainScene, colour colour) {
+    	Label L = (Label) mainScene.lookup("#ghostCaptain");
     	switch (colour) {
 	    	case Red:
 	    		L.getStyleClass().add("red");
@@ -594,8 +613,8 @@ public class Controller {
      * @param x
      * @param y
      */
-    private void changeGhostCaptainPosition(Scene mapScene, int x, int y) {
-    	Label L = (Label) mapScene.lookup("#ghostCaptain");
+    private void changeGhostCaptainPosition(Scene mainScene, int x, int y) {
+    	Label L = (Label) mainScene.lookup("#ghostCaptain");
     	if(y==2)
     		L.setLayoutY(218);
     	else if(y==4)
@@ -620,5 +639,40 @@ public class Controller {
     		L.setLayoutX(351);
     	else if(x==19)
     		L.setLayoutX(398);
+    }
+    //===========================================================
+  	// Print Console Output in GUI methods.
+  	//===========================================================
+    /**
+     * beginCaptureOutputStream is used to store the output stream in string form
+     * for printing on the GUI.
+     */
+    private void beginCaptureOutputStream(){
+    	// Create a stream to hold the output
+    	this.baos = new ByteArrayOutputStream();
+    	PrintStream ps = new PrintStream(baos);
+    	this.old = System.out;
+    	// Tell Java to use your special stream
+    	System.setOut(ps);
+    }
+    /**
+     * endCaptureOutputStream is used to end the capturing of the output stream
+     * and set printInfo to the information captured.
+     */
+    private void endCaptureOutputStream() {
+    	System.out.flush();
+    	System.setOut(old);
+    	// Show what happened
+    	System.out.println(this.baos.toString());
+    	printInfo = this.baos.toString();
+    }
+    // Add information print to main scene.
+    /**
+     * addInformationPrint used to add the captured output stream to scene.
+     * @param mainScene
+     */
+    private void addInformationPrint(Scene mainScene) {
+    	Label L = (Label) mainScene.lookup("#printInfo");
+    	L.setText(printInfo);
     }
 }
