@@ -1,43 +1,58 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <diagram program="umlet" version="14.3.0">
   <help_text/>
-  <zoom_level>9</zoom_level>
+  <zoom_level>7</zoom_level>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>261</x>
-      <y>90</y>
-      <w>270</w>
-      <h>135</h>
+      <x>763</x>
+      <y>49</y>
+      <w>343</w>
+      <h>287</h>
     </coordinates>
     <panel_attributes>lw=2
-Board
+Board - Singleton
 --
-developments: Developments
-islands: islands
-availableLocations: Locations
-developedLocations: Locations
-ghostCaptainLocation: Location
+- islands: ArrayList&lt;Island&gt;
+- availableLocations: ArrayList&lt;Location&gt;
+- developedLocations: ArrayList&lt;Locations&gt;
+- cocoDeck: CocoDeck
+- corner: enum
 --
-Board()
-</panel_attributes>
++ Board()
++ getInstance(): instance
++ getIslands(): ArrayList&lt;Island&gt;
++ getAvailableLocations(): ArrayList&lt;Location&gt;
++ getDevelopedLocations(): ArrayList&lt;DevelopedLocation&gt;
++ getCocoDeck(): CocoDeck
++ getSpookyIsland(): SpookyIsland
++ addIsland(center: int[], corner: corner, resource: resourceType, die: int )
++ addSpookyIsland()
++ declareIslands()
++ addToBoard(location: Location): boolean
++ positionAvailable(xi: int, yi: int): int
++ positionDeveloped(xi: int, yi: int): int 
++ buildLairOrShip(xi: int, yi: int, p: Player): boolean
++ canBuildOnLocation(xi: int, yi: int, p: Player): boolean
++ developLocation(xi: int, yi: int, p: Player)
++ handleGeneratingIslandResources(result: int)
++ destroyMe()</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>531</x>
-      <y>288</y>
-      <w>270</w>
-      <h>99</h>
+      <x>847</x>
+      <y>644</y>
+      <w>322</w>
+      <h>63</h>
     </coordinates>
     <panel_attributes>/DevelopedLocation/
 --
-player: Player
-location: Location
+- player: Player
 --
-+DevelopedLocation(x,y, lairOrShip, Player)
-+getPlayer()
++ DevelopedLocation(x: int,y: int, lairOrShip: lairOrShip, player: Player)
++ getPlayer()
 
 
 </panel_attributes>
@@ -46,58 +61,57 @@ location: Location
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>36</x>
-      <y>261</y>
-      <w>216</w>
-      <h>153</h>
+      <x>385</x>
+      <y>399</y>
+      <w>343</w>
+      <h>392</h>
     </coordinates>
     <panel_attributes>lw=2
 Island
 --
+-board: Board
+-stockpile: Stockpile
+-xC: int
+-yC: int
+-resource: resourceType
+-die: int
 -ghostCaptain: Boolean
 -resourceType: enum
--dieNumber: int
+-dieNum: int
+-hasGhostCaptain: boolean
+-ghostCaptainLastMovedBy: colour
+-islandAvailableLairLocations: ArrayList&lt;Location&gt;
+-islandDevelopedLairLocations: ArrayList&lt;DevelopedLocation&gt;
+-islandAvailableShipLocations: ArrayList&lt;Location&gt;
+-islandDevelopedShipLocations: ArrayList&lt;DevelopedLocation&gt;
 --
-+Island(resourceType, dieNumber,
-... ghostCaptain, location)
++Island(center: int[], corner: corner, resource: resourceType, die: int)
++getX(): int
++getY(): int
++getDieNum: int
++getResourceType(): resourceType
++getHasGhostCaptain(): boolean
++setGhostCaptain(hereOrNot: boolean, ghostCaptainLastMovedBy: colour)
++getGhostCaptainLastMovedColour(): colour
++setLairLocations()
++setShipLocations()
++setCornerLairLocations()
++setCornerShipLocations()
++addLairToAvailableForIsland(xi: int, yi: int)
++addShipToAvailableForIsland(xi: int, yi: int)
 +generateResources()
-+setGhostCaptain()
++developPosition(xi: int, yi: int, p: Player)
++positionInList(xi: int, yi: int): int
 </panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>324</x>
-      <y>468</y>
-      <w>162</w>
-      <h>45</h>
-    </coordinates>
-    <panel_attributes>lw=2
-Lair
---
-++generateResources();</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>UMLClass</id>
-    <coordinates>
-      <x>558</x>
-      <y>459</y>
-      <w>99</w>
-      <h>27</h>
-    </coordinates>
-    <panel_attributes>lw=2
-Ship</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>UMLClass</id>
-    <coordinates>
-      <x>36</x>
-      <y>99</y>
-      <w>189</w>
-      <h>117</h>
+      <x>182</x>
+      <y>511</y>
+      <w>147</w>
+      <h>91</h>
     </coordinates>
     <panel_attributes>&lt;&lt;Enumeration&gt;&gt;
 resourceType
@@ -114,99 +128,159 @@ resourceType
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>243</x>
-      <y>306</y>
-      <w>108</w>
-      <h>27</h>
+      <x>840</x>
+      <y>665</y>
+      <w>21</w>
+      <h>21</h>
     </coordinates>
     <panel_attributes>lt=&lt;-</panel_attributes>
-    <additional_attributes>10.0;10.0;100.0;10.0</additional_attributes>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>468</x>
-      <y>315</y>
-      <w>81</w>
-      <h>27</h>
-    </coordinates>
-    <panel_attributes>lt=&lt;-</panel_attributes>
-    <additional_attributes>70.0;10.0;10.0;10.0</additional_attributes>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>603</x>
-      <y>378</y>
-      <w>27</w>
-      <h>99</h>
-    </coordinates>
-    <panel_attributes>lt=&lt;-</panel_attributes>
-    <additional_attributes>10.0;90.0;10.0;10.0</additional_attributes>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>477</x>
-      <y>378</y>
-      <w>90</w>
-      <h>135</h>
-    </coordinates>
-    <panel_attributes>lt=&lt;-</panel_attributes>
-    <additional_attributes>10.0;130.0;80.0;130.0;80.0;10.0</additional_attributes>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>207</x>
-      <y>405</y>
-      <w>135</w>
-      <h>108</h>
-    </coordinates>
-    <panel_attributes>lt=&lt;-</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;100.0;130.0;100.0</additional_attributes>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>117</x>
-      <y>405</y>
-      <w>513</w>
-      <h>162</h>
-    </coordinates>
-    <panel_attributes>lt=&lt;-</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;160.0;550.0;160.0;550.0;90.0</additional_attributes>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>234</x>
-      <y>216</y>
-      <w>153</w>
-      <h>63</h>
-    </coordinates>
-    <panel_attributes>lt=&lt;-</panel_attributes>
-    <additional_attributes>150.0;10.0;150.0;50.0;10.0;50.0</additional_attributes>
+    <additional_attributes>10.0;10.0;10.0;10.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>333</x>
-      <y>297</y>
-      <w>144</w>
-      <h>153</h>
+      <x>854</x>
+      <y>399</y>
+      <w>224</w>
+      <h>147</h>
     </coordinates>
     <panel_attributes>/Location/
 -
 -x: int
 -y: int 
+-location: int[]
 -lairOrShip: enum
 --
-+Location(x,y)
-+getLocation()
-+getX()
-+getY()
-+lairOrShip()</panel_attributes>
++Location(x: int,y: int, lairOrShip: lairOrShip)
++getLocation(): int[]
++getX(): int
++getY(): int
++lairOrShip(): lairOrShip
++isEqual(x: int, y: int): boolean</panel_attributes>
     <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>595</x>
+      <y>49</y>
+      <w>147</w>
+      <h>91</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Enumeration&gt;&gt;
+corner
+--
+-NE
+-SE
+-SW
+-NW
+-Regular
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1085</x>
+      <y>399</y>
+      <w>84</w>
+      <h>56</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Enumeration&gt;&gt;
+lairOrShip
+--
+-lair
+-ship
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>49</x>
+      <y>399</y>
+      <w>280</w>
+      <h>98</h>
+    </coordinates>
+    <panel_attributes>SpookyIsland - Singleton
+-
+-cocoCardLair: DevelopedLocation
+-numMostUsedCoco: int
+-
++SpookyIsland()
++getInstance(): instance
++getCocoCardLair(): DevelopedLocation
++developCocoCardLair(p: Player): boolean</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>945</x>
+      <y>539</y>
+      <w>21</w>
+      <h>119</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;150.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>721</x>
+      <y>455</y>
+      <w>147</w>
+      <h>21</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;190.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>721</x>
+      <y>658</y>
+      <w>140</w>
+      <h>21</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;180.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>322</x>
+      <y>455</y>
+      <w>77</w>
+      <h>21</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>90.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>616</x>
+      <y>252</y>
+      <w>154</w>
+      <h>161</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+m1=12</panel_attributes>
+    <additional_attributes>200.0;10.0;10.0;10.0;10.0;210.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>224</x>
+      <y>196</y>
+      <w>553</w>
+      <h>217</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+m1=1</panel_attributes>
+    <additional_attributes>770.0;10.0;10.0;10.0;10.0;290.0</additional_attributes>
   </element>
 </diagram>

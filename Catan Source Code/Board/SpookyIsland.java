@@ -8,11 +8,18 @@ import Trading.Player;
  * @author  Niall Donohoe & Shea O'Sullivan
  * @version 1.0
  */
-public class SpookyIsland extends Island {
-    private static SpookyIsland instance = null;
-	DevelopedLocation cocoCardLair = null;
-	int mostCocoCards = 0;
 
+public class SpookyIsland extends Island {
+	//===========================================================
+	// Class Variables 
+	//===========================================================
+    private static SpookyIsland instance = null;
+	private DevelopedLocation cocoCardLair = null;
+	private int numMostCocoCards = 0;
+	
+	//===========================================================
+	// Constructor
+	//===========================================================
 	private SpookyIsland() {
 		super(new int[]{11,4}, Board.corner.Regular,Trading.ResourceHolder.ResourceType.none,6);
 	}
@@ -26,6 +33,20 @@ public class SpookyIsland extends Island {
 		}
 		return instance;
 	}
+	
+	//===========================================================
+	// Getters & Setters
+	//===========================================================
+	/**
+	 * getCocoCardLair Returns the DevelopedLocation cocoCardLair.
+	 * @return DevelopedLocation. Returns the cocoCardLair.
+	 */
+	public DevelopedLocation getCocoCardLair() {
+		return cocoCardLair;
+	}
+	//===========================================================
+	// Other Methods
+	//===========================================================
     /**
      * developCocoCardLair attempts to develop the cocoCardLair. Called every time a coco card is used.
      * @param p The player attempting to develop the cocoCardLair
@@ -50,8 +71,8 @@ public class SpookyIsland extends Island {
 				return false;
 		}
 		else {
-			if(p.getNumUsedCoco() > mostCocoCards) {
-				this.mostCocoCards = p.getNumUsedCoco();
+			if(p.getNumUsedCoco() > numMostCocoCards) {
+				this.numMostCocoCards = p.getNumUsedCoco();
 				this.cocoCardLair = new DevelopedLocation(this.xC,this.yC,lairOrShip.lair,p);
 				Board.getInstance().getDevelopedLocations().add(cocoCardLair);
 				p.decrementUnusedLairs();
@@ -62,13 +83,6 @@ public class SpookyIsland extends Island {
 				return false;
 		}
 		return false;
-	}
-	/**
-	 * getCocoCardLair Returns the DevelopedLocation cocoCardLair.
-	 * @return DevelopedLocation. Returns the cocoCardLair.
-	 */
-	public DevelopedLocation getCocoCardLair() {
-		return cocoCardLair;
 	}
 }
 
