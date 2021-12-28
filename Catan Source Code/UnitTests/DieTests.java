@@ -34,7 +34,9 @@ private static Dice testDice;
 	
 	@Test
 	public void rollReturnsAValueBetween1and6() {
-		int result = testDice.roll();
-		assertTrue(result==1||result==2||result==3||result==4||result==5||result==6);
+		for(int i=0;i<30; i++) { // perform 30 rolls and ensure values as expected
+			int result = testDice.roll();
+			assertTrue(result==1||result==2||result==3||result==4||result==5||result==6);
+		}
 	}
 }

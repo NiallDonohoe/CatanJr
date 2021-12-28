@@ -213,7 +213,7 @@ public class Board {
      * @param p player wishing to build
      * @return boolean indicating if the player can build
      */ 
-    private boolean canBuildOnLocation (int xi, int yi, Player p){
+    public boolean canBuildOnLocation (int xi, int yi, Player p){
     	int i = this.positionAvailable(xi,yi);
     	boolean  positionAvailableToPlayer = p.locationAvailableForPlayer(xi, yi);
     	if(i!=-1 && positionAvailableToPlayer) {

@@ -92,20 +92,20 @@ public abstract class ResourceHolder {
 	public boolean resourcesAvailable(ResourceType resType, int i) {
 		switch(resType) {
 		case gold:
-			if(this.numGold>=i)
-				return true;
+			if(this.numGold>=i) {return true; }
+			else { return false; }
 		case molasses:
-			if(this.numMolasses>=i)
-				return true;
+			if(this.numMolasses>=i) {return true;}
+			else { return false; }
 		case cutlass:
-			if(this.numCutlasses>=i)
-				return true;
+			if(this.numCutlasses>=i) {return true;}
+			else { return false; }
 		case goat:
-			if(this.numGoats>=i)
-				return true;
+			if(this.numGoats>=i) {return true;}
+			else { return false; }
 		case wood:	
-			if(this.numWood>=i)
-				return true;
+			if(this.numWood>=i) {return true;}
+			else { return false; }
 		default:
 			return false;
 		}

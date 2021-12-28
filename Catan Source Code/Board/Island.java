@@ -25,11 +25,11 @@ public class Island {
 	private boolean hasGhostCaptain;
 	private Trading.Player.colour ghostCaptainLastMovedBy;
 	
-	ArrayList<Location> islandAvailableLairLocations = new ArrayList<Location>();
-	ArrayList<DevelopedLocation> islandDevelopedLairLocations = new ArrayList<DevelopedLocation>();
+	public ArrayList<Location> islandAvailableLairLocations = new ArrayList<Location>();
+	public ArrayList<DevelopedLocation> islandDevelopedLairLocations = new ArrayList<DevelopedLocation>();
 	
-	ArrayList<Location> islandAvailableShipLocations = new ArrayList<Location>();
-	ArrayList<DevelopedLocation> islandDevelopedShipLocations = new ArrayList<DevelopedLocation>();
+	public ArrayList<Location> islandAvailableShipLocations = new ArrayList<Location>();
+	public ArrayList<DevelopedLocation> islandDevelopedShipLocations = new ArrayList<DevelopedLocation>();
 	
 	//===========================================================
 	// Constructor

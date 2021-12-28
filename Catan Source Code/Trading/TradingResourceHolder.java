@@ -26,7 +26,7 @@ public abstract class TradingResourceHolder extends ResourceHolder {
 	 * @return boolean Indication of whether both parties have the required resources.
 	 */
 	private boolean tradePossible(ResourceHolder RH, ResourceType offeredRes, int numOfferedRes, ResourceType requestedRes, int numRequestedRes) {
-		if(this.resourcesAvailable(offeredRes,numOfferedRes)&&RH.resourcesAvailable(requestedRes,numRequestedRes)) {
+		if(this.resourcesAvailable(offeredRes,numOfferedRes) && RH.resourcesAvailable(requestedRes,numRequestedRes)) {
 			System.out.println("Successful trade!");
 			return true;
 		}
@@ -63,13 +63,19 @@ public abstract class TradingResourceHolder extends ResourceHolder {
 	 */
 	public void trade(ResourceHolder RH, ResourceType offeredRes, ResourceType requestedRes) {
 		int numOfferedRes=0;
-		if(RH instanceof Market)
+		if(RH instanceof Market) {
 			numOfferedRes = 1;
-		else if(RH instanceof Stockpile)
+		}
+			
+		else if(RH instanceof Stockpile) {
 			numOfferedRes = 2;
+		}
+			
 		
-		if(this.tradePossible(RH, offeredRes, numOfferedRes, requestedRes, 1))
+		if(this.tradePossible(RH, offeredRes, numOfferedRes, requestedRes, 1)) {
 			this.handleTrade(RH, offeredRes, numOfferedRes, requestedRes, 1);
+		}
+			
 		
 		if (RH instanceof Market)
 			((Market) RH).checkRefreshMarket();

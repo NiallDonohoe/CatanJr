@@ -19,7 +19,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import Game.Dice;
-import Game.GameRunner;
+import Game.Game;
 import Trading.BluePlayer;
 import Trading.OrangePlayer;
 import Trading.Player;
@@ -65,7 +65,7 @@ public class Controller {
         Pane scene2 = (Pane) loader1.load();
         
         Label L = (Label) scene2.lookup("#gameWinnerLabel");
-        L.setText(GameRunner.getGameWinner()+L.getText());
+        L.setText(Game.getGameWinner()+L.getText());
         scene2.getChildren().add(L);
         
         catanMain.getChildren().add(scene2);
@@ -95,7 +95,7 @@ public class Controller {
     private void playerSelection(ActionEvent event) throws IOException {
     	int numPlayers = (Integer.parseInt(((Button) event.getSource()).getText()));
     	System.out.println("Picked "+numPlayers+ " Players");
-    	Game.GameRunner.setNumPlayers(numPlayers);
+    	Game.setNumPlayers(numPlayers);
 		this.handleChooseColour();
     }
     
@@ -115,20 +115,20 @@ public class Controller {
     	if (colour.contentEquals("Blue")) { 
     		BluePlayer.getInstance();
     		BluePlayer.getInstance().developStartingPositions();
-    		Game.GameRunner.addPlayer(BluePlayer.getInstance());
+    		Game.addPlayer(BluePlayer.getInstance());
     	}
     	if (colour.contentEquals("White")) { 
     		WhitePlayer.getInstance(); 
     		WhitePlayer.getInstance().developStartingPositions();
-    		Game.GameRunner.addPlayer(WhitePlayer.getInstance());}
+    		Game.addPlayer(WhitePlayer.getInstance());}
     	if (colour.contentEquals("Red")) { 
     		RedPlayer.getInstance(); 
     		RedPlayer.getInstance().developStartingPositions();
-    		Game.GameRunner.addPlayer(RedPlayer.getInstance());}
+    		Game.addPlayer(RedPlayer.getInstance());}
     	if (colour.contentEquals("Orange")) { 
     		OrangePlayer.getInstance(); 
     		OrangePlayer.getInstance().developStartingPositions();
-    		Game.GameRunner.addPlayer(OrangePlayer.getInstance());}
+    		Game.addPlayer(OrangePlayer.getInstance());}
     	
     	this.handleChooseColour();	
 	}
@@ -139,11 +139,11 @@ public class Controller {
      */
     @FXML
     private void handleChooseColour() throws IOException {
-    	if(Game.GameRunner.players.size()< Game.GameRunner.getNumPlayers()) {
+    	if(Game.players.size()< Game.getNumPlayers()) {
     		Parent ChooseColour = FXMLLoader.load(getClass().getResource("ChooseColour.fxml"));
     		Scene ChooseColourScene = new Scene(ChooseColour);
     		Label L = (Label) ChooseColourScene.lookup("#playerChooseColour");
-    		L.setText("Player"+(GameRunner.players.size()+1)+" choose your colour:");
+    		L.setText("Player"+(Game.players.size()+1)+" choose your colour:");
     		primaryStage.setScene(ChooseColourScene);
     		primaryStage.show();
     	}
@@ -207,7 +207,6 @@ public class Controller {
     	
     	int dieResult = Dice.getInstance().roll();
     	this.beginCaptureOutputStream();
-    	System.out.println(GameRunner.getCurrentPlayer().getColour()+" player rolled "+dieResult);
     	
     	if(dieResult<6) {
     		Board.getInstance().handleGeneratingIslandResources(dieResult);
@@ -243,7 +242,7 @@ public class Controller {
     	}
     	else if(Action.contentEquals("Buy Coco Tile")) {
     		this.beginCaptureOutputStream();
-    		CocoCard card = GameRunner.getCurrentPlayer().buyCocoCard();
+    		CocoCard card = Game.getCurrentPlayer().buyCocoCard();
     		this.endCaptureOutputStream();
     		if(card instanceof CocoCards.GetShipOrLairCoco) {
 //    			System.out.print("Choose Free Ship or Lair");
@@ -260,7 +259,7 @@ public class Controller {
     		loadOfferedResource();
     	}
     	else if(Action.contentEquals("End Turn")) {
-    		GameRunner.nextPlayer();
+    		Game.nextPlayer();
     		loadRollDie();
     	}
     }
@@ -286,7 +285,7 @@ public class Controller {
     	String[] LocationSelected = ((Button) event.getSource()).getId().split(",",2);
     	printInfo = "\nGhost captain placed on: "+LocationSelected[0]+","+LocationSelected[1];
     	System.out.println(printInfo);
-    	GameRunner.getCurrentPlayer().moveGhostCaptain(Integer.parseInt(LocationSelected[0]), Integer.parseInt(LocationSelected[1]));
+    	Game.getCurrentPlayer().moveGhostCaptain(Integer.parseInt(LocationSelected[0]), Integer.parseInt(LocationSelected[1]));
     	loadChooseActionMenu();
     }
 	//===========================================================
@@ -323,10 +322,10 @@ public class Controller {
     	String tradingPartner = ((Button) event.getSource()).getText();
     	this.beginCaptureOutputStream();
     	if(tradingPartner.contentEquals("Stockpile")) {
-    		GameRunner.getCurrentPlayer().trade(Trading.Stockpile.getInstance(),offeredResource, requestedResource);
+    		Game.getCurrentPlayer().trade(Trading.Stockpile.getInstance(),offeredResource, requestedResource);
     	}
     	else
-    		GameRunner.getCurrentPlayer().trade(Trading.Market.getInstance(),offeredResource, requestedResource);
+    		Game.getCurrentPlayer().trade(Trading.Market.getInstance(),offeredResource, requestedResource);
     	this.endCaptureOutputStream();
     	loadChooseActionMenu();
     }
@@ -453,11 +452,11 @@ public class Controller {
 	    	int y = Integer.parseInt(LocationSelected[1]);
 	    	this.beginCaptureOutputStream();
 	    	if(isCocoDevelopment) {
-	    		if(Board.getInstance().developLocation(x, y, GameRunner.getCurrentPlayer())) {
-		    		Board.getInstance().developLocation(x, y, GameRunner.getCurrentPlayer());
+	    		if(Board.getInstance().developLocation(x, y, Game.getCurrentPlayer())) {
+		    		Board.getInstance().developLocation(x, y, Game.getCurrentPlayer());
 		    		isCocoDevelopment = false;
 		    		this.endCaptureOutputStream();
-		    		if(Game.GameRunner.checkForAWinner())
+		    		if(Game.checkForAWinner())
 		    			gameWinnerScene();
 		    		else
 		    			loadChooseActionMenu();
@@ -466,9 +465,9 @@ public class Controller {
 	    			loadMap();
 	    	}
 	    	else {
-	    		Board.getInstance().buyLairOrShip(x, y, GameRunner.getCurrentPlayer());
+	    		Board.getInstance().buyLairOrShip(x, y, Game.getCurrentPlayer());
 	    		this.endCaptureOutputStream();
-	    		if(Game.GameRunner.checkForAWinner())
+	    		if(Game.checkForAWinner())
 	    			gameWinnerScene();
 	    		else
 	    			loadMap();
@@ -487,36 +486,36 @@ public class Controller {
     	String[] playerNum = {"P1","P2","P3","P4"};
     	String[] variableLabel = {"Player","gold","molasses","cutlasses","goats",
     			"wood","UsedCoco","UnusedLairs","UnusedShips"};
-    	for(int p = 0; p < GameRunner.getNumPlayers(); p++) {
+    	for(int p = 0; p < Game.getNumPlayers(); p++) {
 	    	for(int i = 0; i < variableLabel.length;i++) {
 	    		Label L = (Label) mapScene.lookup("#"+variableLabel[i]+playerNum[p]);
 	    		Pane P = (Pane) mapScene.lookup("#pane"+playerNum[p]);
 	    		if(variableLabel[i]=="Player") {
-	    			L.setText(L.getText() + "("+GameRunner.getPlayer(p).getColour()+"):");
-	    			if((p+1)==GameRunner.getPlayerTurnNumber())
+	    			L.setText(L.getText() + "("+Game.getPlayer(p).getColour()+"):");
+	    			if((p+1)==Game.getPlayerTurnNumber())
 	    				P.getStyleClass().add("currentPlayerPane");
 	    			else
 	    				P.getStyleClass().add("resourceHolderPane");
 	    		}
 	    		if(variableLabel[i]=="gold")
-	    			L.setText(L.getText() + GameRunner.getPlayer(p).getNumGold());
+	    			L.setText(L.getText() + Game.getPlayer(p).getNumGold());
 	    		if(variableLabel[i]=="molasses")
-	    			L.setText(L.getText() + GameRunner.getPlayer(p).getNumMolasses());
+	    			L.setText(L.getText() + Game.getPlayer(p).getNumMolasses());
 	    		if(variableLabel[i]=="cutlasses")
-	    			L.setText(L.getText() + GameRunner.getPlayer(p).getNumCutlasses());
+	    			L.setText(L.getText() + Game.getPlayer(p).getNumCutlasses());
 	    		if(variableLabel[i]=="goats")
-	    			L.setText(L.getText() + GameRunner.getPlayer(p).getNumGoats());
+	    			L.setText(L.getText() + Game.getPlayer(p).getNumGoats());
 	    		if(variableLabel[i]=="wood")
-	    			L.setText(L.getText() + GameRunner.getPlayer(p).getNumWood());
+	    			L.setText(L.getText() + Game.getPlayer(p).getNumWood());
 	    		if(variableLabel[i]=="UsedCoco")
-	    			L.setText(L.getText() + GameRunner.getPlayer(p).getNumUsedCoco());
+	    			L.setText(L.getText() + Game.getPlayer(p).getNumUsedCoco());
 	    		if(variableLabel[i]=="UnusedLairs")
-	    			L.setText(L.getText() + GameRunner.getPlayer(p).getUnbuiltLairs());
+	    			L.setText(L.getText() + Game.getPlayer(p).getUnbuiltLairs());
 	    		if(variableLabel[i]=="UnusedShips")
-	    			L.setText(L.getText() + GameRunner.getPlayer(p).getUnbuiltShips());
+	    			L.setText(L.getText() + Game.getPlayer(p).getUnbuiltShips());
 	    	}
     	}
-    	if(GameRunner.getNumPlayers()==3) {
+    	if(Game.getNumPlayers()==3) {
 	    	for(int i = 0; i < variableLabel.length;i++) {
 	    		Label L1 = (Label) mapScene.lookup("#"+variableLabel[i]+"P4");
 	    		L1.setText("");
