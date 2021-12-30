@@ -30,10 +30,6 @@ class TradeTests {
 
 	@BeforeEach
 	public void setUp() throws Exception{
-		// Player should be initialized with 1 wood, 1 molasses.
-//		testPlayer = new Player(Player.colour.Blue);
-//		testPlayer.printResources();
-//		Board.getInstance();
 		Stockpile.getInstance();
 	}
 	
@@ -41,7 +37,6 @@ class TradeTests {
 	@AfterEach
 	public void tearDown() throws Exception{
 		Stockpile.getInstance().destroyMe();
-//		Market.getInstance().destroyMe();
 		Board.getInstance().destroyMe();
 	}
 	

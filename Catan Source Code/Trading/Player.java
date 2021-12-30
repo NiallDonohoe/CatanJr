@@ -20,8 +20,8 @@ public abstract class Player extends TradingResourceHolder{
 	// Class Variables 
 	//===========================================================
 	public int numUsedCoco=0;
-	private int numUnbuiltShips = 7;
-	private int numUnbuiltLairs = 8;
+	private int numUnbuiltShips = 8;
+	private int numUnbuiltLairs = 7;
     public ArrayList<DevelopedLocation> DevelopedPlayerLocations = new ArrayList<DevelopedLocation>();
     private colour playerColour;
 	public enum colour{

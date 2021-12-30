@@ -9,16 +9,16 @@ import Trading.Player;
 public class Game {
 	
 	private static int numPlayers;
-	public static HashSet<Player> playersSet = new HashSet<Player>();
-	public static ArrayList<Player> players = new ArrayList<Player>();
+	private static HashSet<Player> playersSet = new HashSet<Player>();
+	private static ArrayList<Player> players = new ArrayList<Player>();
 	public static int Turn = 1;
 	
 	/**
 	 * startGame instantiates all singleton instances that need to be declared for the game to start.
 	 */
 	public static void startGame() {
-		Board board = Board.getInstance();
-		board.declareIslands();
+		Board.getInstance();
+		Board.getInstance().declareIslands();
 		Dice.getInstance();
 		CocoCards.CocoDeck.getInstance();
 		Trading.Stockpile.getInstance();
@@ -32,7 +32,10 @@ public class Game {
 	 * @param numSelected The number of selected players.
 	 */
 	public static void setNumPlayers(int numSelected) {
-		numPlayers = numSelected;
+		if(numSelected == 3 || numSelected == 4)
+			numPlayers = numSelected;
+		else
+			numPlayers = 0;
 	}
 	/**
 	 * getNumPlayers Gets the number of players in the game.
@@ -75,6 +78,20 @@ public class Game {
 			}
 		}
 		return "No player has won the game.";
+	}
+	/**
+	 * getPlayers return the players ArrayList.
+	 * @return ArrayList<Player>
+	 */
+	public static ArrayList<Player> getPlayers() {
+		return players;
+	}
+	/**
+	 * getPlayersSet returns the playersSet HashSet, used only for unit testing. 
+	 * @return HashSet<Player>
+	 */
+	public static HashSet<Player> getPlayersSet(){
+		return playersSet;
 	}
 	
   	//===========================================================
@@ -121,5 +138,5 @@ public class Game {
 		}
 		return false;
 		
-	}	
+	}
 }
