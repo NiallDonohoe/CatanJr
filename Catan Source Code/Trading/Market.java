@@ -63,7 +63,6 @@ public class Market extends ResourceHolder{
 		}
 	}
 	
-	// Refreshes market if checkRefreshMarket finds the market needs to be refreshed and at the start of the game
 	/**
 	 * refreshMarket moves one of each resource from the stockpile to the market.
 	 */
