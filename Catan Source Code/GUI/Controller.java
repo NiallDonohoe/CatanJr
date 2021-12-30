@@ -139,11 +139,11 @@ public class Controller {
      */
     @FXML
     private void handleChooseColour() throws IOException {
-    	if(Game.players.size()< Game.getNumPlayers()) {
+    	if(Game.getPlayers().size()< Game.getNumPlayers()) {
     		Parent ChooseColour = FXMLLoader.load(getClass().getResource("ChooseColour.fxml"));
     		Scene ChooseColourScene = new Scene(ChooseColour);
     		Label L = (Label) ChooseColourScene.lookup("#playerChooseColour");
-    		L.setText("Player"+(Game.players.size()+1)+" choose your colour:");
+    		L.setText("Player"+(Game.getPlayers().size()+1)+" choose your colour:");
     		primaryStage.setScene(ChooseColourScene);
     		primaryStage.show();
     	}
