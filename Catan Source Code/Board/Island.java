@@ -25,11 +25,11 @@ public class Island {
 	private boolean hasGhostCaptain;
 	private Trading.Player.colour ghostCaptainLastMovedBy;
 	
-	public ArrayList<Location> islandAvailableLairLocations = new ArrayList<Location>();
-	public ArrayList<DevelopedLocation> islandDevelopedLairLocations = new ArrayList<DevelopedLocation>();
+	private ArrayList<Location> islandAvailableLairLocations = new ArrayList<Location>();
+	private ArrayList<DevelopedLocation> islandDevelopedLairLocations = new ArrayList<DevelopedLocation>();
 	
-	public ArrayList<Location> islandAvailableShipLocations = new ArrayList<Location>();
-	public ArrayList<DevelopedLocation> islandDevelopedShipLocations = new ArrayList<DevelopedLocation>();
+	private ArrayList<Location> islandAvailableShipLocations = new ArrayList<Location>();
+	private ArrayList<DevelopedLocation> islandDevelopedShipLocations = new ArrayList<DevelopedLocation>();
 	
 	//===========================================================
 	// Constructor
@@ -300,4 +300,40 @@ public class Island {
 	public String toString(){
 	    return "Center: " + this.xC + " " + this.yC + "available " + islandAvailableLairLocations;
 	}
+	
+  	//===========================================================
+  	// Getters For Unit Testing Only
+  	//===========================================================
+	
+    /**
+     * getIslandAvailableLairLocations method.
+     * @return islandAvailableLairLocations. An ArrayList of locations where a Lair could be built
+     */
+    public ArrayList<Location> getIslandAvailableLairLocations(){
+    	return islandAvailableLairLocations;
+    }
+    
+    /**
+     * getIslandDevelopedLairLocations method.
+     * @return islandDevelopedLairLocations. An ArrayList of locations where a Lair has been built
+     */
+    public ArrayList<DevelopedLocation> getIslandDevelopedLairLocations(){
+    	return islandDevelopedLairLocations;
+    }
+    
+    /**
+     * getIslandAvailableShipLocations method.
+     * @return islandAvailableShipLocations. An ArrayList of locations where a Ship could be built
+     */
+    public ArrayList<Location> getIslandAvailableShipLocations(){
+    	return islandAvailableShipLocations;
+    }
+    
+    /**
+     * getIslandDevelopedShipLocations method.
+     * @return islandDevelopedShipLocations. An ArrayList of locations where a Ship has been built
+     */
+    public ArrayList<DevelopedLocation> getIslandDevelopedShipLocations(){
+    	return islandDevelopedShipLocations;
+    }
 }

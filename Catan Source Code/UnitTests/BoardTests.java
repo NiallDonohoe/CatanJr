@@ -80,9 +80,9 @@ public class BoardTests {
 		for(Island i: Board.getInstance().getIslands()) {
 			int islandX = i.getX();
 			int islandY = i.getY();
-			for(int j=0; j<i.islandAvailableLairLocations.size(); j++) {
-				int locationX = i.islandAvailableLairLocations.get(j).getX();
-				int locationY = i.islandAvailableLairLocations.get(j).getY();
+			for(int j=0; j<i.getIslandAvailableLairLocations().size(); j++) {
+				int locationX = i.getIslandAvailableLairLocations().get(j).getX();
+				int locationY = i.getIslandAvailableLairLocations().get(j).getY();
 				assertTrue(islandX==locationX||islandX==locationX+2||islandX==locationX-2);
 				assertTrue(islandY==locationY||islandY==locationY+1||islandY==locationY-1);
 			}
@@ -96,9 +96,9 @@ public class BoardTests {
 		for(Island i: Board.getInstance().getIslands()) {
 			int islandX = i.getX();
 			int islandY = i.getY();
-			for(int j=0; j<i.islandAvailableShipLocations.size(); j++) {
-				int locationX = i.islandAvailableShipLocations.get(j).getX();
-				int locationY = i.islandAvailableShipLocations.get(j).getY();
+			for(int j=0; j<i.getIslandAvailableShipLocations().size(); j++) {
+				int locationX = i.getIslandAvailableShipLocations().get(j).getX();
+				int locationY = i.getIslandAvailableShipLocations().get(j).getY();
 				assertTrue(islandX==locationX||islandX==locationX+2||islandX==locationX-2||islandX==locationX+1||islandX==locationX-1);
 				assertTrue(islandY==locationY||islandY==locationY+1||islandY==locationY-1);
 			}

@@ -245,7 +245,6 @@ public class Controller {
     		CocoCard card = Game.getCurrentPlayer().buyCocoCard();
     		this.endCaptureOutputStream();
     		if(card instanceof CocoCards.GetShipOrLairCoco) {
-//    			System.out.print("Choose Free Ship or Lair");
     			isCocoDevelopment = true;
     			loadMap();
     		}
