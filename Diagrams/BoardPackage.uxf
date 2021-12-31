@@ -5,8 +5,8 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>585</x>
-      <y>55</y>
+      <x>510</x>
+      <y>105</y>
       <w>245</w>
       <h>205</h>
     </coordinates>
@@ -42,8 +42,8 @@ Board - Singleton
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>645</x>
-      <y>480</y>
+      <x>570</x>
+      <y>530</y>
       <w>230</w>
       <h>45</h>
     </coordinates>
@@ -61,8 +61,8 @@ Board - Singleton
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>315</x>
-      <y>305</y>
+      <x>240</x>
+      <y>355</y>
       <w>245</w>
       <h>275</h>
     </coordinates>
@@ -108,8 +108,8 @@ Island
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>170</x>
-      <y>385</y>
+      <x>95</x>
+      <y>435</y>
       <w>105</w>
       <h>65</h>
     </coordinates>
@@ -128,8 +128,8 @@ resourceType
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>640</x>
-      <y>495</y>
+      <x>565</x>
+      <y>545</y>
       <w>15</w>
       <h>15</h>
     </coordinates>
@@ -139,8 +139,8 @@ resourceType
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>650</x>
-      <y>305</y>
+      <x>575</x>
+      <y>355</y>
       <w>160</w>
       <h>105</h>
     </coordinates>
@@ -162,8 +162,8 @@ resourceType
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>465</x>
-      <y>55</y>
+      <x>390</x>
+      <y>105</y>
       <w>105</w>
       <h>65</h>
     </coordinates>
@@ -182,8 +182,8 @@ corner
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>815</x>
-      <y>305</y>
+      <x>740</x>
+      <y>355</y>
       <w>60</w>
       <h>40</h>
     </coordinates>
@@ -199,8 +199,8 @@ lairOrShip
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>75</x>
-      <y>305</y>
+      <x>0</x>
+      <y>355</y>
       <w>200</w>
       <h>70</h>
     </coordinates>
@@ -218,8 +218,8 @@ lairOrShip
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>715</x>
-      <y>405</y>
+      <x>640</x>
+      <y>455</y>
       <w>15</w>
       <h>85</h>
     </coordinates>
@@ -229,8 +229,8 @@ lairOrShip
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>555</x>
-      <y>345</y>
+      <x>480</x>
+      <y>395</y>
       <w>105</w>
       <h>15</h>
     </coordinates>
@@ -240,8 +240,8 @@ lairOrShip
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>555</x>
-      <y>490</y>
+      <x>480</x>
+      <y>540</y>
       <w>100</w>
       <h>15</h>
     </coordinates>
@@ -251,8 +251,8 @@ lairOrShip
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>270</x>
-      <y>345</y>
+      <x>195</x>
+      <y>395</y>
       <w>55</w>
       <h>15</h>
     </coordinates>
@@ -262,8 +262,8 @@ lairOrShip
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>480</x>
-      <y>200</y>
+      <x>405</x>
+      <y>250</y>
       <w>110</w>
       <h>115</h>
     </coordinates>
@@ -274,8 +274,8 @@ m1=12</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>200</x>
-      <y>160</y>
+      <x>125</x>
+      <y>210</y>
       <w>395</w>
       <h>155</h>
     </coordinates>
