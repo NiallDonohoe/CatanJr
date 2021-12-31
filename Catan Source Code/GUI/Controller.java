@@ -204,9 +204,8 @@ public class Controller {
      */
     @FXML
     private void rollDie(ActionEvent event) throws IOException {
-    	
-    	int dieResult = Dice.getInstance().roll();
     	this.beginCaptureOutputStream();
+    	int dieResult = Dice.getInstance().roll();
     	
     	if(dieResult<6) {
     		Board.getInstance().handleGeneratingIslandResources(dieResult);

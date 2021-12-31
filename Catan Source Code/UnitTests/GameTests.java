@@ -25,7 +25,23 @@ public class GameTests {
 	static void beforeAll() {
 		System.out.println("Running Gameplay Test Cases.");
 		Game.Game.startGame();
+		Game.Game.getPlayers().clear();
+		Game.Game.getPlayersSet().clear();
+		BluePlayer.getInstance().destroyMe();
+		RedPlayer.getInstance().destroyMe();
+		OrangePlayer.getInstance().destroyMe();
+		WhitePlayer.getInstance().destroyMe();
 	}
+	@BeforeEach
+	public void beforeEach() {
+		Game.Game.startGame();
+		Game.Game.getPlayers().clear();
+		Game.Game.getPlayersSet().clear();
+		BluePlayer.getInstance().destroyMe();
+		RedPlayer.getInstance().destroyMe();
+		OrangePlayer.getInstance().destroyMe();
+		WhitePlayer.getInstance().destroyMe();
+	}	
 	@AfterEach
 	public void afterEach() throws Exception{
 		Game.Game.getPlayers().clear();
@@ -34,18 +50,8 @@ public class GameTests {
 		RedPlayer.getInstance().destroyMe();
 		OrangePlayer.getInstance().destroyMe();
 		WhitePlayer.getInstance().destroyMe();
-//		Board.getInstance().destroyMe();
 	}
-	@After
-	public void after() throws Exception{
-		Game.Game.getPlayers().clear();
-		Game.Game.getPlayersSet().clear();
-		BluePlayer.getInstance().destroyMe();
-		RedPlayer.getInstance().destroyMe();
-		OrangePlayer.getInstance().destroyMe();
-		WhitePlayer.getInstance().destroyMe();
-		Board.getInstance().destroyMe();
-	}
+
 
 	@Test
 	@Order(1)
@@ -129,7 +135,6 @@ public class GameTests {
 	@Test
 	@Order(7)
 	public void winGameWhenLairsReach0() {
-//		Game.Game.startGame();
 		Game.Game.setNumPlayers(3);
 		Game.Game.addPlayer(BluePlayer.getInstance());
 		Game.Game.addPlayer(RedPlayer.getInstance());
