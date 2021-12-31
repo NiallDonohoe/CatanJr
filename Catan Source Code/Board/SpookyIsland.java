@@ -84,5 +84,12 @@ public class SpookyIsland extends Island {
 		}
 		return false;
 	}
+	/**
+	 * destroyMe used for unit testing only.
+	 */
+	public void destroyMe() {
+		// TODO Auto-generated method stub
+		instance = null;
+	}
 }
 
