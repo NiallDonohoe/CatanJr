@@ -4,7 +4,9 @@ import static org.junit.Assert.*;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.After;
+import org.junit.Before;
 import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
@@ -18,13 +20,16 @@ import Trading.RedPlayer;
 
 @TestMethodOrder(MethodOrderer.MethodName.class)
 public class BoardTests {
-	
-	@BeforeAll
-	static void BeforeAll() {
-		System.out.println("Running Board Test Cases...");
+	@BeforeEach
+	void beforeEach() {
+		Board.getInstance().destroyMe();
+		Board.getInstance();
 		Board.getInstance().declareIslands();
 	}
-	
+	@Before
+	static void beforeAll() {
+		System.out.println("Running Board Test Cases...");
+	}
 	@After
 	public void tearDown() throws Exception{
 		Board.getInstance().destroyMe();
@@ -38,6 +43,9 @@ public class BoardTests {
 	@Test
 	@Order(1)
 	public void weHave13Islands() {
+		Board.getInstance().destroyMe();
+		Board.getInstance();
+		Board.getInstance().declareIslands();
 		assertEquals("The number of islands should be:", 13, Board.getInstance().getIslands().size());
 	}
 	
@@ -48,18 +56,18 @@ public class BoardTests {
 	}
 	
 	@Test
-	//@Order(3)
-	public void weHaveAllAvailableLocations() {
+	@Order(3)
+	public void haveAllAvailableLocations() {
 		for(Location l: Board.getInstance().getAvailableLocations()) {
 			assertTrue(Board.getInstance().positionAvailable(l.getX(),l.getY())>=0);
 		}
 	}
 
 	@Test
-	//@Order(4)
-	public void weHave0DevelopedLocations() {
+	@Order(4)
+	public void have0DevelopedLocations() {
 		for(Location l: Board.getInstance().getDevelopedLocations()) {
-			assertFalse(Board.getInstance().positionAvailable(l.getX(),l.getY())>=0);
+			assertFalse(Board.getInstance().positionDeveloped(l.getX(),l.getY())>=0);
 		}
 	}
 	

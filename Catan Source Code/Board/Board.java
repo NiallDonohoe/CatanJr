@@ -170,7 +170,7 @@ public class Board {
      * @param yi y coordinate of location
      * @return i an int indication where in the ArrayList developedLocations the location is
      */ 
-    protected int positionDeveloped(int xi, int yi) {
+    public int positionDeveloped(int xi, int yi) {
     	for(int i=0; i < developedLocations.size();i++) {
     		if(developedLocations.get(i).isEqual(xi, yi)) {
 	   			return i;
@@ -297,7 +297,10 @@ public class Board {
     //===========================================================
     
     public void destroyMe() {
-    	islands = null;
+    	SpookyIsland.getInstance().destroyMe();
+    	developedLocations.clear();
+    	availableLocations.clear();
+    	islands.clear();
         instance = null;
     }
 }

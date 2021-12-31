@@ -26,7 +26,9 @@ class TradeTests {
 	@BeforeAll
 	static void BeforeAll() {
 		System.out.println("Running Player Test Cases...");
-		
+		Stockpile.getInstance().destroyMe();
+		Market.getInstance().destroyMe();
+		BluePlayer.getInstance().destroyMe();
 	}
 
 	@BeforeEach
@@ -61,6 +63,8 @@ class TradeTests {
 	@Test
 	@Order(2)
 	public void marketHasCorrectStartingResources() {
+		Stockpile.getInstance().destroyMe();
+		Stockpile.getInstance();
 		Market.getInstance();
 		
 		assertEquals("The market should start with 1 gold.",1,
@@ -138,7 +142,6 @@ class TradeTests {
 		testPlayer.moveResource(ResourceType.wood, 1, Stockpile.getInstance());
 		testPlayer.printResources();
 		Stockpile.getInstance().printResources();
-		System.out.println("Current test ###############.");
 		assertEquals("Before stockpile trade where wood is offered for cutlass, player should have 2 wood:",2,
 				testPlayer.getNumWood());
 		testPlayer.trade(Stockpile.getInstance(), ResourceType.wood, ResourceType.cutlass);
